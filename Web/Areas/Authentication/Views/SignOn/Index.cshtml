@@ -1,0 +1,19 @@
+﻿@model Web.Areas.Authentication.Models.SignOnModel
+
+@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+@section css
+{ 
+    <link href="/content/authentication.css" rel="stylesheet" type="text/css" /> 
+}
+
+<h2>SignOn Index</h2>
+
+@using(Html.BeginForm("SignOn","SignOn", FormMethod.Post, new { area = "Authentication" }))
+{
+    @Html.TextBoxFor(x => x.UserName)<br />
+    @Html.PasswordFor(x => x.Password)<br />
+    <input type="submit" value="submit" />
+}
+
+@Html.ValidationSummary()
