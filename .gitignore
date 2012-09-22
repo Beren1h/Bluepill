@@ -1,5 +1,5 @@
 bin/
-org/
+obj/
 *.suo
 *.swp
 *.user

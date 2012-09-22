@@ -129,7 +129,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
+    <Compile Include="Areas\Administration\Controllers\AddPictureController.cs" />
     <Compile Include="Areas\Administration\Controllers\CreateController.cs" />
+    <Compile Include="Areas\Administration\Controllers\RemovePictureController.cs" />
+    <Compile Include="Areas\Administration\Controllers\UserController.cs" />
+    <Compile Include="Areas\Administration\Models\UserModel.cs" />
     <Compile Include="Areas\Authentication\AuthenticationAreaRegistration.cs" />
     <Compile Include="Areas\Authentication\Controllers\SignOnController.cs" />
     <Compile Include="Areas\Authentication\Models\SignOnModel.cs" />
@@ -150,7 +154,9 @@
     <Compile Include="Framework\IPrincipalService.cs" />
     <Compile Include="Framework\ValidatorFactory.cs" />
     <Compile Include="Gateways\AuthenticationGateway.cs" />
+    <Compile Include="Gateways\CookieGateway.cs" />
     <Compile Include="Gateways\IAuthenticationGateway.cs" />
+    <Compile Include="Gateways\ICookieGateway.cs" />
     <Compile Include="Gateways\IMongoGateway.cs" />
     <Compile Include="Gateways\MongoGateway.cs" />
     <Compile Include="Global.asax.cs">
@@ -166,6 +172,7 @@
     <Content Include="404.html" />
     <Content Include="Content\Authentication.css" />
     <Content Include="Content\global.css" />
+    <Content Include="Content\jquery-ui-combobox.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -220,12 +227,33 @@
     <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Content\themes\sunny\images\ui-bg_diagonals-medium_20_d34d17_40x40.png" />
+    <Content Include="Content\themes\sunny\images\ui-bg_flat_30_cccccc_40x100.png" />
+    <Content Include="Content\themes\sunny\images\ui-bg_flat_50_5c5c5c_40x100.png" />
+    <Content Include="Content\themes\sunny\images\ui-bg_gloss-wave_45_817865_500x100.png" />
+    <Content Include="Content\themes\sunny\images\ui-bg_gloss-wave_60_fece2f_500x100.png" />
+    <Content Include="Content\themes\sunny\images\ui-bg_gloss-wave_70_ffdd57_500x100.png" />
+    <Content Include="Content\themes\sunny\images\ui-bg_gloss-wave_90_fff9e5_500x100.png" />
+    <Content Include="Content\themes\sunny\images\ui-bg_highlight-soft_100_feeebd_1x100.png" />
+    <Content Include="Content\themes\sunny\images\ui-bg_inset-soft_30_ffffff_1x100.png" />
+    <Content Include="Content\themes\sunny\images\ui-icons_3d3d3d_256x240.png" />
+    <Content Include="Content\themes\sunny\images\ui-icons_bd7b00_256x240.png" />
+    <Content Include="Content\themes\sunny\images\ui-icons_d19405_256x240.png" />
+    <Content Include="Content\themes\sunny\images\ui-icons_eb990f_256x240.png" />
+    <Content Include="Content\themes\sunny\images\ui-icons_ed9f26_256x240.png" />
+    <Content Include="Content\themes\sunny\images\ui-icons_fadc7a_256x240.png" />
+    <Content Include="Content\themes\sunny\images\ui-icons_ffe180_256x240.png" />
+    <Content Include="Content\themes\sunny\jquery-ui-1.8.23.custom.css" />
     <Content Include="Global.asax" />
+    <Content Include="Areas\Administration\Views\User\Index.cshtml" />
     <None Include="Scripts\jquery-1.8.1.intellisense.js" />
+    <Content Include="Scripts\authentication.js" />
+    <Content Include="Scripts\global.js" />
     <Content Include="Scripts\jquery-1.8.1.js" />
     <Content Include="Scripts\jquery-1.8.1.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.23.js" />
     <Content Include="Scripts\jquery-ui-1.8.23.min.js" />
+    <Content Include="Scripts\jquery-ui-combobox.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -239,7 +267,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Administration\Models\" />
     <Folder Include="Areas\Administration\Views\Shared\" />
     <Folder Include="Areas\Authentication\Views\Shared\" />
     <Folder Include="Areas\Search\Controllers\" />

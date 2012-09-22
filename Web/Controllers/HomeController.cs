@@ -13,5 +13,6 @@ namespace Web.Controllers
         {
             return RedirectToAction("Index", "SignOn", new { Area = "Authentication" });
         }
+
     }
 }
