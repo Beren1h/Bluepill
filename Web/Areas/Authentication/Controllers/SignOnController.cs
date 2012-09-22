@@ -30,6 +30,7 @@ namespace Web.Areas.Authentication.Controllers
         [AllowAnonymous]
         public ActionResult Index()
         {
+            FormsAuthentication.SignOut();
             return View();
         }
     }
