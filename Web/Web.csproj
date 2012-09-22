@@ -132,7 +132,9 @@
     <Compile Include="Areas\Administration\Controllers\CreateController.cs" />
     <Compile Include="Areas\Application\ApplicationAreaRegistration.cs" />
     <Compile Include="Areas\Application\Controllers\AuthenticationController.cs" />
+    <Compile Include="Areas\Application\Controllers\SettingsController.cs" />
     <Compile Include="Areas\Application\Models\AuthenticationModel.cs" />
+    <Compile Include="Areas\Application\Models\SettingsModel.cs" />
     <Compile Include="Areas\Application\Models\Validators\AuthenticationModelValidator.cs" />
     <Compile Include="Areas\Search\SearchAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -240,6 +242,7 @@
     <Content Include="Global.asax" />
     <Content Include="Areas\Application\Views\Web.config" />
     <Content Include="Areas\Application\Views\Authentication\Index.cshtml" />
+    <Content Include="Areas\Application\Views\Settings\Index.cshtml" />
     <None Include="Scripts\jquery-1.8.1.intellisense.js" />
     <Content Include="Scripts\authentication.js" />
     <Content Include="Scripts\global.js" />
@@ -247,6 +250,7 @@
     <Content Include="Scripts\jquery-1.8.1.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.23.js" />
     <Content Include="Scripts\jquery-ui-1.8.23.min.js" />
+    <Content Include="Scripts\settings.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

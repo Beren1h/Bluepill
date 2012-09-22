@@ -1,0 +1,11 @@
+﻿@model Web.Areas.Application.Models.SettingsModel
+
+<div class="settingsContainer">
+    @using (Html.BeginForm("update", "settings", FormMethod.Post, new { area = "application" }))
+    {
+        @Html.DropDownListFor(x => x.Collections, Model.CollectionsDropDown, new { @class="collectionSelect" })
+        @Html.HiddenFor(x => x.UserName)
+        <input type="submit" value="Submit" />
+    }
+</div>
+
