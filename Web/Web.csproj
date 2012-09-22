@@ -130,10 +130,10 @@
   <ItemGroup>
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\CreateController.cs" />
-    <Compile Include="Areas\Authentication\AuthenticationAreaRegistration.cs" />
-    <Compile Include="Areas\Authentication\Controllers\SignOnController.cs" />
-    <Compile Include="Areas\Authentication\Models\SignOnModel.cs" />
-    <Compile Include="Areas\Authentication\Models\Validators\SignOnModelValidator.cs" />
+    <Compile Include="Areas\Application\ApplicationAreaRegistration.cs" />
+    <Compile Include="Areas\Application\Controllers\AuthenticationController.cs" />
+    <Compile Include="Areas\Application\Models\AuthenticationModel.cs" />
+    <Compile Include="Areas\Application\Models\Validators\AuthenticationModelValidator.cs" />
     <Compile Include="Areas\Search\SearchAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Framework\BluePillIdentity.cs" />
@@ -238,6 +238,8 @@
     <Content Include="Content\themes\sunny\images\ui-icons_ffe180_256x240.png" />
     <Content Include="Content\themes\sunny\jquery-ui-1.8.23.custom.css" />
     <Content Include="Global.asax" />
+    <Content Include="Areas\Application\Views\Web.config" />
+    <Content Include="Areas\Application\Views\Authentication\Index.cshtml" />
     <None Include="Scripts\jquery-1.8.1.intellisense.js" />
     <Content Include="Scripts\authentication.js" />
     <Content Include="Scripts\global.js" />
@@ -260,7 +262,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Administration\Models\" />
     <Folder Include="Areas\Administration\Views\Shared\" />
-    <Folder Include="Areas\Authentication\Views\Shared\" />
+    <Folder Include="Areas\Application\Views\Shared\" />
     <Folder Include="Areas\Search\Controllers\" />
     <Folder Include="Areas\Search\Models\" />
     <Folder Include="Areas\Search\Views\Shared\" />
@@ -276,12 +278,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Administration\Views\Create\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\Authentication\Views\Web.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\Authentication\Views\SignOn\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\_ViewStart.cshtml" />

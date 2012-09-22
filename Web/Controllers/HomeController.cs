@@ -11,7 +11,7 @@ namespace Web.Controllers
         [AllowAnonymous]
         public ActionResult Index()
         {
-            return RedirectToAction("Index", "SignOn", new { Area = "Authentication" });
+            return RedirectToAction("index", "authentication", new { Area = "application" });
         }
     }
 }

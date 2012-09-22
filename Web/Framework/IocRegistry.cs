@@ -15,7 +15,7 @@ namespace Web.Framework
             container.RegisterType<IAuthenticationGateway, AuthenticationGateway>(new ContainerControlledLifetimeManager());
             container.RegisterType<IBluePillUserStore, BluePillUserStore>(new ContainerControlledLifetimeManager());
 
-            FluentValidation.AssemblyScanner.FindValidatorsInAssemblyContaining<Web.Areas.Authentication.Models.Validators.SignOnModelValidator>()
+            FluentValidation.AssemblyScanner.FindValidatorsInAssemblyContaining<Web.Areas.Application.Models.Validators.AuthenticationModelValidator>()
                 .ForEach(result => container.RegisterType(result.InterfaceType, result.ValidatorType));
         }
     }
