@@ -13,7 +13,11 @@ namespace Web.Framework
         {
             _users = new Dictionary<string, BluePillUser>();
 
-            _users.Add("uid", new BluePillUser { UserName = "uid", Password = "pwd", Collections = new List<string> {"collection1", "collection2"} });
+            _users.Add("uid", new BluePillUser { 
+                UserName = "uid", 
+                Password = "pwd", 
+                Collections = new List<string> {"collection1", "collection2", "collection3", "collection4", "collection5", "collection6", "collection7" } 
+            });
 
         }
 

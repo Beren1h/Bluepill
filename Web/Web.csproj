@@ -143,6 +143,7 @@
     <Compile Include="Framework\BluePillUser.cs" />
     <Compile Include="Framework\BluePillUserStore.cs" />
     <Compile Include="Framework\BluePillWebApplication.cs" />
+    <Compile Include="Framework\Constants.cs" />
     <Compile Include="Framework\HttpContextLifetimeManager.cs" />
     <Compile Include="Framework\IBluePillUserStore.cs" />
     <Compile Include="Framework\IIocRegistry.cs" />
@@ -168,6 +169,7 @@
     <Content Include="404.html" />
     <Content Include="Content\Authentication.css" />
     <Content Include="Content\global.css" />
+    <Content Include="Content\jquery-ui-combobox.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -250,6 +252,7 @@
     <Content Include="Scripts\jquery-1.8.1.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.23.js" />
     <Content Include="Scripts\jquery-ui-1.8.23.min.js" />
+    <Content Include="Scripts\jquery-ui-combobox.js" />
     <Content Include="Scripts\settings.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

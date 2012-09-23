@@ -1,11 +1,10 @@
 ﻿@model Web.Areas.Application.Models.SettingsModel
 
-<div class="settingsContainer">
-    @using (Html.BeginForm("update", "settings", FormMethod.Post, new { area = "application" }))
-    {
-        @Html.DropDownListFor(x => x.Collections, Model.CollectionsDropDown, new { @class="collectionSelect" })
-        @Html.HiddenFor(x => x.UserName)
-        <input type="submit" value="Submit" />
-    }
+<div class="settings">
+    @Html.DropDownListFor(x => x.WorkingCollection, Model.CollectionsDropDown, new { @class="collectionSelect", data_uid=Model.UserName })
+    <a href="\application\authentication" class="small signoff">Sign Off</a>
 </div>
+
+
+
 

@@ -20,7 +20,6 @@ namespace Web.Framework
         {
             var cookies = HttpContext.Current.Request.Cookies;
             
-            //var identity = new CarMaxIdentity { Name = "Visitor", AuthenticationType = "Guest" };
             var identity = new BluePillIdentity();
             var roles = new List<string>();
 
@@ -42,18 +41,6 @@ namespace Web.Framework
                 if(user != null)
                     identity.Collections = user.Collections;
             }
-           
-            //identity.Id = GetId();
-            //identity.SessionId = GetSessionId();
-
-            //SetLocationInformation(identity, HttpRequest.QueryString);
-            //SetRadius(identity, HttpRequest.QueryString);
-            //SetGeoCoordinate(identity, HttpRequest.QueryString);
-
-            //identity.IsAuthenticated = IsAuthenticated();
-
-            //if (identity.Location != null)
-            //    roles.Add("location");
 
             return new GenericPrincipal(identity, roles.ToArray());
         }

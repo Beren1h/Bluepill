@@ -1,19 +1,12 @@
 ﻿$(document).ready(function () {
 
-    $(".collectionSelect").change(function () {
+    $(".collectionSelect").combobox();
+    //$(".collectionSelect").show();
 
-        $.ajax({
-            url: "/application/settings/update",
-            data: { "UserName" : "Test", "Collections" : "Whatever" },
-            success: function (result) {
-                $(".settingsContainer").empty();
-                $(".settingsContainer").append(result);
-                console.log("pass");
-            }
-        });
+    $(".ui-combobox-input").attr("disabled", "disabled");
 
-        //$(this).closest("form").submit();
-
+    $(".signoff").button({
+        icons: { primary:"ui-icon-arrowreturnthick-1-w" }
     });
 
 });
