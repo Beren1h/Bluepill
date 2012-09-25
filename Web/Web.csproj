@@ -155,7 +155,9 @@
     <Compile Include="Gateways\AuthenticationGateway.cs" />
     <Compile Include="Gateways\IAuthenticationGateway.cs" />
     <Compile Include="Gateways\IMongoGateway.cs" />
+    <Compile Include="Gateways\IPictureGateway.cs" />
     <Compile Include="Gateways\MongoGateway.cs" />
+    <Compile Include="Gateways\PictureGateway.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -291,6 +293,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Picture\Picture.csproj">
+      <Project>{196dd9c1-e189-47d3-a586-3defb63a9999}</Project>
+      <Name>Picture</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
