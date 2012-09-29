@@ -55,10 +55,16 @@ namespace Web.Gateways
         /// <returns></returns>
         public byte[] Resize(string file, int width, int height)
         {
-            var source = new Bitmap(file);
-            var scale = _resize.DetermineResizeScale(source.Width, source.Height, width, height);
-            
-            return _resize.CreateResizedPicture(source, scale);
+            //var source = new Bitmap(file);
+                       
+            using (var source = new Bitmap(file))
+            {
+                var scale = _resize.DetermineResizeScale(source.Width, source.Height, width, height);
+
+                return _resize.CreateResizedPicture(file, scale);
+            }
+           
+
         }
 
     }

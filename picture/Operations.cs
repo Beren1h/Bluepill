@@ -18,36 +18,36 @@ namespace Picture
             _resize = new Resize();
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="file"></param>
-        /// <param name="width"></param>
-        /// <param name="height"></param>
-        /// <returns></returns>
-        public byte[] Resize(string file, int width, int height)
-        {
-            var source = new Bitmap(file);
-            var scale = _resize.DetermineResizeScale(source.Width, source.Height, width, height);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="file"></param>
+        ///// <param name="width"></param>
+        ///// <param name="height"></param>
+        ///// <returns></returns>
+        //public byte[] Resize(string file, int width, int height)
+        //{
+        //    var source = new Bitmap(file);
+        //    var scale = _resize.DetermineResizeScale(source.Width, source.Height, width, height);
 
-            return _resize.CreateResizedPicture(source, scale);
+        //    return _resize.CreateResizedPicture(source, scale);
 
-        }
+        //}
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="bytes"></param>
-        /// <param name="width"></param>
-        /// <param name="height"></param>
-        /// <returns></returns>
-        public byte[] Resize(byte[] bytes, int width, int height)
-        {
-            var source = Converter.GetBitmap(bytes);
-            var scale = _resize.DetermineResizeScale(source.Width, source.Height, width, height);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="bytes"></param>
+        ///// <param name="width"></param>
+        ///// <param name="height"></param>
+        ///// <returns></returns>
+        //public byte[] Resize(byte[] bytes, int width, int height)
+        //{
+        //    var source = Converter.GetBitmap(bytes);
+        //    var scale = _resize.DetermineResizeScale(source.Width, source.Height, width, height);
 
-            return _resize.CreateResizedPicture(source, scale);
-        }
+        //    return _resize.CreateResizedPicture(source, scale);
+        //}
 
         /// <summary>
         /// 

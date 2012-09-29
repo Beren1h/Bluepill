@@ -65,15 +65,43 @@ namespace Picture
             return new Scale { Height = (int)(sourceHeight * ratioWidth), Width = resizedWidth };
         }
 
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="source"></param>
+        ///// <param name="scale"></param>
+        ///// <returns></returns>
+        //public byte[] CreateResizedPicture(Bitmap source, Scale scale)
+        //{
+        //    using (source)
+        //    {
+        //        using (var resized = new Bitmap(scale.Width, scale.Height))
+        //        {
+        //            using (var graphics = Graphics.FromImage(resized))
+        //            {
+        //                using (var ms = new MemoryStream())
+        //                {
+        //                    graphics.SmoothingMode = SmoothingMode.AntiAlias;
+        //                    graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+        //                    graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
+        //                    graphics.DrawImage(source, new Rectangle(0, 0, scale.Width, scale.Height));
+        //                    resized.Save(ms, ImageFormat.Png);
+        //                    return ms.ToArray();
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="source"></param>
         /// <param name="scale"></param>
         /// <returns></returns>
-        public byte[] CreateResizedPicture(Bitmap source, Scale scale)
+        public byte[] CreateResizedPicture(string file, Scale scale)
         {
-            using (source)
+            using (var source = new Bitmap(file))
             {
                 using (var resized = new Bitmap(scale.Width, scale.Height))
                 {
@@ -92,7 +120,6 @@ namespace Picture
                 }
             }
         }
-
 
 
 

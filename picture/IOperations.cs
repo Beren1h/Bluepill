@@ -8,8 +8,8 @@ namespace Picture
 {
     public interface IOperations
     {
-        byte[] Resize(string file, int width, int height);
-        byte[] Resize(byte[] bytes, int width, int height);
+        //byte[] Resize(string file, int width, int height);
+        //byte[] Resize(byte[] bytes, int width, int height);
         bool Compare(byte[] image1, byte[] image2);
         Scale GetScale (byte[] bytes);
         byte[] GetBytes(string file);

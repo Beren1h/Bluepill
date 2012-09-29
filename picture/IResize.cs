@@ -10,6 +10,7 @@ namespace Picture
     public interface IResize
     {
         Scale DetermineResizeScale(int sourceWidth, int sourceHeight, int resizedWidth, int resizedHeight);
-        byte[] CreateResizedPicture(Bitmap source, Scale scale);
+        //byte[] CreateResizedPicture(Bitmap source, Scale scale);
+        byte[] CreateResizedPicture(string file, Scale scale);
     }
 }
