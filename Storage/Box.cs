@@ -18,5 +18,6 @@ namespace Storage
         public byte[] ComparisonBytes { get; set; }
         public byte[] ReducedBytes { get; set; }
         public byte[] Bytes { get; set; }
+        public string UserId { get; set; }
     }
 }

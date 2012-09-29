@@ -70,7 +70,8 @@ namespace Storage.Test
             //16777216
             //29268747
 
-            var box = new Box { MetaData = metadata, Bytes = originalBytes, ReducedBytes = reducedBytes, ComparisonBytes = comparisonBytes, ReducedBytesHeight = 200, ReducedBytesWidth = 200 };
+            var box = new Box { MetaData = metadata, Bytes = originalBytes, ReducedBytes = reducedBytes, 
+                ComparisonBytes = comparisonBytes, ReducedBytesHeight = 200, ReducedBytesWidth = 200, UserId = "fred" };
 
             var collection = _database.GetCollection<Box>("pictures");
 
@@ -95,6 +96,14 @@ namespace Storage.Test
             byte[] bytes;
 
             var output = collection.FindOneAs<Box>(Query.EQ("_id", box._id));
+
+            //var inQuery1 = Query.EQ("UserId", "fred");
+            //var inQuery2 = Query.In("MetaData.dimension1", new BsonArray { 10, 20 });
+            //var ins = new List<IMongoQuery> { inQuery1, inQuery2 };
+            //var query = Query.And(ins.ToArray());
+            //var fields = new[] { Fields.METADATA, Fields.OBJECT_ID, Fields.COMPARISON_BYTES, Fields.USER_ID };
+            //var q = collection.FindAs<Box>(query).SetFields(fields).ToList();
+
 
             bytes = output.Bytes;
 
