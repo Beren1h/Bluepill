@@ -41,7 +41,9 @@
   <ItemGroup>
     <Compile Include="Facet.cs" />
     <Compile Include="IFacet.cs" />
+    <Compile Include="IQueryBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueryBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="User Facets\uid.xml">

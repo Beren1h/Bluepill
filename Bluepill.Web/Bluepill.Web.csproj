@@ -303,6 +303,10 @@
       <Project>{17e26727-db5c-4ba7-8b21-fbddf1876ec7}</Project>
       <Name>Bluepill.Search</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Bluepill.Storage\Bluepill.Storage.csproj">
+      <Project>{a42d5b5b-f3ed-4dde-95fc-2c4671e1c29f}</Project>
+      <Name>Bluepill.Storage</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -323,7 +327,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>3013</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:5198/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

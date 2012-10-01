@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Bluepill.Web.Gateways;
+using Bluepill.Storage;
 
 namespace Bluepill.Web.Framework
 {
@@ -19,6 +20,7 @@ namespace Bluepill.Web.Framework
             container.RegisterType<IPictureGateway, PictureGateway>();
             container.RegisterType<IResize, Resize>();
             container.RegisterType<IFacet, Facet>();
+            container.RegisterType<IQueryBuilder, QueryBuilder>();
 
             FluentValidation.AssemblyScanner.FindValidatorsInAssemblyContaining<Web.Areas.Application.Models.Validators.AuthenticationModelValidator>()
                 .ForEach(result => container.RegisterType(result.InterfaceType, result.ValidatorType));
