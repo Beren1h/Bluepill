@@ -1,0 +1,12 @@
+﻿@model Web.Areas.Administration.Models.UserModel
+
+@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+@using (Html.BeginForm("Update", "User", FormMethod.Post, new { area = "Administration" }))
+{
+    @Html.DropDownListFor(x => x.Collections, Model.CollectionsDropDown) <br />
+    @Html.HiddenFor(x => x.UserName)
+    <input type="submit" value="Submit" />
+}
+
+
