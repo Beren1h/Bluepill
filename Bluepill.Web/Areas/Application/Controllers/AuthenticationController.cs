@@ -27,6 +27,7 @@ namespace Bluepill.Web.Areas.Application.Controllers
         public ActionResult Index()
         {
             FormsAuthentication.SignOut();
+            Session.Clear();
             return View();
         }
     }

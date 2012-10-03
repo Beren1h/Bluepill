@@ -30,8 +30,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MongoDB.Bson">
+      <HintPath>..\packages\mongocsharpdriver.1.6\lib\net35\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver">
+      <HintPath>..\packages\mongocsharpdriver.1.6\lib\net35\MongoDB.Driver.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -39,20 +46,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Aspect.cs" />
+    <Compile Include="ConfigurationReader.cs" />
+    <Compile Include="ConfigurationSection.cs" />
     <Compile Include="Facet.cs" />
-    <Compile Include="IFacet.cs" />
+    <Compile Include="FacetCollection.cs" />
+    <Compile Include="FacetCollectionReader.cs" />
+    <Compile Include="IConfigurationReader.cs" />
+    <Compile Include="IFacetCollectionReader.cs" />
     <Compile Include="IQueryBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="User Facets\uid.xml">
+    <Content Include="User Configurations\uid.xml">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <None Include="User Facets\facet.xsd">
+    <None Include="packages.config" />
+    <None Include="User Configurations\configuration.xsd">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

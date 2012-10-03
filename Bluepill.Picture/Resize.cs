@@ -10,41 +10,13 @@ using System.IO;
 
 namespace Bluepill.Picture
 {
+    /// <summary>
+    /// operations to change scale of picture
+    /// </summary>
     public class Resize : IResize
     {
-        ///// <summary>
-        /////  create resized image from file
-        ///// </summary>
-        ///// <param name="file"></param>
-        ///// <param name="width"></param>
-        ///// <param name="height"></param>
-        ///// <returns></returns>
-        //public byte[] Create(string file, int width, int height)
-        //{
-        //    var source = new Bitmap(file);
-        //    var scale = DetermineResizeScale(source.Width, source.Height, width, height);
-
-        //    return CreateResizedPicture(source, scale);
-        //}
-
-        ///// <summary>
-        ///// create resize image from byte array
-        ///// </summary>
-        ///// <param name="array"></param>
-        ///// <param name="width"></param>
-        ///// <param name="height"></param>
-        ///// <returns></returns>
-        //public byte[] Create(byte[] array, int width, int height)
-        //{
-        //    var converter = new ImageConverter();
-        //    var source = (Bitmap)converter.ConvertFrom(array);
-        //    var scale = DetermineResizeScale(source.Width, source.Height, width, height);
-
-        //    return CreateResizedPicture(source, scale);
-        //}
-
         /// <summary>
-        /// 
+        /// determine the dimensions of a picture to fit a new size while maintaining aspect ratio
         /// </summary>
         /// <param name="sourceWidth"></param>
         /// <param name="sourceHeight"></param>
@@ -65,36 +37,8 @@ namespace Bluepill.Picture
             return new Scale { Height = (int)(sourceHeight * ratioWidth), Width = resizedWidth };
         }
 
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        ///// <param name="source"></param>
-        ///// <param name="scale"></param>
-        ///// <returns></returns>
-        //public byte[] CreateResizedPicture(Bitmap source, Scale scale)
-        //{
-        //    using (source)
-        //    {
-        //        using (var resized = new Bitmap(scale.Width, scale.Height))
-        //        {
-        //            using (var graphics = Graphics.FromImage(resized))
-        //            {
-        //                using (var ms = new MemoryStream())
-        //                {
-        //                    graphics.SmoothingMode = SmoothingMode.AntiAlias;
-        //                    graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
-        //                    graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
-        //                    graphics.DrawImage(source, new Rectangle(0, 0, scale.Width, scale.Height));
-        //                    resized.Save(ms, ImageFormat.Png);
-        //                    return ms.ToArray();
-        //                }
-        //            }
-        //        }
-        //    }
-        //}
-
         /// <summary>
-        /// 
+        /// create a new bitmap with new dimnesions from an existing picture
         /// </summary>
         /// <param name="source"></param>
         /// <param name="scale"></param>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bluepill.Search;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Principal;
@@ -35,7 +36,7 @@ namespace Bluepill.Web.Framework
                 identity.IsAuthenticated = !(ticket.Expiration < DateTime.Now);
                 identity.Name = ticket.Name;
                 identity.AuthenticationType = "FormsAuthentication";
-
+                                
                 var user = _userStore.GetUser(identity.Name);
 
                 if(user != null)
