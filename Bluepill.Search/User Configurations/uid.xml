@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://bluepill.org configuration.xsd">
+  <collections>
+    <collection name="Art">
+      <facet name="Style" />
+      <facet name="Mood" />
+    </collection>
+    <collection name="Home">
+      <facet name="Style" />
+      <facet name="Mood" />
+    </collection>
+  </collections>
+  <facets>
+    <facet name="Style">
+      <aspect name="Photo" value="1" />
+      <aspect name="Traditional" value="2" />
+      <aspect name="Digital" value="3" />
+      <aspect name="3D" value="4" />
+      <aspect name="Sketch" value="9" />
+    </facet>
+    <facet name="Mood">
+      <aspect name="Happy" value="5" />
+      <aspect name="Sad" value="6" />
+      <aspect name="Angry" value="7" />
+    </facet>
+  </facets>
+</root>
