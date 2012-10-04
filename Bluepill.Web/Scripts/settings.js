@@ -1,7 +1,6 @@
 ﻿$(document).ready(function () {
 
     $(".collectionSelect").combobox();
-    //$(".collectionSelect").show();
 
     $(".ui-combobox-input").attr("disabled", "disabled");
 

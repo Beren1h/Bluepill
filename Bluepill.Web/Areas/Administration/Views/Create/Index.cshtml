@@ -1,14 +1,35 @@
-﻿@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
+﻿@model Bluepill.Web.Areas.Administration.Models.CreateModel
 
+@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
 
-<div>
+@section css
+{ 
+    <link href="/content/administration.create.css" rel="stylesheet" type="text/css" /> 
+}
 
-    <h2>Create Index</h2>
+@section script
+{ 
+    <script src="/scripts/administration.create.js" type="text/javascript"></script>
+}
 
-    <p>stuff asdjshadljhsf</p>
+<h2 id="heading">
+   <img src="\content\images\new-image-loading.gif" />
+   <span id="message">loading files</span>
+</h2>
 
-    <table>
-        <tr><td>cell 1</td></tr>
-        <tr><td>cell 2</td></tr>
-    </table>
+<div id="newFiles">
+    @foreach (var file in Model.Files)
+    {
+        <a class="showDialog" data-file="" data-height="" data-width="">
+            <img class="newImage" src="/application/picture/GetResizePicture?file=@file.FullName&height=200&width=200" alt="" />
+        </a>
+    }
+</div>
+
+<div id="createDialog">
+    <h1>loading</h1>
+</div>
+
+<div id="totalFileCount">
+    @Model.TotalFileCount
 </div>

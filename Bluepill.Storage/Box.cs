@@ -20,5 +20,6 @@ namespace Bluepill.Storage
         public byte[] ReducedBytes { get; set; }
         public byte[] Bytes { get; set; }
         public string UserId { get; set; }
+        public string file { get; set; }
     }
 }

@@ -13,6 +13,7 @@ using System.Drawing.Imaging;
 using Bluepill.Picture;
 using MongoDB.Driver.Builders;
 using Bluepill.Storage;
+using Bluepill.Search;
 
 namespace Bluepill.Storage.Test
 {
@@ -36,108 +37,137 @@ namespace Bluepill.Storage.Test
         public void TearDown() { }
 
 
+        //[Test]
+        //public void CanInsert()
+        //{
+        //    var file = "c:\\bluepill\\test_big.jpg";
+
+        //    var metadata = new BsonDocument{ 
+        //        { "Style", new BsonArray(new List<long>{1,2,3}) },  
+        //        { "Mood", new BsonArray(new List<long>{4,5,6}) }  
+        //    };
+
+        //    byte[] originalBytes;
+        //    byte[] reducedBytes;
+        //    byte[] comparisonBytes;
+
+        //    using (var source = new Bitmap(file))
+        //    {
+        //        using (var ms = new MemoryStream())
+        //        {
+        //            source.Save(ms, ImageFormat.Png);
+        //            originalBytes = ms.ToArray();
+        //        }
+
+        //        var resize = new Resize();
+        //        var reducedScale = resize.DetermineResizeScale(source.Width, source.Height, 200, 200);
+        //        reducedBytes = resize.CreateResizedPicture(file, reducedScale);
+
+        //        var comparisonScale = resize.DetermineResizeScale(source.Width, source.Height, 50, 50);
+        //        comparisonBytes = resize.CreateResizedPicture(file, comparisonScale);
+        //    }
+
+        //    //9920438
+        //    //16777216
+        //    //29268747
+
+        //    var box = new Box
+        //    {
+        //        MetaData = metadata,
+        //        Bytes = originalBytes,
+        //        ReducedBytes = reducedBytes,
+        //        ComparisonBytes = comparisonBytes,
+        //        ReducedBytesHeight = 200,
+        //        ReducedBytesWidth = 200,
+        //        UserId = "fred"
+        //    };
+
+        //    var collection = _database.GetCollection<Box>("pictures");
+
+        //    if (originalBytes.Length < 16777216)
+        //    {
+        //        collection.Insert(box);
+        //    }
+        //    else
+        //    {
+        //        box.Bytes = null;
+        //        box.IsLarge = true;
+
+        //        using (var stream = new FileStream(file, FileMode.Open))
+        //        {
+        //            var gridFSItem = _database.GridFS.Upload(stream, file);
+        //            box.GridFSId = gridFSItem.Id;
+        //        }
+
+        //        collection.Insert(box);
+        //    }
+
+        //    byte[] bytes;
+
+        //    var output = collection.FindOneAs<Box>(Query.EQ("_id", box._id));
+
+        //    //var inQuery1 = Query.EQ("UserId", "fred");
+        //    //var inQuery2 = Query.In("MetaData.dimension1", new BsonArray { 10, 20 });
+        //    //var ins = new List<IMongoQuery> { inQuery1, inQuery2 };
+        //    //var query = Query.And(ins.ToArray());
+        //    //var fields = new[] { Fields.METADATA, Fields.OBJECT_ID, Fields.COMPARISON_BYTES, Fields.USER_ID };
+        //    //var q = collection.FindAs<Box>(query).SetFields(fields).ToList();
+
+
+        //    bytes = output.Bytes;
+
+        //    if (output.IsLarge)
+        //    {
+        //        var gridFSItem = _database.GridFS.FindOne(Query.EQ("_id", box.GridFSId));
+
+        //        using (var stream = gridFSItem.OpenRead())
+        //        {
+        //            bytes = new byte[stream.Length];
+        //            stream.Read(bytes, 0, (int)stream.Length);
+        //        }
+        //    }
+
+        //    Assert.IsTrue(output.ComparisonBytes.SequenceEqual(box.ComparisonBytes));
+
+        //    _database.GridFS.Delete(file);
+        //    collection.Drop();
+        //}
+
+        
+
         [Test]
-        public void CanInsert()
+        public void CanAddBox()
         {
             var file = "c:\\bluepill\\test_big.jpg";
-
-            var metadata = new BsonDocument{ 
-                { "Style", new BsonArray(new List<long>{1,2,3}) },  
-                { "Mood", new BsonArray(new List<long>{4,5,6}) }  
+            var user = "uid";
+            var packer = new Packer(new Resize());
+            var attic = new Attic();
+            var list = new List<Facet>
+            {
+                new Facet
+                {
+                    Name = "facet1",
+                    Aspects = new List<Aspect>
+                    {
+                        new Aspect{ Name = "aspect1", Value = 1, IsChecked = true },
+                        new Aspect{ Name = "aspect2", Value = 2 }
+                    }
+                },
+                new Facet
+                {
+                    Name = "facet2",
+                    Aspects = new List<Aspect>
+                    {
+                        new Aspect{ Name = "aspect3", Value = 3, IsChecked = true },
+                        new Aspect{ Name = "aspect4", Value = 4 }
+                    }
+                }
             };
 
-            byte[] originalBytes;
-            byte[] reducedBytes;
-            byte[] comparisonBytes;
+            var box = packer.PackBox(file, user, list);
+            attic.AddBox(box);
 
-            using (var source = new Bitmap(file))
-            {
-                using (var ms = new MemoryStream())
-                {
-                    source.Save(ms, ImageFormat.Png);
-                    originalBytes = ms.ToArray();
-                }
-
-                var resize = new Resize();
-                var reducedScale = resize.DetermineResizeScale(source.Width, source.Height, 200, 200);
-                reducedBytes = resize.CreateResizedPicture(file, reducedScale);
-
-                var comparisonScale = resize.DetermineResizeScale(source.Width, source.Height, 50, 50);
-                comparisonBytes = resize.CreateResizedPicture(file, comparisonScale);
-            }
-
-            //9920438
-            //16777216
-            //29268747
-
-            var box = new Box
-            {
-                MetaData = metadata,
-                Bytes = originalBytes,
-                ReducedBytes = reducedBytes,
-                ComparisonBytes = comparisonBytes,
-                ReducedBytesHeight = 200,
-                ReducedBytesWidth = 200,
-                UserId = "fred"
-            };
-
-            var collection = _database.GetCollection<Box>("pictures");
-
-            if (originalBytes.Length < 16777216)
-            {
-                collection.Insert(box);
-            }
-            else
-            {
-                box.Bytes = null;
-                box.IsLarge = true;
-
-                using (var stream = new FileStream(file, FileMode.Open))
-                {
-                    var gridFSItem = _database.GridFS.Upload(stream, file);
-                    box.GridFSId = gridFSItem.Id;
-                }
-
-                collection.Insert(box);
-            }
-
-            byte[] bytes;
-
-            var output = collection.FindOneAs<Box>(Query.EQ("_id", box._id));
-
-            //var inQuery1 = Query.EQ("UserId", "fred");
-            //var inQuery2 = Query.In("MetaData.dimension1", new BsonArray { 10, 20 });
-            //var ins = new List<IMongoQuery> { inQuery1, inQuery2 };
-            //var query = Query.And(ins.ToArray());
-            //var fields = new[] { Fields.METADATA, Fields.OBJECT_ID, Fields.COMPARISON_BYTES, Fields.USER_ID };
-            //var q = collection.FindAs<Box>(query).SetFields(fields).ToList();
-
-
-            bytes = output.Bytes;
-
-            if (output.IsLarge)
-            {
-                var gridFSItem = _database.GridFS.FindOne(Query.EQ("_id", box.GridFSId));
-
-                using (var stream = gridFSItem.OpenRead())
-                {
-                    bytes = new byte[stream.Length];
-                    stream.Read(bytes, 0, (int)stream.Length);
-                }
-            }
-
-            Assert.IsTrue(output.ComparisonBytes.SequenceEqual(box.ComparisonBytes));
-
-            _database.GridFS.Delete(file);
-            collection.Drop();
-        }
-
-
-        [Test]
-        public void CanRemove()
-        {
-            var collection = _database.GetCollection<Box>("pictures");
-
+            attic.Empty(file);
         }
     }
 }

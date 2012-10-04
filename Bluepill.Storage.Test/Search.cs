@@ -17,11 +17,11 @@ namespace Bluepill.Storage.Test
         [TearDown]
         public void TearDown() { }
 
-        [Test]
-        public void Reader()
-        {
-            //var reader = new FacetReader();
-            //var list = reader.Read("uid");
-        }
+        //[Test]
+        //public void Reader()
+        //{
+        //    //var reader = new FacetReader();
+        //    //var list = reader.Read("uid");
+        //}
     }
 }

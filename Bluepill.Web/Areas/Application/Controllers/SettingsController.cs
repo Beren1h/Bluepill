@@ -21,23 +21,22 @@ namespace Bluepill.Web.Areas.Application.Controllers
         public ActionResult Index()
         {
             var identity = (BluePillIdentity)ControllerContext.HttpContext.User.Identity;
-            //var list = new SelectList(identity.Collections, ReadWorkingCollection(identity.Name));
-            
             var collections = _facetCollectionReader.GetFacetCollections(identity.Name, Session);
-
             var collectionNames = collections.Select(c => c.Name).ToList();
-                     
-
             var list = new SelectList(collectionNames, ReadWorkingCollection(identity.Name));
-
             var cookies = ControllerContext.HttpContext.Request.Cookies;
             var cookieName = string.Format(Constants.PREFERENCE_COOKIE_FORMAT, identity.Name);
             var userCookie = cookies[cookieName];
+
             string workingCollection = "";
 
             if (userCookie != null)
             {
                 workingCollection = userCookie.Values[Constants.WORKING_COLLECTION_COOKIE_KEY];
+
+                if (!collectionNames.Contains(workingCollection))
+                    workingCollection = collectionNames[0];
+
             }
 
             var model = new SettingsModel { CollectionsDropDown = list, UserName = identity.Name, Collections = identity.Collections, WorkingCollection = workingCollection };
