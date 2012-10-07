@@ -8,9 +8,25 @@
     <collection name="Home">
       <facet name="Style" />
       <facet name="Mood" />
+      <facet name="1" />
+      <facet name="2" />
+      <facet name="3" />
+      <facet name="4" />
     </collection>
   </collections>
   <facets>
+    <facet name="1">
+      <aspect name="100" value="100"/>
+    </facet>
+    <facet name="2">
+      <aspect name="101" value="101"/>
+    </facet>
+      <facet name="3">
+      <aspect name="102" value="102"/>
+    </facet>
+    <facet name="4">
+      <aspect name="103" value="103"/>
+    </facet>
     <facet name="Style">
       <aspect name="Photo" value="1" />
       <aspect name="Traditional" value="2" />
@@ -22,6 +38,23 @@
       <aspect name="Happy" value="5" />
       <aspect name="Sad" value="6" />
       <aspect name="Angry" value="7" />
+      <aspect name="Grumpy" value="8" />
+      <aspect name="Dopey" value="99" />
+      <aspect name="Doc" value="10" />
+      <aspect name="Sneezy" value="11" />
+      <aspect name="Bashful" value="12" />
+      <aspect name="Frodo" value="13" />
+      <aspect name="Sam" value="14" />
+      <aspect name="Pippin" value="15" />
+      <aspect name="Merry" value="16" />
+      <aspect name="Rosie" value="17" />
+      <aspect name="Barney" value="18" />
+      <aspect name="Ant Man" value="19" />
+      <aspect name="This is a really, really, long name" value="20" />
+      <aspect name="Atom" value="21" />
+      <aspect name="fail1" value="221" />
+      <aspect name="fail2" value="231" />
+      <aspect name="fail3" value="211" />
     </facet>
   </facets>
 </root>

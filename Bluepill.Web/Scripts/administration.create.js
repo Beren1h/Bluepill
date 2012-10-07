@@ -1,8 +1,23 @@
 ﻿$(function () {
 
     $(document).ready(function () {
-        imageLoaded();
+        //imageLoaded();
+        SetBreadCrumb();
         imageClick();
+
+        $("#accordion").accordion({
+            autoHeight: true,
+            collapsible: true,
+            active: false,
+            change: function () {
+                //$(".formContainer").animate({ scrollTop: $(".formContainer").prop("scrollHeight") - $(".formContainer").height() }, 250);
+            }
+        });
+
+            $(".right img").load(function () {
+                $(this).animate({ opacity: 1 }, 200);
+            });
+
     });
 
     $(window).load(function () {
@@ -53,5 +68,29 @@ function imageClick() {
             form.dialog("open");
             e.preventDefault();
         });
+    });
+}
+
+function SetBreadCrumb() {
+
+    $(".aspect-checkbox").change(function () {
+
+        var context = $(this).closest("div.ui-accordion-content");
+        var breadCrumb = $("span#breadCrumb-" + $(this).data("facet"));
+        var output = "";
+
+        $(".aspect-checkbox", context).each(function () {
+            if ($(this).is(":checked")) {
+
+                var label = $("label[for='" + $(this).attr("id") + "']");
+
+                if (output.length > 0) {
+                    output += ", ";
+                }
+
+                output += label.text();
+            }
+        });
+        breadCrumb.text(output);
     });
 }

@@ -27,7 +27,6 @@ namespace Bluepill.Web.Areas.Application.Controllers
                 using (var ms = new MemoryStream())
                 {
                     source.Save(ms, ImageFormat.Png);
-                    //return ms.ToArray();
                 }
 
                 var scale = _resize.DetermineResizeScale(source.Width, source.Height, width, height);
@@ -35,8 +34,19 @@ namespace Bluepill.Web.Areas.Application.Controllers
 
                 return new FileContentResult(bytes, "image/png");
             }
+        }
 
-            
+        public FileContentResult GetPicture(string file)
+        {
+            using (var source = new Bitmap(file))
+            {
+                using (var ms = new MemoryStream())
+                {
+                    source.Save(ms, ImageFormat.Png);
+                    var bytes = ms.ToArray();
+                    return new FileContentResult(bytes, "image/png");
+                }
+            }
         }
 
     }

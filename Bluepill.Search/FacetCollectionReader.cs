@@ -61,7 +61,7 @@ namespace Bluepill.Search
                         list.Add(new Facet
                         {
                             Name = facetName,
-                            Aspects = from a in aspects select new Aspect { Name = a.name, Value = long.Parse(a.value), FacetName = facetName }
+                            Aspects = from a in aspects orderby a.name select new Aspect { Name = a.name, Value = long.Parse(a.value), FacetName = facetName }
                         });
 
                         

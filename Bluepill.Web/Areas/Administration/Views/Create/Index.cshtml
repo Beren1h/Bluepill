@@ -17,13 +17,21 @@
    <span id="message">loading files</span>
 </h2>
 
-<div id="newFiles">
-    @foreach (var file in Model.Files)
+
+<div class="left">
+    @using(Html.BeginForm("SavePicture","Create"))
     {
-        <a class="showDialog" data-file="" data-height="" data-width="">
-            <img class="newImage" src="/application/picture/GetResizePicture?file=@file.FullName&height=200&width=200" alt="" />
-        </a>
+        @Html.HiddenFor(x => x.File)
+        <div id="accordion" class="small">
+            @Html.EditorFor(x => x.Facets)
+        </div>
+        <input id="formSubmit" type="submit" value="Save"/>
     }
+</div>
+<div class="right">
+    <a href="/application/picture/GetPicture?file=@Model.File" target="_blank">
+        <img src="/application/picture/GetResizePicture?file=@Model.File&height=600&width=700" alt="" />
+    </a>
 </div>
 
 <div id="createDialog">
