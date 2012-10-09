@@ -19,6 +19,13 @@ namespace Bluepill.Web.Framework
                 Collections = new List<string> {"collection1", "collection2", "collection3", "collection4", "collection5", "collection6", "collection7" } 
             });
 
+            _users.Add("me", new BluePillUser
+            {
+                UserName = "me",
+                Password = "simple",
+                Collections = new List<string> ()
+            });
+
         }
 
         public BluePillUser GetUser(string userName)

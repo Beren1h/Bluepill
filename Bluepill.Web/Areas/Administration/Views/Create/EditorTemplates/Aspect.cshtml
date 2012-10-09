@@ -4,6 +4,7 @@
 
 @Html.HiddenFor(x => x.Value)
 @Html.HiddenFor(x => x.FacetName)
+
 <div class="aspectContainer">
     <label for="aspect-box-@Model.Value" class="aspectLabel">@Model.Name</label>
     @Html.CheckBoxFor(x => x.IsChecked, new { id = "aspect-box-" + @Model.Value, @class = "aspect-checkbox", data_facet=Model.FacetName })

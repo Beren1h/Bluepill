@@ -14,7 +14,7 @@ namespace Bluepill.Storage
         private MongoDatabase _database;
                 
         private const string CONNECTION = "mongodb://localhost";
-        private const string DATABASE = "bluepill";
+        private const string DATABASE = "bluepill_test";
         
         public Attic()
         {

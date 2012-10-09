@@ -1,6 +1,9 @@
 ﻿@model Bluepill.Search.Facet
 
+@{ Layout = null; }
+
 <h3><a href="#">@Model.Name<span class="breadCrumb" id="breadCrumb-@Model.Name"></span></a></h3>
 <div>
+    @Html.HiddenFor(x => x.Name)
     @Html.EditorFor(x => x.Aspects)
 </div>
