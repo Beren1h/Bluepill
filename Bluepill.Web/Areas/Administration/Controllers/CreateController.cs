@@ -9,6 +9,7 @@ using Bluepill.Storage;
 using Bluepill.Picture;
 using System.IO;
 using Bluepill.Web.Areas.Administration.Models;
+using Newtonsoft.Json.Linq;
 
 namespace Bluepill.Web.Areas.Administration.Controllers
 {
@@ -17,6 +18,8 @@ namespace Bluepill.Web.Areas.Administration.Controllers
         private const string CREATE_PATH = "c:\\bluepill\\input";
         private const string COMPLETE_PATH = "c:\\bluepill\\completed";
         private const int DISPLAY_COUNT = 1;
+        private const int IMG_WIDTH = 600;
+        private const int IMG_HEIGHT = 600;
         
         private IFacetCollectionReader _facetCollectionReader;
         private IPacker _packer;
@@ -43,13 +46,13 @@ namespace Bluepill.Web.Areas.Administration.Controllers
             var files = new List<FileInfo>(new DirectoryInfo(CREATE_PATH).GetFiles());
             var list = files.Take(DISPLAY_COUNT).ToList();
 
-            var model = new CreateModel { Facets = collection.Facets, File = list[0].FullName, TotalFileCount = files.Count };
+            var model = new CreateModel { Facets = collection.Facets, File = list[0].FullName, TotalFileCount = files.Count, ResizedHeight = IMG_HEIGHT, ResizedWidth = IMG_WIDTH };
 
             return View(model);
         }
 
         [HttpPost]
-        public ActionResult SavePicture(CreateModel model)
+        public JObject SavePicture(CreateModel model)
         {
             var fileInfo = new FileInfo(model.File);
             var identity = (BluePillIdentity)ControllerContext.HttpContext.User.Identity;
@@ -59,8 +62,19 @@ namespace Bluepill.Web.Areas.Administration.Controllers
 
             System.IO.File.Move(fileInfo.FullName, string.Format("{0}\\{1}", COMPLETE_PATH, fileInfo.Name));
 
-            return RedirectToAction("index", "create", new { area = "administration" });
+            var files = new List<FileInfo>(new DirectoryInfo(CREATE_PATH).GetFiles());
+            var list = files.Take(DISPLAY_COUNT).ToList();
+
+            var json = new JObject();
+
+            json.Add("file", list[0].FullName);
+            json.Add("total", files.Count);
+            json.Add("width", IMG_WIDTH);
+            json.Add("height", IMG_HEIGHT);
+            json.Add("src", string.Format("\\application\\picture\\getpicture?file={0}",list[0].FullName));
+            json.Add("resizedSrc", string.Format("\\application\\picture\\getresizepicture?file={0}&width=600&height=600",list[0].FullName));
+
+            return json;
         }
     }
 }
-

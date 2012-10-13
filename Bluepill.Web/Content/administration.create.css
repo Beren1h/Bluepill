@@ -1,16 +1,7 @@
-﻿#totalFileCount { display:none; }
-#heading { margin-left:2%; }
-#createDialog { display: none; }
-.showDialog { cursor:pointer; }
+﻿#heading { margin-left:2%; }
 .aspectContainer { float:left; }
 .aspectLabel { margin:2px; }
 .breadCrumb { color:#330303; float:right; }
-
-/*.container { border:1px solid #fedc69; }*/
-/*#accordion { width:50%; float:left; margin-left:5%; }*/
-/*#newFiles { border:1px solid; display:none; width:600px; float:right; position:relative; margin-right:5%; text-align:center; padding:3px; }*/
-/*#newFiles img {border:1px solid #fedc69; opacity:0 }*/
-
 
 .left { width:50%; margin:2px; position:absolute; margin-left:2% }
 .left #formSubmit { float:right; width:20%; margin-top:10px; }

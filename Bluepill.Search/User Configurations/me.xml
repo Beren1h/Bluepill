@@ -133,6 +133,8 @@
       <aspect name="Lady Death" value="91"/>
       <aspect name="Master Chief" value="92"/>
       <aspect name="Cortana" value="93"/>
+      <aspect name="Avengers" value="110"/>
+      <aspect name="Harley Quinn" value="111"/>
     </facet>
     <facet name="Year">
       <aspect name="1998" value="94"/>

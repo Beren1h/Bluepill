@@ -36,7 +36,6 @@ namespace Bluepill.Storage.Test
         [TearDown]
         public void TearDown() { }
 
-
         //[Test]
         //public void CanInsert()
         //{
