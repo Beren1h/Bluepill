@@ -22,5 +22,6 @@ namespace Bluepill.Storage
         public const string IS_LARGE = "IsLarge";
         public const string GRIDFS_ID = "GridFSId";
         public const string USER_ID = "UserId";
+        public const string HASH = "Hash";
     }
 }

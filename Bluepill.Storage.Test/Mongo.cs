@@ -140,7 +140,7 @@ namespace Bluepill.Storage.Test
             var file = "c:\\bluepill\\test_big.jpg";
             var user = "uid";
             var packer = new Packer(new Resize());
-            var attic = new Attic();
+            var attic = new Attic(new QueryBuilder());
             var list = new List<Facet>
             {
                 new Facet
@@ -166,7 +166,7 @@ namespace Bluepill.Storage.Test
             var box = packer.PackBox(file, user, list);
             attic.AddBox(box);
 
-            attic.Empty(file);
+            attic.Empty();
         }
     }
 }

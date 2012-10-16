@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -63,7 +64,12 @@ namespace Bluepill.Storage
                 box.IsLarge = true;
                 box.file = file;
             }
-            
+
+            using (var sha1 = new SHA1CryptoServiceProvider())
+            {
+                box.Hash = Convert.ToBase64String(sha1.ComputeHash(box.ReducedBytes));
+            }
+
             return box;
             
             

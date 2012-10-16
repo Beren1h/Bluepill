@@ -9,8 +9,7 @@ namespace Bluepill.Search
 {
     public interface IQueryBuilder
     {
-        //List<IMongoQuery> Build(string userName, IEnumerable<Facet> facets)
-        //{
-        //}
+        IList<IMongoQuery> Build(IEnumerable<Facet> facets);
+        
     }
 }

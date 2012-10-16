@@ -10,6 +10,8 @@ namespace Bluepill.Storage
     public interface IAttic
     {
         void AddBox(Box box);
-        void Empty(string file);
+        //IList<Box> GetBoxes(IList<Facet> facets, string userName, int perPage, int startIndex, string[] fields = null);
+
+        void Empty();
     }
 }
