@@ -254,8 +254,8 @@
     <Content Include="Areas\Administration\Views\Create\EditorTemplates\Facet.cshtml" />
     <Content Include="Areas\Administration\Views\Create\EditorTemplates\Aspect.cshtml" />
     <Content Include="Areas\Administration\Views\Search\Index.cshtml" />
-    <Content Include="Content\administration.search" />
-    <Content Include="Scripts\administration.search" />
+    <Content Include="Content\administration.search.css" />
+    <Content Include="Scripts\administration.search.js" />
     <None Include="Scripts\jquery-1.8.1.intellisense.js" />
     <Content Include="Scripts\authentication.js" />
     <Content Include="Scripts\administration.create.js" />
