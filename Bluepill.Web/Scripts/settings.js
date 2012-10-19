@@ -10,4 +10,16 @@
 
     $(".button").button();
 
+    var activeIndex = $("body").data("navigation-index");
+
+    $(".nav").each(function () {
+
+        if ($(this).data("navigation-index") == activeIndex) {
+            $(this).css("opacity", "0.2");
+            $(this).css("cursor", "default");
+            $(this).click(function () { return false; });
+        }
+
+    });
+
 });

@@ -4,3 +4,5 @@
 .ui-dialog .ui-dialog-titlebar { height:20px; background:none; border:none; padding:0; margin:0 }
 .settings { float:right; margin-top:-15px; }
 .ui-accordion .ui-accordion-content { overflow:hidden !important; }
+.nav { margin:5px; color:#f3bf77;}
+.last { padding-right:200px !important; }

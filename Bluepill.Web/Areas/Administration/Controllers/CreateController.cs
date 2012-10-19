@@ -48,6 +48,8 @@ namespace Bluepill.Web.Areas.Administration.Controllers
 
             var model = new CreateModel { Facets = collection.Facets, File = list[0].FullName, TotalFileCount = files.Count, ResizedHeight = IMG_HEIGHT, ResizedWidth = IMG_WIDTH };
 
+            ViewBag.NavigationIndex = 0;
+
             return View(model);
         }
 

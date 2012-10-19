@@ -13,6 +13,7 @@ namespace Bluepill.Web.Areas.Administration.Controllers
 
         public ActionResult Index()
         {
+            ViewBag.NavigationIndex = 1;
             return View();
         }
 

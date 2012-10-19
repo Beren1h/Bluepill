@@ -12,4 +12,22 @@
         icons: { secondary: "ui-icon-circle-arrow-n" }
     });
 
+    $("#createSearch").dialog({
+        autoOpen: false,
+        modal: true,
+        resizable: false,
+        open: function () {
+        },
+        close: function () {
+            form.html("<h1>loading</h1>");
+        }
+    });
+
+    $(".create").click(function (e) {
+        console.log("wtf");
+        $("#createSearch").dialog("open");
+        e.preventDefault();
+    });
+
+
 });

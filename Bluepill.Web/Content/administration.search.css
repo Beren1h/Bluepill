@@ -1,8 +1,9 @@
-﻿#left { border:0px solid #ffd800; margin-top:-10px; padding-bottom:5px; margin-left:4% }
-#right { border:1px solid #00ff21; float:right; margin-left:5px; margin-left:4%; opacity:0.1; text-align:center; vertical-align:middle; }
-#footer { border:0px solid #f00; float:left; clear:right; margin-left:4%; padding-top:5px; }
+﻿#top-control { border:0px solid #ffd800; margin-top:-10px; padding-bottom:5px; margin-left:4% }
+#results { border:1px solid #00ff21; float:right; margin-left:5px; margin-left:4%; }
+#results-placeholder { border:1px solid #00ff21; float:left; opacity:0.1; margin-left:4%; width:50%; padding:10% 15% 12% 15%; text-align:center; font-size:2em;  }
+#bottom-control { border:0px solid #f00; float:left; clear:both; margin-left:4%; padding-top:5px; }
 /*.result { border:1px solid #0e0cb0; width:200px; height:200px; float:left; margin:2px; }*/
-#heading { margin-left:4%; }
+#heading { margin-left:4%; opacity:0; width:50% }
 
 
 #page { border:0px solid #ad1bca; width:100%; text-align:center; }
