@@ -1,10 +1,13 @@
 ﻿@model Bluepill.Web.Areas.Application.Models.SettingsModel
 
 <div class="settings">
-    <a href="\administration\create" class="nav" data-navigation-index="0">Create</a>
-    <a href="\administration\search" class="nav last" data-navigation-index="1">Search</a>
-    @Html.DropDownListFor(x => x.WorkingCollection, Model.CollectionsDropDown, new { @class="collectionSelect", data_uid=Model.UserName })
-    <a href="\application\authentication" class="small signoff">Sign Off</a>
+    <div style="float:left; margin-top:-25px; "><h1>Title</h1></div>
+    <div class="floater">
+        <a href="\administration\create" class="small add">Add</a>
+        <a href="\administration\search" class="small search">Search</a>
+        <a href="\application\authentication" class="small signoff">Sign Off</a>
+        @Html.DropDownListFor(x => x.WorkingCollection, Model.CollectionsDropDown, new { @class="collectionSelect", data_uid=Model.UserName })
+    </div>
 </div>
 
 

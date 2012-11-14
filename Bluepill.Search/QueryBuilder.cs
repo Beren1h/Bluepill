@@ -11,7 +11,7 @@ namespace Bluepill.Search
 {
     public class QueryBuilder : IQueryBuilder
     {
-        public IList<IMongoQuery> Build(IEnumerable<Facet> facets)
+        public IMongoQuery Build(IEnumerable<Facet> facets)
         {
             //var queries = new List<IMongoQuery>{ Query.EQ("UserId", userName) };
             var queries = new List<IMongoQuery>();
@@ -27,8 +27,8 @@ namespace Bluepill.Search
                     queries.Add(Query.In("MetaData." + facet.Name, new BsonArray(aspects)));
                 }
             }
-
-            return queries;
+            
+            return (queries.Count == 0) ? null : Query.And(queries);
             
         }
     }

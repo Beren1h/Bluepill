@@ -1,6 +1,7 @@
 ﻿using Bluepill.Search;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using MongoDB.Driver.Builders;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -38,29 +39,44 @@ namespace Bluepill.Storage
                     box.GridFSId = gridFSItem.Id;
                 }
             }
+
             GetIndexedCollection(box).Insert(box);
         }
 
-        //public IList<Box> GetBoxes(IList<Facet> facets, int perPage, int startIndex, string[] fields = null)
-        //{
-        //    var query = _queryBuilder.Build(facets);
-        //    var results = new List<Box>();
-        //    var upperBound = startIndex + perPage;
-        //    var collection = 
+        public IList<Box> GetBoxes(IList<Facet> facets, int perPage, int page, string[] fields = null)
+        {
+            if(fields == null)
+                fields = new [] { Fields.METADATA, Fields.OBJECT_ID, Fields.REDUCED_BYTES, Fields.REDUCED_BYTES_WIDTH, Fields.REDUCED_BYTES_HEIGHT };
 
-        //    //if (facets.Count == 0)
-        //    //{
-        //    //    results = 
-        //    //}
-        //    //else
-        //    //{
-        //    //}
+            var query = _queryBuilder.Build(facets);
+            var results = new List<Box>();
+            //var upperBound = startIndex + perPage;
+            var collection = _database.GetCollection<Box>("me");
+            //var collection = 
 
-        //}
+            var cursor = (query == null) ? collection.FindAllAs<Box>().SetFields(fields) : collection.FindAs<Box>(query).SetFields(fields); 
+
+            //if (facets.Count == 0)
+            //{
+            //    cursor = collection.FindAllAs<Box>().SetFields(fields);
+            //}
+            //else
+            //{
+            //    cursor = collection.FindAs<Box>(query).SetFields(fields);
+            //}
+
+            cursor.Limit = perPage - 1;
+            cursor.Skip = (page - 1) * perPage;
+
+            return cursor.ToList();
+
+            //return results;
+
+        }
 
 
 
-
+        //private MongoCollection<Box> GetIndexedCollection(string userId, )
         private MongoCollection<Box> GetIndexedCollection(Box box)
         {
             var collection = _database.GetCollection<Box>(box.UserId);

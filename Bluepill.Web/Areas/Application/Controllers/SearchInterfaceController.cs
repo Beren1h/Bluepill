@@ -1,26 +1,29 @@
 ﻿using Bluepill.Search;
 using Bluepill.Storage;
-using Bluepill.Web.Areas.Administration.Models;
+using Bluepill.Web.Areas.Application.Models;
 using Bluepill.Web.Framework;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Bluepill.Web.Areas.Administration.Controllers
+namespace Bluepill.Web.Areas.Application.Controllers
 {
-    public class SearchController : Controller
+    public class SearchInterfaceController : Controller
     {
+        private const string CREATE_PATH = "c:\\bluepill\\input";
+        private const string COMPLETE_PATH = "c:\\bluepill\\completed";
+        private const int DISPLAY_COUNT = 1;
+        private const int IMG_WIDTH = 600;
+        private const int IMG_HEIGHT = 600;
+        
         private IFacetCollectionReader _facetCollectionReader;
-        private IPacker _packer;
-        private IAttic _attic;
 
-        public SearchController(IFacetCollectionReader facetCollectionReader, IPacker packer, IAttic attic)
+        public SearchInterfaceController(IFacetCollectionReader facetCollectionReader)
         {
             _facetCollectionReader = facetCollectionReader;
-            _packer = packer;
-            _attic = attic;
         }
 
         public ActionResult Index()
@@ -31,25 +34,17 @@ namespace Bluepill.Web.Areas.Administration.Controllers
             var cookies = ControllerContext.HttpContext.Request.Cookies;
             var cookieName = string.Format(Bluepill.Web.Framework.Constants.PREFERENCE_COOKIE_FORMAT, identity.Name);
             var userCookie = cookies[cookieName];
-            
+
             var workingCollection = (userCookie != null) ? userCookie.Values[Bluepill.Web.Framework.Constants.WORKING_COLLECTION_COOKIE_KEY] : collections[0].Name;
             var collection = collections.FirstOrDefault(c => c.Name == workingCollection);
-            //var files = new List<FileInfo>(new DirectoryInfo(CREATE_PATH).GetFiles());
-            //var list = files.Take(DISPLAY_COUNT).ToList();
+            var files = new List<FileInfo>(new DirectoryInfo(CREATE_PATH).GetFiles());
+            var list = files.Take(DISPLAY_COUNT).ToList();
 
-            //var model = new CreateModel { Facets = collection.Facets, File = list[0].FullName, TotalFileCount = files.Count, ResizedHeight = IMG_HEIGHT, ResizedWidth = IMG_WIDTH };
-            var model = new SearchModel { Facets = collection.Facets };
+            var model = new SearchInterfaceModel { Facets = collection.Facets, File = list[0].FullName, TotalFileCount = files.Count, ResizedHeight = IMG_HEIGHT, ResizedWidth = IMG_WIDTH };
 
-            ViewBag.NavigationIndex = 1;
+            ViewBag.NavigationIndex = 0;
 
             return View(model);
-        }
-
-        public ActionResult Find(SearchModel model)
-        {
-            //var box = _packer.PackBox("", "me", model.Facets);
-            var x =_attic.GetBoxes(model.Facets,10,1);
-            return View();
         }
 
     }

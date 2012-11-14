@@ -1,7 +1,6 @@
 ﻿#heading { margin-left:2%; }
 .aspectContainer { float:left; }
 .aspectLabel { margin:2px; }
-.breadCrumb { color:#330303; float:right; }
 
 .left { width:50%; margin:2px; position:absolute; margin-left:2% }
 .left #formSubmit { float:right; width:20%; margin-top:10px; }
