@@ -24,45 +24,25 @@
         e.preventDefault();
     });
 
+    $("#display-area").on("DOMSubtreeModified", "#results", function () {
+        console.log("load");
+    });
+
+    $("#display-area").mousewheel(MouseWheelHandler);
+
     $("#formCancel").click(function () {
-        //$(".breadCrumb").each(function () {
-        //    $(this).text("");
-        //});
-        //$(".aspect-checkbox").each(function () {
-        //    $(this).attr("checked", false);
-        //});
-        //$(".aspectLabel").each(function () {
-        //    $(this).attr("aria-pressed", false);
-        //    $(this).removeClass("ui-state-active");
-        //});
         ShowResults();
     });
 
     $("#formSubmit").click(function () {
-        //$("#results").data("display-state", "on");
             var data = $(this).closest("form").serializeArray();
             $("#heading img").show();
             $("#heading #message").text("saving");
-            $.post("\\administration\\search\\find", data, function (response) {
 
-                var json = $.parseJSON(response);
-                console.log(json);
-                //var img = $("div.right img");
-                //var link = $("div.right a");
-                //var hidden = $("form #File");
+            var results = $("#results")
+            results.data("page", "2");
 
-                //img.css("opacity", 0);
-                //img.attr("src", json.resizedSrc);
-                //img.data("total", json.total);
-                //link.attr("href", json.src);
-                //hidden.val(json.file);
-
-                //SetHeadingCount();
-            });
-
-
-
-        ShowResults();
+            MouseWheelHandler(null, -1, 0, 0);
     });
 
     $("#interface").show();
@@ -71,9 +51,51 @@
     $("#formCancel").hide();
     $("#matchCount").hide();
     $("#pageCount").hide();
-    //$("#results-placeholder").show();
 
 });
+
+
+function IncrememntPage(page, max, delta) {
+
+    if (delta > 0 && page < max) return 1;
+    if (delta < 0 && page > 1) return -1;
+
+    return 0;
+}
+
+
+function MouseWheelHandler(event, delta, deltaX, deltaY) {
+        
+    var results = $("#results");
+    var page = parseInt(results.data("page"));
+    var max = parseInt(results.data("max"));
+    var increment = IncrememntPage(page, max, delta);
+
+    console.log("page = " + page + ", max = " + max + ", delta = " + delta);
+
+    if (increment != 0) {
+
+        $("#Page").val(page + increment)
+        var data = $("#searchForm").serializeArray();
+        $("#display-area").unmousewheel(MouseWheelHandler);
+
+        $("#display-area").load("search\\find", data, function () {
+            $("#display-area img").load(function () {
+                $(this).animate({ opacity: 1 }, 200)
+            });
+            UpdatePageDisplay(delta);
+            ShowResults();
+            UpdateMatchCount();
+            $("#display-area").mousewheel(MouseWheelHandler);
+        });
+    }
+    else {
+        UpdatePageDisplay(delta);
+    }
+
+    return false;
+
+}
 
 function ShowInterface() {
     $("#interface").fadeIn("fast");
@@ -85,22 +107,39 @@ function ShowInterface() {
 }
 
 function ShowResults() {
-    //var displayState = $("#results").data("display-state");
-
-    //if (displayState == "on") {
-    //    $("#results").fadeIn("fast")
-    //    $("#results-placeholder").hide();
-    //}
-    //else {
-    //    $("#results").hide();
-    //    $("#results-placeholder").fadeIn("fast")
-    //}
-        
     $("#results").fadeIn("fast")
     $("#interface").hide();
     $("#search-controls").fadeIn("fast");
     $("#formCancel").show();
     $("#matchCount").show();
     $("#pageCount").show();
+}
 
+function UpdateMatchCount() {
+    var count = $("#results").data("boxes");
+    $("#boxes").text(count);
+}
+
+function UpdatePageDisplay(delta) {
+
+    var results = $("#results");
+    var current = parseInt($("#currentPage").text());
+    var max = parseInt(results.data("max"));
+    
+    $("#currentPage").text(results.data("page"));
+    $("#maxPage").text(results.data("max"));
+
+    if (delta < 0 && current == 1) {
+        BlinkPageCount();
+    }
+
+    if (delta > 0 && current == max) {
+        BlinkPageCount();
+    }
+
+}
+
+function BlinkPageCount() {
+    $("#pageCount").animate({ opacity: 0 }, 300);
+    $("#pageCount").animate({ opacity: 1 }, 300);
 }

@@ -1,4 +1,5 @@
 ﻿using Bluepill.Picture;
+using Bluepill.Storage;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -7,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebConstants = Bluepill.Web.Framework.Constants;
 
 namespace Bluepill.Web.Areas.Application.Controllers
 {
@@ -48,6 +50,22 @@ namespace Bluepill.Web.Areas.Application.Controllers
                 }
             }
         }
+
+        public FileContentResult GetPictureBytes(int index)
+        {
+            var boxes = (IList<Box>)ControllerContext.HttpContext.Session[WebConstants.RETRIEVAL_SESSION_KEY];
+
+            if (index < boxes.Count)
+            {
+                var box = boxes[index];
+                return new FileContentResult(box.ReducedBytes, "image/png");
+            }
+
+            return null;
+
+            
+        }
+
 
     }
 }

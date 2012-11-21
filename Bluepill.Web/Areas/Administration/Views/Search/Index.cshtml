@@ -11,14 +11,19 @@
 { 
     <script src="/scripts/administration.search.interface.js" type="text/javascript"></script>
     <script src="/scripts/administration.search.js" type="text/javascript"></script>
+    <script src="/scripts/jquery.mousewheel.js" type="text/javascript"></script>
 }
 
-<p id="matchCount">42 matches found</p>
-<p id="pageCount">page 167 of 500</p>
+
+<p id="pageCount">page <span id="currentPage">167</span> of <span id="maxPage">500</span></p>
+<p id="matchCount"><span id="boxes">42</span> matches found</p>
 
 <div id="interface">
-    @using(Html.BeginForm("FindMatches","Search"))
+    @using(Html.BeginForm("FindMatches", "Search", FormMethod.Post, new {id="searchForm"}))
     {
+        @Html.HiddenFor(x => x.Page)
+        @Html.HiddenFor(x => x.PageDelta)
+        @Html.HiddenFor(x => x.TotalPages)
         <div id="accordion" class="small">
             @Html.EditorFor(x => x.Facets)
         </div>
@@ -27,39 +32,14 @@
     }
 </div>
 
+
 <div id="search-controls">
+        <a href="#" class="button remove small right-align">Remove</a>
         <a href="#" class="button create small">Edit Criteria</a>
-        <span id="results-navigation">
-            <a href="#" class="button small previous">Previous Page</a>
-            <a href="#" class="button small next">Next Page</a>
-            <a href="#" class="button small top">Top Page</a>
-        </span>
-        <a href="#" class="button small remove">Remove</a>
     </div>
 
 <div id="display-area">
-    
-    <div id="results">
-        <div><img src="https://waypointprod.blob.core.windows.net/blogfilestore/storage/blogs/headlines/2012/10/4/halo4_gold.png" height="200" width="200" /></div>
-        <div><img src="https://waypointprod.blob.core.windows.net/blogfilestore/storage/blogs/headlines/2012/10/4/halo4_gold.png" height="200" width="200" /></div>
-        <div><img src="https://waypointprod.blob.core.windows.net/blogfilestore/storage/blogs/headlines/2012/10/4/halo4_gold.png" height="200" width="200" /></div>
-        <div><img src="https://waypointprod.blob.core.windows.net/blogfilestore/storage/blogs/headlines/2012/10/4/halo4_gold.png" height="200" width="200" /></div>
-        <div><img src="https://waypointprod.blob.core.windows.net/blogfilestore/storage/blogs/headlines/2012/10/4/halo4_gold.png" height="200" width="200" /></div>
-        <div><img src="https://waypointprod.blob.core.windows.net/blogfilestore/storage/blogs/headlines/2012/10/4/halo4_gold.png" height="200" width="200" /></div>
-        <div><img src="https://waypointprod.blob.core.windows.net/blogfilestore/storage/blogs/headlines/2012/10/4/halo4_gold.png" height="200" width="200" /></div>
-        <div><img src="https://waypointprod.blob.core.windows.net/blogfilestore/storage/blogs/headlines/2012/10/4/halo4_gold.png" height="200" width="200" /></div>
-        <div><img src="https://waypointprod.blob.core.windows.net/blogfilestore/storage/blogs/headlines/2012/10/4/halo4_gold.png" height="200" width="200" /></div>
-        <div><img src="https://waypointprod.blob.core.windows.net/blogfilestore/storage/blogs/headlines/2012/10/4/halo4_gold.png" height="200" width="200" /></div>
-        <div><img src="https://waypointprod.blob.core.windows.net/blogfilestore/storage/blogs/headlines/2012/10/4/halo4_gold.png" height="200" width="200" /></div>
-        <div><img src="https://waypointprod.blob.core.windows.net/blogfilestore/storage/blogs/headlines/2012/10/4/halo4_gold.png" height="200" width="200" /></div>
-        <div><img src="https://waypointprod.blob.core.windows.net/blogfilestore/storage/blogs/headlines/2012/10/4/halo4_gold.png" height="200" width="200" /></div>
-        <div><img src="https://waypointprod.blob.core.windows.net/blogfilestore/storage/blogs/headlines/2012/10/4/halo4_gold.png" height="200" width="200" /></div>
-        <div><img src="https://waypointprod.blob.core.windows.net/blogfilestore/storage/blogs/headlines/2012/10/4/halo4_gold.png" height="200" width="200" /></div>
-        <div><img src="https://waypointprod.blob.core.windows.net/blogfilestore/storage/blogs/headlines/2012/10/4/halo4_gold.png" height="200" width="200" /></div>
-        <div><img src="https://waypointprod.blob.core.windows.net/blogfilestore/storage/blogs/headlines/2012/10/4/halo4_gold.png" height="200" width="200" /></div>
-        <div><img src="https://waypointprod.blob.core.windows.net/blogfilestore/storage/blogs/headlines/2012/10/4/halo4_gold.png" height="200" width="200" /></div>
-        <div><img src="https://waypointprod.blob.core.windows.net/blogfilestore/storage/blogs/headlines/2012/10/4/halo4_gold.png" height="200" width="200" /></div>
-        <div><img src="https://waypointprod.blob.core.windows.net/blogfilestore/storage/blogs/headlines/2012/10/4/halo4_gold.png" height="200" width="200" /></div>
-        <div><img src="https://waypointprod.blob.core.windows.net/blogfilestore/storage/blogs/headlines/2012/10/4/halo4_gold.png" height="200" width="200" /></div>
+    <div id="results" data-page="2" data-max="0" data-boxes="0">
     </div>
 </div>
+

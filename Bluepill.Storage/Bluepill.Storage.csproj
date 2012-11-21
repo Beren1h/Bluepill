@@ -53,6 +53,7 @@
     <Compile Include="IPacker.cs" />
     <Compile Include="Packer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Retrieval.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bluepill.Picture\Bluepill.Picture.csproj">

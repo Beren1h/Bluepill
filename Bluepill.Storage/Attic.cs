@@ -43,7 +43,7 @@ namespace Bluepill.Storage
             GetIndexedCollection(box).Insert(box);
         }
 
-        public IList<Box> GetBoxes(IList<Facet> facets, int perPage, int page, string[] fields = null)
+        public Retrieval GetBoxes(IList<Facet> facets, int perPage, int page, string collectionName, string[] fields = null)
         {
             if(fields == null)
                 fields = new [] { Fields.METADATA, Fields.OBJECT_ID, Fields.REDUCED_BYTES, Fields.REDUCED_BYTES_WIDTH, Fields.REDUCED_BYTES_HEIGHT };
@@ -51,7 +51,7 @@ namespace Bluepill.Storage
             var query = _queryBuilder.Build(facets);
             var results = new List<Box>();
             //var upperBound = startIndex + perPage;
-            var collection = _database.GetCollection<Box>("me");
+            var collection = _database.GetCollection<Box>(collectionName);
             //var collection = 
 
             var cursor = (query == null) ? collection.FindAllAs<Box>().SetFields(fields) : collection.FindAs<Box>(query).SetFields(fields); 
@@ -68,7 +68,7 @@ namespace Bluepill.Storage
             cursor.Limit = perPage - 1;
             cursor.Skip = (page - 1) * perPage;
 
-            return cursor.ToList();
+            return new Retrieval { Boxes = cursor.ToList(), Total = cursor.Count() };
 
             //return results;
 

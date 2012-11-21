@@ -260,6 +260,7 @@
     <Content Include="Areas\Application\Views\SearchInterface\Index.cshtml" />
     <Content Include="Areas\Application\Views\SearchInterface\EditorTemplates\Facet.cshtml" />
     <Content Include="Areas\Application\Views\SearchInterface\EditorTemplates\Aspect.cshtml" />
+    <Content Include="Scripts\jquery.mousewheel.js" />
     <Content Include="Views\Shared\EditorTemplates\Facet.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Aspect.cshtml" />
     <Content Include="Areas\Administration\Views\Search\Dialog.cshtml" />
@@ -267,6 +268,8 @@
     <Content Include="Areas\Administration\Views\Search\EditorTemplates\Facet.cshtml" />
     <Content Include="Areas\Administration\Views\Create\EditorTemplates\Aspect.cshtml" />
     <Content Include="Areas\Administration\Views\Create\EditorTemplates\Facet.cshtml" />
+    <Content Include="Areas\Administration\Views\Search\Retreival.cshtml" />
+    <Content Include="Areas\Administration\Views\Search\Empty.cshtml" />
     <None Include="Scripts\jquery-1.8.1.intellisense.js" />
     <Content Include="Scripts\authentication.js" />
     <Content Include="Scripts\administration.create.js" />
