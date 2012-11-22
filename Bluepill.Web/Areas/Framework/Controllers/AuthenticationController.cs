@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using Bluepill.Web.Areas.Application.Models;
 
-namespace Bluepill.Web.Areas.Application.Controllers
+namespace Bluepill.Web.Areas.Framework.Controllers
 {
     public class AuthenticationController : Controller
     {
@@ -17,7 +17,7 @@ namespace Bluepill.Web.Areas.Application.Controllers
             if (ModelState.IsValid)
             {
                 FormsAuthentication.SetAuthCookie(model.UserName, false);
-                return RedirectToAction("index", "create", new { area = "administration" });
+                return RedirectToAction("index", "create", new { area = "bluepill" });
             }
 
             return View("index", model);

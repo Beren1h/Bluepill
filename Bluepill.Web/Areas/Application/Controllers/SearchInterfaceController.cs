@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebConstants = Bluepill.Web.Framework.Constants;
 
 namespace Bluepill.Web.Areas.Application.Controllers
 {
@@ -32,10 +33,10 @@ namespace Bluepill.Web.Areas.Application.Controllers
             var collections = _facetCollectionReader.GetFacetCollections(identity.Name, Session);
 
             var cookies = ControllerContext.HttpContext.Request.Cookies;
-            var cookieName = string.Format(Bluepill.Web.Framework.Constants.PREFERENCE_COOKIE_FORMAT, identity.Name);
+            var cookieName = string.Format(WebConstants.PREFERENCE_COOKIE_FORMAT, identity.Name);
             var userCookie = cookies[cookieName];
 
-            var workingCollection = (userCookie != null) ? userCookie.Values[Bluepill.Web.Framework.Constants.WORKING_COLLECTION_COOKIE_KEY] : collections[0].Name;
+            var workingCollection = (userCookie != null) ? userCookie.Values[WebConstants.WORKING_COLLECTION_COOKIE_KEY] : collections[0].Name;
             var collection = collections.FirstOrDefault(c => c.Name == workingCollection);
             var files = new List<FileInfo>(new DirectoryInfo(CREATE_PATH).GetFiles());
             var list = files.Take(DISPLAY_COUNT).ToList();

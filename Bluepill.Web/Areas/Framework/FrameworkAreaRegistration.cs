@@ -1,22 +1,22 @@
 ﻿using System.Web.Mvc;
 
-namespace Bluepill.Web.Areas.Administration
+namespace Bluepill.Web.Areas.Framework
 {
-    public class AdministrationAreaRegistration : AreaRegistration
+    public class FrameworkAreaRegistration : AreaRegistration
     {
         public override string AreaName
         {
             get
             {
-                return "Administration";
+                return "Framework";
             }
         }
 
         public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
-                "Administration_default",
-                "Administration/{controller}/{action}/{id}",
+                "Framework_default",
+                "Framework/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }
             );
         }
