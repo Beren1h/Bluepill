@@ -1,0 +1,35 @@
+﻿@model Bluepill.Web.Areas.Administration.Models.CreateModel
+
+@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+@section css
+{ 
+    <link href="/content/administration.create.css" rel="stylesheet" type="text/css" /> 
+}
+
+@section script
+{ 
+    <script src="/scripts/administration.search.interface.js" type="text/javascript"></script>
+    <script src="/scripts/administration.create.js" type="text/javascript"></script>
+}
+
+<h2 id="heading">
+   <img id="actionImage" src="\content\images\new-image-loading.gif" />
+   <span id="message">loading</span>
+</h2>
+
+<div class="left">
+    @using(Html.BeginForm("SavePicture","Create"))
+    {
+        @Html.HiddenFor(x => x.File)
+        <div id="accordion" class="small">
+            @Html.EditorFor(x => x.Facets)
+        </div>
+        <a href="#" id="formSubmit" class="button">Save</a>
+    }
+</div>
+<div class="right">
+    <a href="/application/picture/GetPicture?file=@Model.File" target="_blank">
+        <img src="/application/picture/GetResizePicture?file=@Model.File&height=@Model.ResizedHeight&width=@Model.ResizedWidth" data-total="@Model.TotalFileCount" alt="" />
+    </a>
+</div>

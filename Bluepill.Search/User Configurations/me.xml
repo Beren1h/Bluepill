@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://bluepill.org configuration.xsd">
+  <collections>
+    <collection name="Inspiration">
+      <facet name="Style"/>
+      <facet name="Mood" />
+      <facet name="Genre" />
+      <facet name="Focus" />
+      <facet name="Orientation" />
+      <facet name="Body" />
+      <facet name="Pose" />
+      <facet name="Gender" />
+      <facet name="Franchise" />
+      <facet name="Artist" />
+      <facet name="Character" />
+    </collection>
+    <collection name="Family">
+      <facet name="Year" />
+    </collection>
+  </collections>
+  <facets>
+    <facet name="Style">
+      <aspect name="Photo" value="1"/>
+      <aspect name="Digital" value="2"/>
+      <aspect name="3D" value="3"/>
+      <aspect name="Traditional" value="4"/>
+      <aspect name="Sketch" value="5"/>
+    </facet>
+    <facet name="Mood">
+      <aspect name="Angry" value="6"/>
+      <aspect name="Dark" value="7"/>
+      <aspect name="Sad" value="8"/>
+      <aspect name="Happy" value="9"/>
+      <aspect name="Funny" value="10"/>
+      <aspect name="Provocative" value="11"/>
+      <aspect name="Bright" value="12"/>
+    </facet>
+    <facet name="Genre">
+      <aspect name="Scifi" value="13"/>
+      <aspect name="Fantasy" value="14"/>
+      <aspect name="Comic" value="15"/>
+      <aspect name="Gaming" value="16"/>
+    </facet>
+    <facet name="Focus">
+      <aspect name="Human" value="17"/>
+      <aspect name="Object" value="18"/>
+      <aspect name="Landscape" value="19"/>
+      <aspect name="Robot" value="20"/>
+      <aspect name="Costume" value="21"/>
+      <aspect name="Animal" value="22"/>
+      <aspect name="Creature" value="23"/>
+      <aspect name="Scene" value="24"/>
+      <aspect name="Weapon" value="25"/>
+      <aspect name="Vehicle" value="26"/>
+    </facet>
+    <facet name="Orientation">
+      <aspect name="Front" value="27"/>
+      <aspect name="Back" value="28"/>
+      <aspect name="Top" value="29"/>
+      <aspect name="Bottom" value="30"/>
+      <aspect name="Side" value="31"/>
+      <aspect name="Skew Front" value="32"/>
+      <aspect name="Skew Back" value="33"/>
+      <aspect name="Skew Top" value="34"/>
+      <aspect name="Skew Bottom" value="35"/>
+      <aspect name="Skew Side" value="36"/>
+    </facet>
+    <facet name="Body">
+      <aspect name="Head" value="37"/>
+      <aspect name="Face" value="38"/>
+      <aspect name="Eye" value="39"/>
+      <aspect name="Hand" value="40"/>
+      <aspect name="Foot" value="41"/>
+      <aspect name="Leg" value="42"/>
+      <aspect name="Arm" value="43"/>
+      <aspect name="Lips" value="44"/>
+      <aspect name="Hair" value="45"/>
+      <aspect name="Fingers" value="46"/>
+      <aspect name="Full" value="47"/>
+      <aspect name="Upper" value="48"/>
+      <aspect name="Lower" value="49"/>
+      <aspect name="Nose" value="50"/>
+      <aspect name="Ear" value="51"/>
+      <aspect name="Shoulder" value="52"/>
+    </facet>
+    <facet name="Gender">
+      <aspect name="Male" value="53"/>
+      <aspect name="Female" value="54"/>
+    </facet>
+    <facet name="Pose">
+      <aspect name="Standing" value="55"/>
+      <aspect name="Sitting" value="56"/>
+      <aspect name="Laying" value="57"/>
+      <aspect name="Walking" value="58"/>
+      <aspect name="Running" value="59"/>
+      <aspect name="Flying" value="60"/>
+      <aspect name="Swiming" value="61"/>
+      <aspect name="Shooting" value="62"/>
+      <aspect name="Fighting" value="63"/>
+      <aspect name="Crawling" value="64"/>
+      <aspect name="Pinup" value="65"/>
+    </facet>
+    <facet name="Franchise">
+      <aspect name="Star Wars" value="66"/>
+      <aspect name="Star Trek" value="67"/>
+      <aspect name="Marvel" value="68"/>
+      <aspect name="DC" value="69"/>
+      <aspect name="Lord of the Rings" value="70"/>
+      <aspect name="Halo" value="71"/>
+    </facet>
+    <facet name="Artist">
+      <aspect name="Benes" value="72"/>
+      <aspect name="Rio" value="73"/>
+      <aspect name="Turner" value="74"/>
+    </facet>
+    <facet name="Character">
+      <aspect name="Wonder Woman" value="75"/>
+      <aspect name="Super Girl" value="76"/>
+      <aspect name="Baby Doll" value="77"/>
+      <aspect name="Black Cat" value="78"/>
+      <aspect name="Witchblade" value="79"/>
+      <aspect name="Hulk" value="80"/>
+      <aspect name="X-men" value="81"/>
+      <aspect name="Elektra" value="82"/>
+      <aspect name="Phoenix" value="83"/>
+      <aspect name="Spiderman" value="84"/>
+      <aspect name="Joker" value="85"/>
+      <aspect name="Catwoman" value="86"/>
+      <aspect name="Leliana" value="87"/>
+      <aspect name="Rogue" value="88"/>
+      <aspect name="Batman" value="89"/>
+      <aspect name="Superman" value="90"/>
+      <aspect name="Lady Death" value="91"/>
+      <aspect name="Master Chief" value="92"/>
+      <aspect name="Cortana" value="93"/>
+      <aspect name="Avengers" value="110"/>
+      <aspect name="Harley Quinn" value="111"/>
+    </facet>
+    <facet name="Year">
+      <aspect name="1998" value="94"/>
+      <aspect name="1999" value="95"/>
+      <aspect name="2000" value="96"/>
+      <aspect name="2001" value="97"/>
+      <aspect name="2002" value="99"/>
+      <aspect name="2003" value="109"/>
+      <aspect name="2004" value="100"/>
+      <aspect name="2005" value="101"/>
+      <aspect name="2006" value="102"/>
+      <aspect name="2007" value="103"/>
+      <aspect name="2008" value="104"/>
+      <aspect name="2009" value="105"/>
+      <aspect name="2010" value="106"/>
+      <aspect name="2011" value="107"/>
+      <aspect name="2012" value="108"/>
+    </facet>
+  </facets>
+</root>

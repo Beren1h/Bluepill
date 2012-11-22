@@ -1,0 +1,17 @@
+﻿using Bluepill.Search;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Bluepill.Storage
+{
+    public interface IAttic
+    {
+        void AddBox(Box box);
+        Retrieval GetBoxes(IList<Facet> facets, int perPage, int page, string collectionName, string[] fields = null);
+
+        void Empty();
+    }
+}
