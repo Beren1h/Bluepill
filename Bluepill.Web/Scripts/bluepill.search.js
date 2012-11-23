@@ -19,7 +19,7 @@
         icons: { secondary: "ui-icon-circle-close" }
     });
 
-    $(".create").click(function (e) {
+    $(".edit").click(function (e) {
         ShowInterface();
         e.preventDefault();
     });
@@ -33,6 +33,10 @@
     $("#formCancel").click(function () {
         ShowResults();
     });
+
+
+
+
 
     $("#formSubmit").click(function () {
             var data = $(this).closest("form").serializeArray();
@@ -81,7 +85,44 @@ function MouseWheelHandler(event, delta, deltaX, deltaY) {
 
         $("#display-area").load("search\\find", data, function () {
             $("#display-area img").load(function () {
-                $(this).animate({ opacity: 1 }, 200)
+                $(this).animate({ opacity: 1 }, 200);
+
+
+                $(".match").draggable({
+
+                });
+
+                $(".trash").droppable({
+                    drop: function (e, ui) {
+                        //console.log("drop");
+                        //console.log($(ui.item).attr("class"));
+                        //var x = $(ui.draggable).find("a").attr("href");
+                        //console.log(x);
+                        $(ui.draggable).remove();
+
+                    }
+                });
+
+                //$(".match").mousedown(function (e) {
+                //    console.log("click");
+                //    switch (e.button) {
+                //        case 1:
+                //            console.log("left click");
+                //            break;
+                //        case 2:
+                //            console.log("right click");
+                //            break;
+                //        default:
+                //            console.log("fail");
+                //    }
+
+                //});
+
+
+                //$(".match").click(function () {
+                //    console.log("click");
+                //});
+
             });
             UpdatePageDisplay(delta);
             ShowResults();

@@ -1,5 +1,7 @@
 ﻿using Bluepill.Picture;
 using Bluepill.Storage;
+using Bluepill.Web.Framework;
+using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -15,10 +17,12 @@ namespace Bluepill.Web.Areas.Application.Controllers
     public class PictureController : Controller
     {
         private IResize _resize;
+        private IAttic _attic;
 
-        public PictureController(IResize resize)
+        public PictureController(IResize resize, IAttic attic)
         {
             _resize = resize;
+            _attic = attic;
         }
 
         public FileContentResult GetResizePicture(string file, int width, int height)
@@ -51,7 +55,7 @@ namespace Bluepill.Web.Areas.Application.Controllers
             }
         }
 
-        public FileContentResult GetPictureBytes(int index)
+        public FileContentResult GetPictureReducedBytes(int index)
         {
             var boxes = (IList<Box>)ControllerContext.HttpContext.Session[WebConstants.RETRIEVAL_SESSION_KEY];
 
@@ -62,8 +66,23 @@ namespace Bluepill.Web.Areas.Application.Controllers
             }
 
             return null;
+        }
 
-            
+        public FileContentResult GetPictureBytes(int index)
+        {
+            var boxes = (IList<Box>)ControllerContext.HttpContext.Session[WebConstants.RETRIEVAL_SESSION_KEY];
+            var identity = (BluePillIdentity)ControllerContext.HttpContext.User.Identity;
+
+            if (index < boxes.Count)
+            {
+                var box = boxes[index];
+                var retrieval = _attic.GetBox(box._id, identity.Name, new[] { Fields.BYTES });
+                                
+                return (retrieval.Boxes.Count > 0) ? new FileContentResult(retrieval.Boxes[0].Bytes, "image/png") : null;
+            }
+
+            return null;
+
         }
 
 

@@ -17,7 +17,7 @@ namespace Bluepill.Web.Areas.Bluepill.Controllers
         private IFacetCollectionReader _facetCollectionReader;
         private IPacker _packer;
         private IAttic _attic;
-        private const int PER_PAGE = 4;
+        private const int PER_PAGE = 10;
         private const string RETRIEVAL_KEY = "";
 
         public SearchController(IFacetCollectionReader facetCollectionReader, IPacker packer, IAttic attic)

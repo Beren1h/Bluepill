@@ -1,4 +1,5 @@
 ﻿using Bluepill.Search;
+using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace Bluepill.Storage
     {
         void AddBox(Box box);
         Retrieval GetBoxes(IList<Facet> facets, int perPage, int page, string collectionName, string[] fields = null);
+        Retrieval GetBox(ObjectId id, string collectionName, string[] fields = null);
 
         void Empty();
     }

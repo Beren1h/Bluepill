@@ -43,6 +43,15 @@ namespace Bluepill.Storage
             GetIndexedCollection(box).Insert(box);
         }
 
+        public Retrieval GetBox(ObjectId id, string collectionName, string[] fields)
+        {
+            var query = _queryBuilder.Build(id);
+            var collection = _database.GetCollection<Box>(collectionName);
+            var cursor = collection.FindAs<Box>(query).SetFields(fields);
+
+            return new Retrieval { Boxes = cursor.ToList(), Total = cursor.Count() };
+        }
+
         public Retrieval GetBoxes(IList<Facet> facets, int perPage, int page, string collectionName, string[] fields = null)
         {
             if(fields == null)

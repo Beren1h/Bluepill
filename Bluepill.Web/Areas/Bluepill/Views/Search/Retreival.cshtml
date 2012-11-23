@@ -7,7 +7,12 @@
 
     @for (int i = 0; i <= Model.MaxIndex; i++)
     {
-        <div><img src="~/application/picture/getpicturebytes?index=@i" /></div>
+        <div class="match">
+            <a  href="~/application/picture/getpicturebytes?index=@i" target="_blank">
+                <img src="~/application/picture/getpicturereducedbytes?index=@i" />
+            </a>
+        </div>
     }
 
+    <div class="trash"><img src="\content\images\recycle.png" /></div>
 </div>

@@ -15,8 +15,6 @@
 }
 
 
-<p id="pageCount">page <span id="currentPage">167</span> of <span id="maxPage">500</span></p>
-<p id="matchCount"><span id="boxes">42</span> matches found</p>
 
 <div id="interface">
     @using(Html.BeginForm("FindMatches", "Search", FormMethod.Post, new {id="searchForm"}))
@@ -27,19 +25,28 @@
         <div id="accordion" class="small">
             @Html.EditorFor(x => x.Facets)
         </div>
-        <a href="#" id="formCancel" class="button">Cancel</a>
-        <a href="#" id="formSubmit" class="button">Search</a>
+        <ul>
+            <li><a href="#" id="formCancel" class="button">Cancel</a></li>
+            <li><a href="#" id="formSubmit" class="button">Search</a></li>
+        </ul>
     }
 </div>
 
 
-<div id="search-controls">
-        <a href="#" class="button remove small right-align">Remove</a>
-        <a href="#" class="button create small">Edit Criteria</a>
-    </div>
+<ul id="search-controls">
+    <li id="pageCount">page <span id="currentPage">167</span> of <span id="maxPage">500</span></li>
+    <li id="matchCount"><span id="boxes">42</span> matches</li>
+    <li>
+        <ul>
+            <li><a href="#" class="button edit">Edit</a></li>
+            <li><a href="#" class="button">Remove</a></li>
+        </ul>
+    </li>
+</ul>
 
 <div id="display-area">
-    <div id="results" data-page="2" data-max="0" data-boxes="0">
-    </div>
+    <div id="results" data-page="2" data-max="0" data-boxes="0"></div>
 </div>
+
+
 

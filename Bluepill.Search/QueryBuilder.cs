@@ -31,5 +31,10 @@ namespace Bluepill.Search
             return (queries.Count == 0) ? null : Query.And(queries);
             
         }
+
+        public IMongoQuery Build(ObjectId id)
+        {
+            return Query.EQ("_id", id);
+        }
     }
 }

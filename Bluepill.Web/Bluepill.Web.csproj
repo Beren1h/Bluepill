@@ -63,6 +63,14 @@
     <Reference Include="Microsoft.Practices.Unity.Interception.Configuration">
       <HintPath>..\packages\Unity.Interception.2.1.505.2\lib\NET35\Microsoft.Practices.Unity.Interception.Configuration.dll</HintPath>
     </Reference>
+    <Reference Include="MongoDB.Bson, Version=1.6.0.4624, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\mongocsharpdriver.1.6\lib\net35\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver, Version=1.6.0.4624, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\mongocsharpdriver.1.6\lib\net35\MongoDB.Driver.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -143,6 +151,9 @@
     <Compile Include="Areas\Application\Models\SearchInterfaceModel.cs" />
     <Compile Include="Areas\Application\Models\SettingsModel.cs" />
     <Compile Include="Areas\Framework\Models\Validators\AuthenticationModelValidator.cs" />
+    <Compile Include="Areas\layout\Controllers\CreateController.cs" />
+    <Compile Include="Areas\layout\layoutAreaRegistration.cs" />
+    <Compile Include="Areas\layout\Models\CreateModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Framework\BluePillIdentity.cs" />
     <Compile Include="Framework\BluePillPrincipalService.cs" />
@@ -177,7 +188,9 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="401.html" />
     <Content Include="404.html" />
+    <Content Include="Content\application.settings.css" />
     <Content Include="Content\authentication.css" />
+    <Content Include="Content\layout.create.css" />
     <Content Include="Content\global.css" />
     <Content Include="Content\jquery-ui-combobox.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -259,11 +272,13 @@
     <Content Include="Areas\Bluepill\Views\Search\Index.cshtml" />
     <Content Include="Content\bluepill.search.css" />
     <Content Include="Scripts\application.search.interface.js" />
+    <Content Include="Scripts\application.settings.js" />
     <Content Include="Scripts\bluepill.search.js" />
     <Content Include="Areas\Application\Views\SearchInterface\Index.cshtml" />
     <Content Include="Areas\Application\Views\SearchInterface\EditorTemplates\Facet.cshtml" />
     <Content Include="Areas\Application\Views\SearchInterface\EditorTemplates\Aspect.cshtml" />
     <Content Include="Scripts\jquery.mousewheel.js" />
+    <Content Include="Scripts\layout.create.js" />
     <Content Include="Views\Shared\EditorTemplates\Facet.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Aspect.cshtml" />
     <Content Include="Areas\Bluepill\Views\Search\Dialog.cshtml" />
@@ -275,6 +290,8 @@
     <Content Include="Areas\Bluepill\Views\Search\Empty.cshtml" />
     <Content Include="Areas\Framework\Views\Web.config" />
     <Content Include="Areas\Bluepill\Views\Web.config" />
+    <Content Include="Areas\layout\Views\Web.config" />
+    <Content Include="Areas\layout\Views\Create\Index.cshtml" />
     <None Include="Scripts\jquery-1.8.1.intellisense.js" />
     <Content Include="Scripts\authentication.js" />
     <Content Include="Scripts\bluepill.create.js" />
@@ -301,6 +318,7 @@
     <Folder Include="Areas\Application\Views\Shared\" />
     <Folder Include="Areas\Bluepill\Views\Shared\" />
     <Folder Include="Areas\Framework\Views\Shared\" />
+    <Folder Include="Areas\layout\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

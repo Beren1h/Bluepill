@@ -31,7 +31,9 @@
     {
         { Html.RenderAction("index", "settings", new { area = "application" }); }
     }
-    @RenderBody()
+    <div class="content">
+        @RenderBody()
+    </div>
 </body>
 </html>
 
