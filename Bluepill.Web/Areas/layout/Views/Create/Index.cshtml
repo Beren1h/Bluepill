@@ -15,25 +15,84 @@
 
 @section settings{}
 
-<div class="bar">
-    <ul>
-        <li><a class="button" href="\bluepill\create">Add</a></li>
-        <li><a class="button" href="\bluepill\search">Search</a></li>
-        <li><a class="button" href="\framework\authentication">Sign Off</a></li>
-        <li><a class="button menu-button" data-menu-selector=".collection-menu" href="#">Collection</a></li>
-    </ul>
-</div>
+<div class="page">
+    <div class="content">
+        <div class="span12 height1">header</div>
+        @*<div class="span6 height10">a</div>
+        <div class="span6 height10">b</div>*@
+        <div class="span1 height10">
+            g
+        </div>
+        <div class="span11 height10">
+            <div class="display">
+                <div class="results">
+                    <div class="result">
+                        <img src="http://upload.wikimedia.org/wikipedia/en/9/92/Halo_4_box_artwork.png" width="100" height="200" />
+                    </div>
+                                        <div class="result">
+                        <img src="http://upload.wikimedia.org/wikipedia/en/9/92/Halo_4_box_artwork.png" width="200" height="100" />
+                    </div>
+                    <div class="result">
+                        <img src="http://upload.wikimedia.org/wikipedia/en/9/92/Halo_4_box_artwork.png" width="200" height="200" />
+                    </div>
+                                        <div class="result">
+                        <img src="http://upload.wikimedia.org/wikipedia/en/9/92/Halo_4_box_artwork.png" width="200" height="200" />
+                    </div>
+                    <div class="result">
+                        <img src="http://upload.wikimedia.org/wikipedia/en/9/92/Halo_4_box_artwork.png" width="200" height="200" />
+                    </div>
+                    <div class="result">
+                        <img src="http://upload.wikimedia.org/wikipedia/en/9/92/Halo_4_box_artwork.png" width="200" height="200" />
+                    </div>
+                    <div class="result">
+                        <img src="http://upload.wikimedia.org/wikipedia/en/9/92/Halo_4_box_artwork.png" width="200" height="200" />
+                    </div>
+                    <div class="result">
+                        <img src="http://upload.wikimedia.org/wikipedia/en/9/92/Halo_4_box_artwork.png" width="200" height="200" />
+                    </div>
+                    <div class="result">
+                        <img src="http://upload.wikimedia.org/wikipedia/en/9/92/Halo_4_box_artwork.png" width="200" height="200" />
+                    </div>
+                    <div class="result">
+                        <img src="http://upload.wikimedia.org/wikipedia/en/9/92/Halo_4_box_artwork.png" width="200" height="200" />
+                    </div>
+                    <div class="result">
+                        <img src="http://upload.wikimedia.org/wikipedia/en/9/92/Halo_4_box_artwork.png" width="200" height="200" />
+                    </div>
+                    <div class="result">
+                        <img src="http://upload.wikimedia.org/wikipedia/en/9/92/Halo_4_box_artwork.png" width="200" height="200" />
+                    </div>
+                    <div class="result">
+                        <img src="http://upload.wikimedia.org/wikipedia/en/9/92/Halo_4_box_artwork.png" width="200" height="200" />
+                    </div>
+                    <div class="result">
+                        <img src="http://upload.wikimedia.org/wikipedia/en/9/92/Halo_4_box_artwork.png" width="200" height="200" />
+                    </div>
+                    <div class="result">
+                        <img src="http://upload.wikimedia.org/wikipedia/en/9/92/Halo_4_box_artwork.png" width="200" height="200" />
+                    </div>
+                    <div class="result">
+                        <img src="http://upload.wikimedia.org/wikipedia/en/9/92/Halo_4_box_artwork.png" width="200" height="200" />
+                    </div>
+                    <div class="result">
+                        <img src="http://upload.wikimedia.org/wikipedia/en/9/92/Halo_4_box_artwork.png" width="200" height="200" />
+                    </div>
+                    <div class="result">
+                        <img src="http://upload.wikimedia.org/wikipedia/en/9/92/Halo_4_box_artwork.png" width="200" height="200" />
+                    </div>
+                    <div class="result">
+                        <img src="http://upload.wikimedia.org/wikipedia/en/9/92/Halo_4_box_artwork.png" width="200" height="200" />
+                    </div>
+                    <div class="result">
+                        <img src="http://upload.wikimedia.org/wikipedia/en/9/92/Halo_4_box_artwork.png" width="200" height="200" />
+                    </div>
+                    <div class="result">
+                        <img src="http://upload.wikimedia.org/wikipedia/en/9/92/Halo_4_box_artwork.png" width="200" height="200" />
+                    </div>
 
-<ul class="collection-menu" data-uid="@Model.UserName">
-    @foreach (var item in Model.CollectionsDropDown)
-    {
-        <li>
-            <a href="@item.Text">@item.Text
-                @if(@item.Text == @Model.WorkingCollection)
-                {
-                <span class="ui-icon ui-icon-check"></span>
-                }
-            </a>
-        </li>
-    }
-</ul>
+                </div>
+            </div>
+        </div>
+        <div class="span12 height1">footer</div>
+    </div>
+</div>

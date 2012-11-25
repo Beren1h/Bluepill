@@ -3,58 +3,33 @@
     InitializeBreadCrumb();
     InitializeAccordion();
 
-    $(".next").button({
-        icons: { secondary: "ui-icon-circle-triangle-e" }
-    });
+    $(".match-area").mousewheel(MouseWheelHandler);
 
-    $(".previous").button({
-        icons: { primary: "ui-icon-circle-triangle-w" }
-    });
-
-    $(".top").button({
-        icons: { secondary: "ui-icon-circle-arrow-n" }
-    });
-
-    $(".remove").button({
-        icons: { secondary: "ui-icon-circle-close" }
-    });
-
-    $(".edit").click(function (e) {
-        ShowInterface();
-        e.preventDefault();
-    });
-
-    $("#display-area").on("DOMSubtreeModified", "#results", function () {
-        console.log("load");
-    });
-
-    $("#display-area").mousewheel(MouseWheelHandler);
-
-    $("#formCancel").click(function () {
+    $(".cancel").click(function () {
         ShowResults();
     });
 
+    $(".edit").click(function () {
+        ShowInterface();
+    });
 
-
-
-
-    $("#formSubmit").click(function () {
+    $(".submit").click(function () {
             var data = $(this).closest("form").serializeArray();
-            $("#heading img").show();
-            $("#heading #message").text("saving");
+            var results = $(".matches")
 
-            var results = $("#results")
             results.data("page", "2");
 
             MouseWheelHandler(null, -1, 0, 0);
     });
 
-    $("#interface").show();
-    $("#results").hide();
-    $("#search-controls").hide();
-    $("#formCancel").hide();
+    $(".interface").show();
+    $(".match-area").hide();
+    $(".heading").hide();
+    $(".cancel").hide();
     $("#matchCount").hide();
     $("#pageCount").hide();
+
+    $(".button").button();
 
 });
 
@@ -67,67 +42,44 @@ function IncrememntPage(page, max, delta) {
     return 0;
 }
 
-
 function MouseWheelHandler(event, delta, deltaX, deltaY) {
-        
-    var results = $("#results");
+    
+    var results = $(".matches");
     var page = parseInt(results.data("page"));
     var max = parseInt(results.data("max"));
     var increment = IncrememntPage(page, max, delta);
 
-    console.log("page = " + page + ", max = " + max + ", delta = " + delta);
+    console.log("page = " + page + ", max = " + max + ", delta = " + delta + ", increment = " + increment);
 
     if (increment != 0) {
 
         $("#Page").val(page + increment)
         var data = $("#searchForm").serializeArray();
-        $("#display-area").unmousewheel(MouseWheelHandler);
+        $(".match-area").unmousewheel(MouseWheelHandler);
 
-        $("#display-area").load("search\\find", data, function () {
-            $("#display-area img").load(function () {
+        $(".match-area").load("search\\find", data, function () {
+            $(".match-area img").load(function () {
+                
                 $(this).animate({ opacity: 1 }, 200);
-
-
-                $(".match").draggable({
-
-                });
+                
+                $(".match").draggable();
 
                 $(".trash").droppable({
                     drop: function (e, ui) {
-                        //console.log("drop");
-                        //console.log($(ui.item).attr("class"));
-                        //var x = $(ui.draggable).find("a").attr("href");
-                        //console.log(x);
                         $(ui.draggable).remove();
-
+                        //remove from database;
+                    },
+                    over: function (e, ui) {
+                        console.log("hover");
                     }
                 });
 
-                //$(".match").mousedown(function (e) {
-                //    console.log("click");
-                //    switch (e.button) {
-                //        case 1:
-                //            console.log("left click");
-                //            break;
-                //        case 2:
-                //            console.log("right click");
-                //            break;
-                //        default:
-                //            console.log("fail");
-                //    }
-
-                //});
-
-
-                //$(".match").click(function () {
-                //    console.log("click");
-                //});
 
             });
             UpdatePageDisplay(delta);
             ShowResults();
             UpdateMatchCount();
-            $("#display-area").mousewheel(MouseWheelHandler);
+            $(".match-area").mousewheel(MouseWheelHandler);
         });
     }
     else {
@@ -139,31 +91,26 @@ function MouseWheelHandler(event, delta, deltaX, deltaY) {
 }
 
 function ShowInterface() {
-    $("#interface").fadeIn("fast");
-    $("#results").hide();
-    $("#results-placeholder").hide();
-    $("#search-controls").hide();
-    $("#matchCount").hide();
-    $("#pageCount").hide();
+    $(".interface").fadeIn("fast");
+    $(".match-area").hide();
+    $(".heading").hide();
 }
 
 function ShowResults() {
-    $("#results").fadeIn("fast")
-    $("#interface").hide();
-    $("#search-controls").fadeIn("fast");
-    $("#formCancel").show();
-    $("#matchCount").show();
-    $("#pageCount").show();
+    $(".match-area").fadeIn("fast")
+    $(".interface").hide();
+    $(".heading").fadeIn("fast");
+    $(".cancel").show();
 }
 
 function UpdateMatchCount() {
-    var count = $("#results").data("boxes");
+    var count = $(".matches").data("boxes");
     $("#boxes").text(count);
 }
 
 function UpdatePageDisplay(delta) {
 
-    var results = $("#results");
+    var results = $(".matches");
     var current = parseInt($("#currentPage").text());
     var max = parseInt(results.data("max"));
     
@@ -181,6 +128,6 @@ function UpdatePageDisplay(delta) {
 }
 
 function BlinkPageCount() {
-    $("#pageCount").animate({ opacity: 0 }, 300);
-    $("#pageCount").animate({ opacity: 1 }, 300);
+    $(".pull-left").animate({ opacity: 0 }, 300);
+    $(".pull-left").animate({ opacity: 1 }, 300);
 }

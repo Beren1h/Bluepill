@@ -3,8 +3,7 @@
 @{ Layout = null; }
 
 
-<div id="results" data-page="@Model.Page" data-max="@Model.TotalPages" data-boxes="@Model.TotalBoxes">
-
+<div class="matches" data-page="@Model.Page" data-max="@Model.TotalPages" data-boxes="@Model.TotalBoxes">
     @for (int i = 0; i <= Model.MaxIndex; i++)
     {
         <div class="match">
@@ -13,6 +12,4 @@
             </a>
         </div>
     }
-
-    <div class="trash"><img src="\content\images\recycle.png" /></div>
 </div>

@@ -1,50 +1,19 @@
-﻿
-/*
-#top-control { border:0px solid #ffd800; margin-top:-10px; padding-bottom:5px; margin-left:4%;  background-color:#330303; }
-#results { border:1px solid #00ff21; float:right; margin-left:5px; margin-left:4%; }
-#results-placeholder { border:1px solid #00ff21; float:left; opacity:0.1; margin-left:4%; width:60%; padding:15% 15% 17% 15%; text-align:center; font-size:2em;  }
-#bottom-control { border:0px solid #f00; float:left; clear:both; margin-left:4%; padding-top:5px; }
-#heading { margin-left:4%; opacity:0; width:50% }
+﻿.interface form { width:50%; margin-left:25%; }
 
-
-#page { border:0px solid #ad1bca; width:100%; text-align:center; }
-#results { border:0px solid #00ff21; }
-.result { border:1px solid #0e0cb0; width:200px; height:200px; float:left; margin:2px; }
-.previous { margin-left:50px; }
-
-.aspectContainer { float:left; }
-
-#interface { width:75%; margin-left:4% }
-    */
-
-/*.match{ border:1px solid #0ff; position:relative; z-index:1 }*/
-
-
-#interface { width:50%; margin:0 auto }
-#interface ul { list-style-type:none; }
-#interface li { display:inline-block; float:right; }
-
-#display-area { /*border:1px solid #00ff21;*/ overflow:hidden; position:relative; height:100% }
-
-/*
-#search-area { border:1px solid #00ff21; overflow:hidden; }
-#search-area ul { list-style-type:none; -webkit-padding-start:0; float:right; padding:15px; background:#f00; height:100%; width:200px; }
-#search-area li { font-size:11px; }
-*/
-
-#search-controls { list-style-type:none; -webkit-padding-start:0; float:left; padding:10px; /*background:#f00;*/ }
-#search-controls li { font-size:14px; font-weight:bold; padding:5px; }
-#search-controls ul { list-style-type:none; -webkit-padding-start:0; }
-
-/*
-#results {  }
-#results div { border:1px solid #0e0cb0; width:200px; height:200px; float:left; margin:2px; }
-*/
-
-#results { border:0px solid; }
 .match img { opacity:0; vertical-align:middle; border:1px solid #FEDC69 }
-#results div { /*border:1px solid #514028;*/ width:200px; height:200px; float:left; margin:3px 8px 3px 0; text-align:center; line-height:197px; }
+.matches div { width:200px; height:200px; float:left; margin:3px 8px 3px 0; text-align:center; line-height:200px; }
 
-.aspectContainer { float:left; }
+.trash { /*background:url(/content/images/undo.png) no-repeat; background-size:90% 90%;*/ height:50px; width:100%; /*border:1px solid #ff6a00;*/ float:right; /*margin-left:50px;*/ }
 
-.trash img { border:0; opacity:0.4 !important; vertical-align:middle; width:50px; height:50px; }
+.pull-left { float:left; }
+.pull-right { float:right; }
+
+.single-line li { text-align:left; display:inline-block; vertical-align:middle; margin-left:5px; line-height:50px }
+
+
+.small-font { font-size:11px; }
+
+
+
+
+

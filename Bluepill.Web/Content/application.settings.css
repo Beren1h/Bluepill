@@ -1,8 +1,7 @@
-﻿.bar {background:#411; overflow:hidden; margin:0 0 5px 0; border-bottom:1px solid #69410a }
-.bar ul { list-style-type:none; float:right; margin:4px 1px 4px 0;}
-.bar li {  display:inline-block; font-size:11px; margin:0 -2px 0 -2px; }
+﻿.bar ul { float:right; }
+.bar li { display:inline-block; font-size:11px; }
 
-.collection-menu { position:relative; z-index:1; float:right; display:none; }
+.collection-menu { position:absolute; z-index:1; float:right; display:none; }
 .collection-menu li { font-size:12px; float:right; }
 
 .ui-icon { display:inline-block; }

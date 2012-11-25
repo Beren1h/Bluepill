@@ -15,38 +15,39 @@
 }
 
 
+<div class="span12 heading">
+    <div class="trash">
+        <ul class="pull-left">
+            @*<li><h2>page <span id="currentPage">167</span> of <span id="maxPage">500</span></h2></li>*@
+            <li><h2>Page <span id="currentPage">167</span></h2></li>
+            <li><span id="boxes">42</span> matches  -  <span id="maxPage">500</span> pages</li>
+        </ul>
+        <ul class="pull-right small-font single-line">
+            <li><a href="#" class="button edit">Edit Search</a></li>
+        </ul>
+    </div>
 
-<div id="interface">
-    @using(Html.BeginForm("FindMatches", "Search", FormMethod.Post, new {id="searchForm"}))
-    {
+</div>
+
+<div class="span12 interface">
+     @using(Html.BeginForm("FindMatches", "Search", FormMethod.Post, new {id="searchForm"}))
+     {
         @Html.HiddenFor(x => x.Page)
         @Html.HiddenFor(x => x.PageDelta)
         @Html.HiddenFor(x => x.TotalPages)
-        <div id="accordion" class="small">
+        <div id="accordion">
             @Html.EditorFor(x => x.Facets)
         </div>
-        <ul>
-            <li><a href="#" id="formCancel" class="button">Cancel</a></li>
-            <li><a href="#" id="formSubmit" class="button">Search</a></li>
+        <ul class="pull-right single-line">
+            <li><a href="#" class="button cancel">Cancel</a></li>
+            <li><a href="#" class="button submit">Search</a></li>
         </ul>
-    }
+     }
 </div>
 
 
-<ul id="search-controls">
-    <li id="pageCount">page <span id="currentPage">167</span> of <span id="maxPage">500</span></li>
-    <li id="matchCount"><span id="boxes">42</span> matches</li>
-    <li>
-        <ul>
-            <li><a href="#" class="button edit">Edit</a></li>
-            <li><a href="#" class="button">Remove</a></li>
-        </ul>
-    </li>
-</ul>
-
-<div id="display-area">
-    <div id="results" data-page="2" data-max="0" data-boxes="0"></div>
+<div class="span12 height14 match-area">
+    <div class="matches" data-page="2" data-max="0" data-boxes="0"></div>
 </div>
-
 
 

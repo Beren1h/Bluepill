@@ -1,8 +1,6 @@
 ﻿$(document).ready(function () {
 
-    $(".top-bar .button").button({
-        //icons: { primary: "ui-icon-gear" }
-    });
+    $(".bar a").button();
 
     $(".collection-menu").menu({
         selected: function (e, ui) {
@@ -25,11 +23,7 @@
 
     $(".menu-button").click(function (e) {
         var div = $(this).data("menu-selector");
-        $(div).slideToggle();
+        $(div).css({ top: $(this).position().top + 30, left: $(this).position().left }).slideToggle();
     });
-
-    //function ToggleMenu(selector) {
-    //    selector.slideToggle();
-    //}
 
 });

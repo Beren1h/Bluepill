@@ -4,6 +4,8 @@
         collapsible: true,
         active: false,
     });
+    $(".submit").button();
+    $(".aspect-checkbox").button();
 }
 
 function ResetAccordion() {

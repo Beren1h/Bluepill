@@ -8,26 +8,26 @@
 });
 
 function SetHeadingCount() {
-    $("#heading img").hide();
-    $("#heading #message").text($("div.right img").data("total") + " files");
+    $(".heading img").hide();
+    $(".heading span").text($(".add img").data("total") + " files");
 }
 
 function InitializeCount() {
-    $("#heading img").hide();
-    $("#heading #message").text($("div.right img").data("total") + " files");
+    $(".heading img").hide();
+    $(".heading span").text($(".add img").data("total") + " files");
 }
 
 function InitializeFormSubmit() {
-    $("#formSubmit").click(function () {
+    $(".submit").click(function () {
         var data = $(this).closest("form").serializeArray();
-        $("#heading img").show();
-        $("#heading #message").text("saving");
+        $(".heading img").show();
+        $(".heading span").text("saving");
         $.post("\\bluepill\\create\\savepicture", data, function (response) {
 
             var json = $.parseJSON(response);
 
-            var img = $("div.right img");
-            var link = $("div.right a");
+            var img = $(".add img");
+            var link = $(".add a");
             var hidden = $("form #File");
 
             img.css("opacity", 0);
@@ -42,7 +42,7 @@ function InitializeFormSubmit() {
 }
 
 function InitializeImageLoad() {
-    $(".right img").load(function () {
+    $(".add img").load(function () {
         $(this).animate({ opacity: 1 }, 200, function () {
             SetHeadingCount();
         });

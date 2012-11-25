@@ -3,25 +3,27 @@
 <link href="/content/application.settings.css" rel="stylesheet" type="text/css" /> 
 <script src="/scripts/application.settings.js" type="text/javascript"></script>
 
-<div class="bar">
-    <ul>
-        <li><a class="button" href="\bluepill\create">Add</a></li>
-        <li><a class="button" href="\bluepill\search">Search</a></li>
-        <li><a class="button" href="\framework\authentication">Sign Off</a></li>
-        <li><a class="button menu-button" data-menu-selector=".collection-menu" href="#">Collection</a></li>
+
+<div class="span12">
+   <div class="bar">
+        <ul>
+            <li><a class="button" href="\bluepill\create">Add</a></li>
+            <li><a class="button" href="\bluepill\search">Search</a></li>
+            <li><a class="button" href="\framework\authentication">Sign Off</a></li>
+            <li><a class="button menu-button" data-menu-selector=".collection-menu" href="#">Collection</a></li>
+        </ul>
+    </div>
+    <ul class="collection-menu" data-uid="@Model.UserName">
+        @foreach (var item in Model.CollectionsDropDown)
+        {
+            <li>
+                <a href="@item.Text">@item.Text
+                    @if(@item.Text == @Model.WorkingCollection)
+                    {
+                    <span class="ui-icon ui-icon-check"></span>
+                    }
+                </a>
+            </li>
+        }
     </ul>
 </div>
-
-<ul class="collection-menu" data-uid="@Model.UserName">
-    @foreach (var item in Model.CollectionsDropDown)
-    {
-        <li>
-            <a href="@item.Text">@item.Text
-                @if(@item.Text == @Model.WorkingCollection)
-                {
-                <span class="ui-icon ui-icon-check"></span>
-                }
-            </a>
-        </li>
-    }
-</ul>

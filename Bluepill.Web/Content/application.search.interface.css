@@ -1,0 +1,11 @@
+﻿#accordion { font-size:12px; overflow:hidden; }
+
+.aspectContainer { float:left; }
+.aspectLabel { margin:2px; }
+
+.breadCrumb { color:#330303; float:right; }
+
+.ui-accordion .ui-accordion-content { overflow:hidden !important; }
+.ui-accordion-content { border-radius:0px !important; }
+
+.submit, .cancel { margin:3px 0 0 0; float:right; }
