@@ -188,11 +188,13 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="401.html" />
     <Content Include="404.html" />
+    <Content Include="Content\application.search.interface.css" />
     <Content Include="Content\application.settings.css" />
     <Content Include="Content\authentication.css" />
     <Content Include="Content\layout.create.css" />
     <Content Include="Content\global.css" />
     <Content Include="Content\jquery-ui-combobox.css" />
+    <Content Include="Content\page.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
