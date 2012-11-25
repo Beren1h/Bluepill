@@ -48,7 +48,7 @@
   <ItemGroup>
     <Compile Include="Attic.cs" />
     <Compile Include="Box.cs" />
-    <Compile Include="Constants.cs" />
+    <Compile Include="Fields.cs" />
     <Compile Include="IAttic.cs" />
     <Compile Include="IPacker.cs" />
     <Compile Include="Packer.cs" />

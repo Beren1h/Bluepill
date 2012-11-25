@@ -29,6 +29,29 @@ namespace Bluepill.Storage
             _queryBuilder = queryBuilder;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="collectionName"></param>
+        public void RemoveBox(ObjectId id, string collectionName)
+        {
+            var query = _queryBuilder.Build(id);
+            var collection = _database.GetCollection<Box>(collectionName);
+            var box = collection.FindAs<Box>(query).SetFields(new []{Fields.GRIDFS_ID, Fields.IS_LARGE, Fields.BYTES, Fields.OBJECT_ID}).FirstOrDefault();
+
+            if (box.IsLarge)
+            {
+                _database.GridFS.DeleteById(box.GridFSId);
+            }
+            
+            collection.Remove(query);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="box"></param>
         public void AddBox(Box box)
         {
             if (box.IsLarge)
@@ -43,15 +66,54 @@ namespace Bluepill.Storage
             GetIndexedCollection(box).Insert(box);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="collectionName"></param>
+        /// <param name="fields"></param>
+        /// <returns></returns>
         public Retrieval GetBox(ObjectId id, string collectionName, string[] fields)
         {
             var query = _queryBuilder.Build(id);
             var collection = _database.GetCollection<Box>(collectionName);
             var cursor = collection.FindAs<Box>(query).SetFields(fields);
+            var box = cursor.FirstOrDefault();
+            var retrieval = new Retrieval();
+            if (box.IsLarge)
+            {
+                var file = _database.GridFS.FindOneById(box.GridFSId);
 
-            return new Retrieval { Boxes = cursor.ToList(), Total = cursor.Count() };
+                using (var stream = file.OpenRead())
+                {
+                    var bytes = new byte[stream.Length];
+                    stream.Read(bytes, 0, (int)stream.Length);
+
+                    using (var ms = new MemoryStream())
+                    {
+                        ms.Write(bytes, 0, bytes.Length);
+                        box.Bytes = ms.ToArray();
+                    }
+                }
+
+                retrieval.Boxes.Add(box);
+            }
+
+            retrieval.Boxes.Add(box);
+            retrieval.Total = 1;
+
+            return retrieval;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="facets"></param>
+        /// <param name="perPage"></param>
+        /// <param name="page"></param>
+        /// <param name="collectionName"></param>
+        /// <param name="fields"></param>
+        /// <returns></returns>
         public Retrieval GetBoxes(IList<Facet> facets, int perPage, int page, string collectionName, string[] fields = null)
         {
             if(fields == null)
@@ -59,33 +121,21 @@ namespace Bluepill.Storage
 
             var query = _queryBuilder.Build(facets);
             var results = new List<Box>();
-            //var upperBound = startIndex + perPage;
             var collection = _database.GetCollection<Box>(collectionName);
-            //var collection = 
 
             var cursor = (query == null) ? collection.FindAllAs<Box>().SetFields(fields) : collection.FindAs<Box>(query).SetFields(fields); 
-
-            //if (facets.Count == 0)
-            //{
-            //    cursor = collection.FindAllAs<Box>().SetFields(fields);
-            //}
-            //else
-            //{
-            //    cursor = collection.FindAs<Box>(query).SetFields(fields);
-            //}
 
             cursor.Limit = perPage - 1;
             cursor.Skip = (page - 1) * perPage;
 
             return new Retrieval { Boxes = cursor.ToList(), Total = cursor.Count() };
-
-            //return results;
-
         }
 
-
-
-        //private MongoCollection<Box> GetIndexedCollection(string userId, )
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="box"></param>
+        /// <returns></returns>
         private MongoCollection<Box> GetIndexedCollection(Box box)
         {
             var collection = _database.GetCollection<Box>(box.UserId);
@@ -107,13 +157,9 @@ namespace Bluepill.Storage
             return collection;
         }
 
-
-
-
-
-
-
-
+        /// <summary>
+        /// 
+        /// </summary>
         public void Empty()
         {
             foreach (var collection in _database.GetCollectionNames())
@@ -127,3 +173,4 @@ namespace Bluepill.Storage
 
     }
 }
+

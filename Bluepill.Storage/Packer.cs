@@ -49,10 +49,10 @@ namespace Bluepill.Storage
                 }
 
                 var reducedScale = _resize.DetermineResizeScale(source.Width, source.Height, 200, 200);
-                var comparisonScale = _resize.DetermineResizeScale(source.Width, source.Height, 50, 50);
+                //var comparisonScale = _resize.DetermineResizeScale(source.Width, source.Height, 50, 50);
 
                 box.ReducedBytes = _resize.CreateResizedPicture(file, reducedScale);
-                box.ComparisonBytes = _resize.CreateResizedPicture(file, comparisonScale);
+                //box.ComparisonBytes = _resize.CreateResizedPicture(file, comparisonScale);
 
                 box.ReducedBytesWidth = reducedScale.Width;
                 box.ReducedBytesHeight = reducedScale.Height;

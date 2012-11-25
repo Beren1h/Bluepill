@@ -6,7 +6,7 @@
 <div class="matches" data-page="@Model.Page" data-max="@Model.TotalPages" data-boxes="@Model.TotalBoxes">
     @for (int i = 0; i <= Model.MaxIndex; i++)
     {
-        <div class="match">
+        <div class="match" data-index="@i">
             <a  href="~/application/picture/getpicturebytes?index=@i" target="_blank">
                 <img src="~/application/picture/getpicturereducedbytes?index=@i" />
             </a>

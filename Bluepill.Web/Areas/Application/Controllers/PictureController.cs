@@ -10,7 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using WebConstants = Bluepill.Web.Framework.Constants;
+//using WebConstants = Bluepill.Web.Framework.Constants;
 
 namespace Bluepill.Web.Areas.Application.Controllers
 {
@@ -57,7 +57,7 @@ namespace Bluepill.Web.Areas.Application.Controllers
 
         public FileContentResult GetPictureReducedBytes(int index)
         {
-            var boxes = (IList<Box>)ControllerContext.HttpContext.Session[WebConstants.RETRIEVAL_SESSION_KEY];
+            var boxes = (IList<Box>)ControllerContext.HttpContext.Session[Constants.RETRIEVAL_SESSION_KEY];
 
             if (index < boxes.Count)
             {
@@ -70,20 +70,46 @@ namespace Bluepill.Web.Areas.Application.Controllers
 
         public FileContentResult GetPictureBytes(int index)
         {
-            var boxes = (IList<Box>)ControllerContext.HttpContext.Session[WebConstants.RETRIEVAL_SESSION_KEY];
+            var boxes = (IList<Box>)ControllerContext.HttpContext.Session[Constants.RETRIEVAL_SESSION_KEY];
             var identity = (BluePillIdentity)ControllerContext.HttpContext.User.Identity;
 
             if (index < boxes.Count)
             {
                 var box = boxes[index];
-                var retrieval = _attic.GetBox(box._id, identity.Name, new[] { Fields.BYTES });
-                                
+                var retrieval = _attic.GetBox(box._id, identity.Name, new[] { Fields.BYTES, Fields.IS_LARGE, Fields.GRIDFS_ID });
+
                 return (retrieval.Boxes.Count > 0) ? new FileContentResult(retrieval.Boxes[0].Bytes, "image/png") : null;
             }
 
             return null;
-
         }
+
+        public void RemovePicture(int index)
+        {
+            var boxes = (IList<Box>)ControllerContext.HttpContext.Session[Constants.RETRIEVAL_SESSION_KEY];
+            var identity = (BluePillIdentity)ControllerContext.HttpContext.User.Identity;
+
+            if (index < boxes.Count)
+            {
+                var box = boxes[index];
+                var retrieval = _attic.GetBox(box._id, identity.Name, new[] { Fields.BYTES, Fields.IS_LARGE, Fields.GRIDFS_ID, Fields.OBJECT_ID });
+
+                using (var ms = new MemoryStream(retrieval.Boxes[0].Bytes))
+                {
+                    using (var bitmap = new Bitmap(ms))
+                    {
+                        var removedFile = string.Format("{0}\\removed_{1}.png", "c:\\bluepill\\input", retrieval.Boxes[0]._id);
+                        using (var fs = new FileStream(removedFile, FileMode.Create)) { }
+                        bitmap.Save(removedFile);
+                    }
+                }
+
+                _attic.RemoveBox(retrieval.Boxes[0]._id, identity.Name);
+
+            }
+        }
+
+
 
 
     }

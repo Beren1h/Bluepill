@@ -8,7 +8,13 @@ namespace Bluepill.Storage
 {
     public class Retrieval
     {
+        public Retrieval()
+        {
+            Boxes = new List<Box>();
+        }
+
         public long Total { get; set; }
         public IList<Box> Boxes { get; set; }
+        public byte[] BigPicutre { get; set; }
     }
 }

@@ -13,6 +13,7 @@ namespace Bluepill.Storage
         void AddBox(Box box);
         Retrieval GetBoxes(IList<Facet> facets, int perPage, int page, string collectionName, string[] fields = null);
         Retrieval GetBox(ObjectId id, string collectionName, string[] fields = null);
+        void RemoveBox(ObjectId id, string collectionName);
 
         void Empty();
     }

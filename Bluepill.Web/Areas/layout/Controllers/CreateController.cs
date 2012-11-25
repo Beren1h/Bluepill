@@ -8,7 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using WebConstants = Bluepill.Web.Framework.Constants;
+//using WebConstants = Bluepill.Web.Framework.Constants;
 
 namespace Bluepill.Web.Areas.layout.Controllers
 {
@@ -28,14 +28,14 @@ namespace Bluepill.Web.Areas.layout.Controllers
             var collectionNames = collections.Select(c => c.Name).ToList();
             var list = new SelectList(collectionNames, ReadWorkingCollection(identity.Name));
             var cookies = ControllerContext.HttpContext.Request.Cookies;
-            var cookieName = string.Format(WebConstants.PREFERENCE_COOKIE_FORMAT, identity.Name);
+            var cookieName = string.Format(Constants.PREFERENCE_COOKIE_FORMAT, identity.Name);
             var userCookie = cookies[cookieName];
 
             string workingCollection = "";
 
             if (userCookie != null)
             {
-                workingCollection = userCookie.Values[WebConstants.WORKING_COLLECTION_COOKIE_KEY];
+                workingCollection = userCookie.Values[Constants.WORKING_COLLECTION_COOKIE_KEY];
 
                 if (!collectionNames.Contains(workingCollection))
                     workingCollection = collectionNames[0];
@@ -49,13 +49,13 @@ namespace Bluepill.Web.Areas.layout.Controllers
 
         private string ReadWorkingCollection(string userName)
         {
-            var cookieName = string.Format(WebConstants.PREFERENCE_COOKIE_FORMAT, userName);
+            var cookieName = string.Format(Constants.PREFERENCE_COOKIE_FORMAT, userName);
             var cookies = ControllerContext.HttpContext.Request.Cookies;
             var userCookie = cookies[cookieName];
 
             if (userCookie != null)
             {
-                return userCookie.Values[WebConstants.WORKING_COLLECTION_COOKIE_KEY];
+                return userCookie.Values[Constants.WORKING_COLLECTION_COOKIE_KEY];
             }
 
             return "";

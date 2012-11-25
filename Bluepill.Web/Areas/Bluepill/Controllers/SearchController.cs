@@ -8,7 +8,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Newtonsoft.Json.Linq;
-using WebConstants = Bluepill.Web.Framework.Constants;
+//using WebConstants = Bluepill.Web.Framework.Constants;
 
 namespace Bluepill.Web.Areas.Bluepill.Controllers
 {
@@ -17,8 +17,7 @@ namespace Bluepill.Web.Areas.Bluepill.Controllers
         private IFacetCollectionReader _facetCollectionReader;
         private IPacker _packer;
         private IAttic _attic;
-        private const int PER_PAGE = 10;
-        private const string RETRIEVAL_KEY = "";
+        private const int PER_PAGE = 22;
 
         public SearchController(IFacetCollectionReader facetCollectionReader, IPacker packer, IAttic attic)
         {
@@ -33,15 +32,12 @@ namespace Bluepill.Web.Areas.Bluepill.Controllers
             var collections = _facetCollectionReader.GetFacetCollections(identity.Name, Session);
 
             var cookies = ControllerContext.HttpContext.Request.Cookies;
-            var cookieName = string.Format(WebConstants.PREFERENCE_COOKIE_FORMAT, identity.Name);
+            var cookieName = string.Format(Constants.PREFERENCE_COOKIE_FORMAT, identity.Name);
             var userCookie = cookies[cookieName];
             
-            var workingCollection = (userCookie != null) ? userCookie.Values[WebConstants.WORKING_COLLECTION_COOKIE_KEY] : collections[0].Name;
+            var workingCollection = (userCookie != null) ? userCookie.Values[Constants.WORKING_COLLECTION_COOKIE_KEY] : collections[0].Name;
             var collection = collections.FirstOrDefault(c => c.Name == workingCollection);
-            //var files = new List<FileInfo>(new DirectoryInfo(CREATE_PATH).GetFiles());
-            //var list = files.Take(DISPLAY_COUNT).ToList();
 
-            //var model = new CreateModel { Facets = collection.Facets, File = list[0].FullName, TotalFileCount = files.Count, ResizedHeight = IMG_HEIGHT, ResizedWidth = IMG_WIDTH };
             var model = new SearchModel { Facets = collection.Facets, Page = 1, PageDelta = 0 };
 
             ViewBag.NavigationIndex = 1;
@@ -52,22 +48,12 @@ namespace Bluepill.Web.Areas.Bluepill.Controllers
 
         public ActionResult Find(SearchModel model)
         {
-            //if (model.PageDelta > 0 && model.Page < model.TotalPages)
-            //{
-            //    model.Page++;
-            //}
-
-            //if (model.PageDelta < 0 && model.Page > 1)
-            //{
-            //    model.Page--;
-            //}
-            
             ControllerContext.HttpContext.Session.Clear();
 
             var identity = (BluePillIdentity)ControllerContext.HttpContext.User.Identity;
             var results =_attic.GetBoxes(model.Facets, PER_PAGE, model.Page,identity.Name);
 
-            ControllerContext.HttpContext.Session.Add(WebConstants.RETRIEVAL_SESSION_KEY, results.Boxes);
+            ControllerContext.HttpContext.Session.Add(Constants.RETRIEVAL_SESSION_KEY, results.Boxes);
             
             if (results.Boxes.Count == 0)
             {
@@ -79,7 +65,6 @@ namespace Bluepill.Web.Areas.Bluepill.Controllers
             model.TotalBoxes = results.Total;
 
             return View("Retreival", model);
-            
         }
 
     }

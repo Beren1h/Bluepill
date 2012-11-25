@@ -66,11 +66,32 @@ function MouseWheelHandler(event, delta, deltaX, deltaY) {
 
                 $(".trash").droppable({
                     drop: function (e, ui) {
-                        $(ui.draggable).remove();
+                        var index = $(ui.draggable).data("index")
+                        
                         //remove from database;
+
+                        var img = new Image();
+
+                        img.id = "removeImage" + index;
+                        img.src = "/application/picture/removepicture?index=" + index;
+                        img.width = 1;
+                        img.height = 1;
+
+
+                        $(".drop-gradient").animate({ opacity: 0.2 }, 200, function () {
+                            $(".drop-gradient h2").show();
+                        });
+                        $(ui.draggable).remove();
                     },
                     over: function (e, ui) {
-                        console.log("hover");
+                        $(".drop-gradient").animate({ opacity: 1 }, 200, function () {
+                            $(".drop-gradient h2").hide();
+                        });
+                    },
+                    out: function(e, ui){
+                        $(".drop-gradient").animate({ opacity: 0.2 }, 200, function () {
+                            $(".drop-gradient h2").show();
+                        });
                     }
                 });
 
