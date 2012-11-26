@@ -24,6 +24,7 @@ namespace Bluepill.Web.Framework
             container.RegisterType<IQueryBuilder, QueryBuilder>();
             container.RegisterType<IPacker, Packer>();
             container.RegisterType<IAttic, Attic>();
+            container.RegisterType<ICookieGateway, CookieGateway>();
 
             FluentValidation.AssemblyScanner.FindValidatorsInAssemblyContaining<Web.Areas.Application.Models.Validators.AuthenticationModelValidator>()
                 .ForEach(result => container.RegisterType(result.InterfaceType, result.ValidatorType));

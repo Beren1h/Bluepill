@@ -49,18 +49,20 @@ function MouseWheelHandler(event, delta, deltaX, deltaY) {
     var max = parseInt(results.data("max"));
     var increment = IncrememntPage(page, max, delta);
 
-    console.log("page = " + page + ", max = " + max + ", delta = " + delta + ", increment = " + increment);
+    //console.log("page = " + page + ", max = " + max + ", delta = " + delta + ", increment = " + increment);
 
     if (increment != 0) {
-
+        
         $("#Page").val(page + increment)
         var data = $("#searchForm").serializeArray();
         $(".match-area").unmousewheel(MouseWheelHandler);
 
         $(".match-area").load("search\\find", data, function () {
+
             $(".match-area img").load(function () {
                 
                 $(this).animate({ opacity: 1 }, 200);
+
                 
                 $(".match").draggable();
 
@@ -102,6 +104,7 @@ function MouseWheelHandler(event, delta, deltaX, deltaY) {
             UpdateMatchCount();
             $(".match-area").mousewheel(MouseWheelHandler);
         });
+
     }
     else {
         UpdatePageDisplay(delta);
@@ -121,6 +124,14 @@ function ShowResults() {
     $(".match-area").fadeIn("fast")
     $(".interface").hide();
     $(".heading").fadeIn("fast");
+
+    if ($(".matches").data("boxes") == "0") {
+        $(".match-counts ul").hide();
+    }
+    else {
+        $(".match-counts ul").show();
+    }
+
     $(".cancel").show();
 }
 
@@ -145,7 +156,6 @@ function UpdatePageDisplay(delta) {
     if (delta > 0 && current == max) {
         BlinkPageCount();
     }
-
 }
 
 function BlinkPageCount() {

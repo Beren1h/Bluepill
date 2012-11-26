@@ -11,27 +11,23 @@ namespace Bluepill.Web.Framework
     public class BluePillPrincipalService : IPrincipalService
     {
         private IBluePillUserStore _userStore;
+        private ICookieGateway _cookieGateway;
 
-        public BluePillPrincipalService(IBluePillUserStore userStore)
+        public BluePillPrincipalService(IBluePillUserStore userStore, ICookieGateway cookieGateway)
         {
             _userStore = userStore;
+            _cookieGateway = cookieGateway;
         }
 
         public IPrincipal GetPrincipal()
         {
-            var cookies = HttpContext.Current.Request.Cookies;
-            
             var identity = new BluePillIdentity();
             var roles = new List<string>();
+            var authenticationValue = _cookieGateway.GetVale(new HttpContextWrapper(HttpContext.Current), FormsAuthentication.FormsCookieName, 0);
 
-            var authenticationCookie = cookies[FormsAuthentication.FormsCookieName];
-            string authenticationValue = "";
-            FormsAuthenticationTicket ticket;
-
-            if (authenticationCookie != null)
+            if (authenticationValue != null)
             {
-                authenticationValue = authenticationCookie.Value;
-                ticket = FormsAuthentication.Decrypt(authenticationValue);
+                var ticket = FormsAuthentication.Decrypt(authenticationValue);
 
                 identity.IsAuthenticated = !(ticket.Expiration < DateTime.Now);
                 identity.Name = ticket.Name;
