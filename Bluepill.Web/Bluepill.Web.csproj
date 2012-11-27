@@ -136,6 +136,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Areas\Application\Controllers\InfoController.cs" />
+    <Compile Include="Areas\Application\Models\InfoModel.cs" />
     <Compile Include="Areas\Bluepill\Controllers\CreateController.cs" />
     <Compile Include="Areas\Bluepill\Controllers\SearchController.cs" />
     <Compile Include="Areas\Bluepill\Models\CreateModel.cs" />
@@ -296,6 +298,7 @@
     <Content Include="Areas\Bluepill\Views\Web.config" />
     <Content Include="Areas\layout\Views\Web.config" />
     <Content Include="Areas\layout\Views\Create\Index.cshtml" />
+    <Content Include="Areas\Application\Views\Info\Index.cshtml" />
     <None Include="Scripts\jquery-1.8.1.intellisense.js" />
     <Content Include="Scripts\authentication.js" />
     <Content Include="Scripts\bluepill.create.js" />
