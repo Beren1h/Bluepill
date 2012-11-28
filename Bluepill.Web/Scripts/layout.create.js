@@ -1,143 +1,70 @@
 ﻿$(document).ready(function () {
 
-    $(".children-container").hide();
-    $(".children").hide();
-    $(".plus, .minus").hide();
+    function ChildrenContainerOn(id) {
+        
+        var a = $("." + id + ".plus-minus a");
+        var container = a.closest(".children-container");
+        var children = $("." + id + ".children");
 
+        container.css({ "width": 200 });
+        children.show();
+        a.text("-");
+        a.data("toggle-state", "on");
 
-    //$(".children-container").bind("show", function () {
-    //    console.log("test");
-    //});
+    }
 
-    $(".children-container").bind("beforeShow", function () {
-        //console.log("bam");
-        //$(this).find(".plus").hide();
-        //$(this).find(".minus").show();
-        console.log($(this).attr("class"));
-        $(".plus", $(this)).hide();
-        $(".minus", $(this)).show();
+    function ChildrenContainerOff(id) {
+
+        var a = $("." + id + ".plus-minus a");
+        var container = a.closest(".children-container");
+        var children = $("." + id + ".children");
+
+        children.hide();
+        container.css({ "width": 50 });
+        a.text("+");
+        a.data("toggle-state", "off");
+    }
+
+    $(".plus-minus a").click(function (e) {
+
+        var id = $(e.target).closest(".children-container").data("checkbox");
+
+        if ($(e.target).text() == "-") {
+            ChildrenContainerOff(id);
+        }
+        else {
+            ChildrenContainerOn(id);
+        }
     });
 
     $("input[type=checkbox]").click(function () {
-        var id = $(this).attr("id");
-        $("." + id).toggle("show", function () {
-
-            //if ($(this).is(":checked")) {
-            //    $("." + id + ".plus").show();
-            //    $("." + id + ".minus").hide();
-            //}
-            //else {
-            //    $("." + id + ".plus").hide();
-            //    $("." + id + ".minus").show();
-            //}
-
-        });
-
         Update($(this));
-
     });
 
-
-    //$(".children-container").click(function () {
-    //    $(this).toggle();
-    //});
-
-
-    function ToggleChildrenContainer(container) {
-        container.find("ul").toggle();
-
-    }
-
     function Update(checkbox) {
-
         var id = checkbox.attr("id");
         var add = checkbox.is(":checked");
-        //console.log($("." + id + ".children-container").is(":visible"));
-
-        //if ($("." + id + ".children-container").is(":visible")) {
-        //    $("." + id + ".children-container.plus").show();
-        //    $("." + id + ".children-container.minus").hide();
-        //}
-        //else {
-        //    $("." + id + ".children-container.plus").hide();
-        //    $("." + id + ".children-container.minus").show();
-        //}
-
-
 
         if (add) {
             $("#selections").append("<option value=\"" + id + "\" id=\"o" + id + "\">" + id + "</option>");
-
+            $("." + id + ".children-container").show();
         }
         else {
             $("option[id=o" + id + "]", "#selections").remove();
-            $("." + id + ".children").hide();
-
-            var children = $("." + id + ".children li");
-
-            children.each(function () {
-
-                var childCheckbox = $(this).find($("input[type=checkbox]"));
-                childCheckbox.attr("checked", false);
-                Update(childCheckbox);
-                //console.log($(this).attr("id"));
-                //Update($("input[type=checkbox]", $(this)));
-
-            });
-
+            $("." + id + ".children-container").hide();
         }
 
+        var children = $("." + id + ".children li");
 
-
-    }
-
-
-
-
-
-});
-
-
-
-
-
-jQuery(function ($) {
-
-    var _oldShow = $.fn.show;
-
-    $.fn.show = function (speed, oldCallback) {
-        return $(this).each(function () {
-            var
-    			obj = $(this),
-    			newCallback = function () {
-    			    if ($.isFunction(oldCallback)) {
-    			        oldCallback.apply(obj);
-    			    }
-
-    			    obj.trigger('afterShow');
-    			};
-
-            // you can trigger a before show if you want
-            obj.trigger('beforeShow');
-
-            // now use the old function to show the element passing the new callback
-            _oldShow.apply(obj, [speed, newCallback]);
+        children.each(function () {
+            var childCheckbox = $(this).find($("input[type=checkbox]"));
+            childCheckbox.attr("checked", false);
+            Update(childCheckbox);
         });
+
+        var container = $("." + id + ".children-container");
+
+        ChildrenContainerOn(id);
     }
 
-    //$('#test')
-    //	.bind('beforeShow', function () {
-    //	    alert('beforeShow');
-    //	})
-    //	.bind('afterShow', function () {
-    //	    alert('afterShow');
-    //	})
-    //	.show(1000, function () {
-    //	    alert('in show callback');
-    //	})
-    //	.show();
-
 });
-
-
-

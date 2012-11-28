@@ -30,10 +30,11 @@
     <li>
         <label for="c">C</label>
         <input type="checkbox" id="c" />
-        <div class="c children-container">
-            <a href="#" class="c plus">c +</a>
-            <a href="#" class="c minus">c -</a>
-            <ul class="c children">
+        <div class="c children-container" data-checkbox="c">
+            <ul class="c plus-minus">
+                <li><a href="#">-</a></li>
+            </ul>
+            <ul class="c children" data-checkbox="c">
                 <li>
                     <label for="c-1">C-1</label>
                     <input type="checkbox" id="c-1" />
@@ -42,10 +43,11 @@
                 <li>
                     <label for="c-2">C-2</label>
                     <input type="checkbox" id="c-2" />
-                    <div class="c-2 children-container">
-                        <a href="#" class="c-2 plus">c-2 +</a>
-                        <a href="#" class="c-2 minus">c-2 -</a>
-                        <ul class="c-2 children">
+                    <div class="c-2 children-container" data-checkbox="c-2">
+                        <ul class="c-2 plus-minus">
+                            <li><a href="#">-</a></li>
+                        </ul>
+                        <ul class="c-2 children" data-checkbox="c-2">
                             <li>
                                 <label for="c-2-1">C-2-1</label>
                                 <input type="checkbox" id="c-2-1" />
@@ -74,7 +76,6 @@
     </li>
 </ul>
 
-<input type="text" value=""/>
 <select id="selections">
     <option id="" value=""></option>
 </select>
