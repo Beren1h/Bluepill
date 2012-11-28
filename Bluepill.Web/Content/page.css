@@ -5,11 +5,11 @@ ul { list-style-type:none; -webkit-padding-start:0; }
 li { text-align:left; }
 
 div.page { width:1500px; margin-left:30px; }
-div.content { /*border:1px solid #7a0b0b;*/ background:#120c0c; color:#F9B33B; float:left; padding:3px; }
+div.content { border:1px solid #7a0b0b; background:#120c0c; color:#F9B33B; float:left; padding:3px; }
 div.content ul, h2, h1 { margin:0 }
 
 [class^="span"] { float:left; margin:3px; padding:3px;   }
-/*[class^="span"] div { background:#47a335 }*/
+[class^="span"] div { background:#47a335 }
 
 .span12 { width:1500px; }
 .span6 { width:744px; }
