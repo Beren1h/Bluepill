@@ -1,6 +1,6 @@
 ﻿ul { list-style-type:none; }
 
-.children-container { border:1px solid #ffd800; margin-bottom:5px; }
+.children-container { border:1px solid #ffd800; margin-bottom:5px; width:95% }
 
 .plus-minus { display:inline-block; }
 .plus-minus li { margin-left:5px; }

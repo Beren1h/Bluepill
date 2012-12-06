@@ -9,6 +9,9 @@ namespace Bluepill.Search
     public class Facet
     {
         public string Name { get; set; }
+        public long Value { get; set; }
+        public bool IsChecked { get; set; }
+        public IEnumerable<Facet> Children { get; set; }
         public IEnumerable<Aspect> Aspects { get; set; }
     }
 }

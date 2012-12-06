@@ -1,48 +1,135 @@
-﻿function InitializeAccordion() {
-    $("#accordion").accordion({
-        autoHeight: false,
-        collapsible: true,
-        active: false,
+﻿$(document).ready(function () {
+
+    InitializeImageLoad();
+
+    $(".button").button();
+    $(".children-container").hide();
+
+
+    function ChildrenContainerOn(id) {
+
+        var a = $("." + id + ".plus-minus a");
+        var container = $("." + id + ".children-container");
+        var children = $("." + id + ".children");
+
+        children.show(200);
+        a.text("-");
+    }
+
+    function ChildrenContainerOff(id) {
+
+        var a = $("." + id + ".plus-minus a");
+        var container = $("." + id + ".children-container");
+        var children = $("." + id + ".children");
+
+        children.hide(200);
+        a.text("+");
+    }
+
+    $(".plus-minus a").click(function (e) {
+
+        var id = $(e.target).closest(".children-container").data("checkbox");
+
+        if ($(e.target).text() == "-") {
+            ChildrenContainerOff(id);
+        }
+        else {
+            ChildrenContainerOn(id);
+        }
     });
-    $(".submit").button();
-    $(".aspect-checkbox").button();
-}
 
-function ResetAccordion() {
-    $(".breadCrumb").each(function () {
-        $(this).text("");
+    $("input[type=checkbox]").click(function () {
+        Update($(this));
     });
 
-    $("#accordion .aspectContainer").each(function (i) {
-        $("input[type=checkbox]", $(this)).attr("checked", false);
+    function Update(checkbox) {
+        var id = checkbox.attr("id");
+        var add = checkbox.is(":checked");
 
-        var label = $("label", $(this));
-        label.removeClass("ui-state-active");
-        label.attr("aria-pressed", false);
-    });
-    InitializeAccordion();
-}
+        if (add) {
+            $("." + id + ".children-container").show(200);
+            //$("." + id + ".children-container").position({
+            //    "of": checkbox,
+            //    "my": "left top",
+            //    "at": "right bottom",
+            //    "offset": "3 3",
+            //});
+        }
+        else {
+            $("." + id + ".children-container").hide(200);
+        }
 
-function InitializeBreadCrumb() {
-    $(".aspect-checkbox").change(function () {
+        var children = $("." + id + ".children li");
 
-        var context = $(this).closest("div.ui-accordion-content");
-        var breadCrumb = $("span#breadCrumb-" + $(this).data("facet"));
-        var output = "";
+        if (!add) {
+            children.each(function () {
 
-        $(".aspect-checkbox", context).each(function () {
-            if ($(this).is(":checked")) {
+                var childCheckbox = $(this).find($("input[type=checkbox]"));
 
-                var label = $("label[for='" + $(this).attr("id") + "']");
-
-                if (output.length > 0) {
-                    output += ", ";
+                if (childCheckbox.is(":checked")) {
+                    childCheckbox.attr("checked", false);
+                    Update(childCheckbox);
                 }
 
-                output += label.text();
-            }
-        });
+            });
+        }
 
-        breadCrumb.text(output);
+        ChildrenContainerOn(id);
+    }
+
+});
+
+
+
+
+//$(function () {
+//    $(document).ready(function () {
+//        InitializeBreadCrumb();
+//        InitializeAccordion();
+//        InitializeImageLoad();
+//        InitializeFormSubmit();
+//    });
+//});
+
+function SetHeadingCount() {
+    $(".heading img").hide();
+    $(".heading span").text($(".add img").data("total") + " files");
+}
+
+//function InitializeCount() {
+//    $(".heading img").hide();
+//    $(".heading span").text($(".add img").data("total") + " files");
+//}
+
+//function InitializeFormSubmit() {
+//    $(".submit").click(function () {
+//        var data = $(this).closest("form").serializeArray();
+//        $(".heading img").show();
+//        $(".heading span").text("saving");
+//        $.post("\\bluepill\\create\\savepicture", data, function (response) {
+
+//            var json = $.parseJSON(response);
+
+//            var img = $(".add img");
+//            var link = $(".add a");
+//            var hidden = $("form #File");
+
+//            img.css("opacity", 0);
+//            img.attr("src", json.resizedSrc);
+//            img.data("total", json.total);
+//            link.attr("href", json.src);
+//            hidden.val(json.file);
+
+//            SetHeadingCount();
+//        });
+//    });
+//}
+
+function InitializeImageLoad() {
+    $(".add img").load(function () {
+        $(this).animate({ opacity: 1 }, 200, function () {
+            SetHeadingCount();
+        });
+        //ResetAccordion();
     });
 }

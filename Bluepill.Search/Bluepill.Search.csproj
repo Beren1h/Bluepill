@@ -29,6 +29,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>User Configurations\configuration.xsd</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="MongoDB.Bson">
       <HintPath>..\packages\mongocsharpdriver.1.6\lib\net35\MongoDB.Bson.dll</HintPath>
@@ -52,14 +55,19 @@
     <Compile Include="Facet.cs" />
     <Compile Include="FacetCollection.cs" />
     <Compile Include="FacetCollectionReader.cs" />
+    <Compile Include="FacetReader.cs" />
     <Compile Include="IConfigurationReader.cs" />
     <Compile Include="IFacetCollectionReader.cs" />
+    <Compile Include="IFacetReader.cs" />
     <Compile Include="IQueryBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="User Configurations\me.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="User Configurations\test.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="User Configurations\uid.xml">
@@ -70,6 +78,10 @@
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="User Configurations\configuration.xsd">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="User Configurations\configurationold.xsd">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

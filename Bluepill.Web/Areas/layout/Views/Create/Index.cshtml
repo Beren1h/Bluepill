@@ -12,80 +12,22 @@
     <script src="/scripts/layout.create.js" type="text/javascript"></script>
 }
 
-
-<div class="span2">
-
-
-        <ul>
-    <li>
-        <input type="checkbox" id="a" />
-        <label for="a">A</label>
-        <ul class=""></ul>
-    </li>
-    <li>
-        <input type="checkbox" id="b" />
-        <label for="b">B</label>
-        <ul class=""></ul>
-    </li>
-    <li>
-        <input type="checkbox" id="c" />
-        <label for="c">C</label>
-        <div class="c children-container" data-checkbox="c">
-            <ul class="c plus-minus">
-                <li><a href="#">-</a></li>
-            </ul>
-            <ul class="c children" data-checkbox="c">
-                <li>
-                    <input type="checkbox" id="c-1" />
-                    <label for="c-1">C-1</label>
-                    <ul class=""></ul>
-                </li>
-                <li>
-                    <input type="checkbox" id="c-2" />
-                    <label for="c-2">C-2 long long long long name</label>
-                    <div class="c-2 children-container" data-checkbox="c-2">
-                        <ul class="c-2 plus-minus">
-                            <li><a href="#">-</a></li>
-                        </ul>
-                        <ul class="c-2 children" data-checkbox="c-2">
-                            <li>
-                                <input type="checkbox" id="c-2-1" />
-                                <label for="c-2-1">C-2-1</label>
-                                <ul class=""></ul>
-                            </li>
-                            <li>
-                                <input type="checkbox" id="c-2-2" />
-                                <label for="c-2-2">C-2-2</label>
-                                <ul class=""></ul>
-                            </li>
-                            <li>
-                                <input type="checkbox" id="c-2-3" />
-                                <label for="c-2-3">C-2-3</label>
-                                <ul class=""></ul>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li>
-                    <input type="checkbox" id="c-3" />
-                    <label for="c-3">C-3</label>
-                    <ul class=""></ul>
-                </li>
-            </ul>
-        </div>    
-    </li>
-</ul>
-
-<select id="selections">
-    <option id="" value=""></option>
-</select>
-
-
-
-
-
-
-</div>
 <div class="span6">
-    <div>wtf</div>
+
+
+    @using (Html.BeginForm("Save", "Create", new { id = "test" }))
+    {
+
+        foreach (var facet in Model.Facets)
+        {
+                @Html.Partial("Facet", facet);
+        }
+    
+        <a href="#"class="button submit">Save</a>
+    }    
+    
+</div>
+
+<div class="span6">
+    content
 </div>

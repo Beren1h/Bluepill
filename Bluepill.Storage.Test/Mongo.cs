@@ -137,36 +137,36 @@ namespace Bluepill.Storage.Test
         [Test]
         public void CanAddBox()
         {
-            var file = "c:\\bluepill\\test_big.jpg";
-            var user = "uid";
-            var packer = new Packer(new Resize());
-            var attic = new Attic(new QueryBuilder());
-            var list = new List<Facet>
-            {
-                new Facet
-                {
-                    Name = "facet1",
-                    Aspects = new List<Aspect>
-                    {
-                        new Aspect{ Name = "aspect1", Value = 1, IsChecked = true },
-                        new Aspect{ Name = "aspect2", Value = 2 }
-                    }
-                },
-                new Facet
-                {
-                    Name = "facet2",
-                    Aspects = new List<Aspect>
-                    {
-                        new Aspect{ Name = "aspect3", Value = 3, IsChecked = true },
-                        new Aspect{ Name = "aspect4", Value = 4 }
-                    }
-                }
-            };
+            //var file = "c:\\bluepill\\test_big.jpg";
+            //var user = "uid";
+            //var packer = new Packer(new Resize());
+            //var attic = new Attic(new QueryBuilder());
+            //var list = new List<Facet>
+            //{
+            //    new Facet
+            //    {
+            //        Name = "facet1",
+            //        Aspects = new List<Aspect>
+            //        {
+            //            new Aspect{ Name = "aspect1", Value = 1, IsChecked = true },
+            //            new Aspect{ Name = "aspect2", Value = 2 }
+            //        }
+            //    },
+            //    new Facet
+            //    {
+            //        Name = "facet2",
+            //        Aspects = new List<Aspect>
+            //        {
+            //            new Aspect{ Name = "aspect3", Value = 3, IsChecked = true },
+            //            new Aspect{ Name = "aspect4", Value = 4 }
+            //        }
+            //    }
+            //};
 
-            var box = packer.PackBox(file, user, list);
-            attic.AddBox(box);
+            //var box = packer.PackBox(file, user, list);
+            //attic.AddBox(box);
 
-            attic.Empty();
+            //attic.Empty();
         }
     }
 }

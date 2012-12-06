@@ -7,6 +7,6 @@ namespace Bluepill.Web.Areas.Application.Models
 {
     public class InfoModel
     {
-        public long MaxAspectValue { get; set; }
+        public long MaxFacetValue { get; set; }
     }
 }

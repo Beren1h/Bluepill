@@ -4,53 +4,19 @@
   <xs:element name="root">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="collections" type="collectionsType" minOccurs="1" maxOccurs="1" />
-        <xs:element name="facets" type="facetsType" minOccurs="1" maxOccurs="1" />
-      </xs:sequence>
+        <xs:element name="facet" type="facetType" minOccurs="1" maxOccurs="unbounded" />
+       </xs:sequence>
     </xs:complexType>
-    <xs:unique name ="uniqueAspectId">
-      <xs:selector xpath="facets/facet/aspect" />
+    <xs:unique name ="uniqueFacetValue">
+      <xs:selector xpath=".//facet" />
       <xs:field xpath="@value" />
-    </xs:unique>
-    <xs:unique name ="uniqueFacetName">
-      <xs:selector xpath="facets/facet" />
-      <xs:field xpath="@name" />
     </xs:unique>
   </xs:element>
 
-  <xs:complexType name="collectionsType">
-    <xs:sequence>
-      <xs:element name="collection" type="collectionType" minOccurs="0" maxOccurs="unbounded">
-          <xs:unique name ="uniqueCollectionFacetName">
-            <xs:selector xpath="facet" />
-            <xs:field xpath="@name" />
-          </xs:unique>
-      </xs:element>
-    </xs:sequence>
-  </xs:complexType>
-
-  <xs:complexType name="collectionType">
-    <xs:sequence>
-      <xs:element name="facet" type="facetType" minOccurs="0" maxOccurs="unbounded" />
-    </xs:sequence>
-    <xs:attribute name="name" use="required" />
-  </xs:complexType>
-
-  <xs:complexType name="facetsType">
-    <xs:sequence>
-      <xs:element name="facet" type="facetType" minOccurs="0" maxOccurs="unbounded">
-      </xs:element>
-    </xs:sequence>
-  </xs:complexType>
-
   <xs:complexType name="facetType">
-    <xs:sequence>
-      <xs:element name="aspect" type="aspectType" minOccurs="0" maxOccurs="unbounded" />
+      <xs:sequence>
+        <xs:element name="facet" type="facetType" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
-    <xs:attribute name="name" use="required" />
-  </xs:complexType>
-
-  <xs:complexType name="aspectType">
     <xs:attribute name="name" use="required" />
     <xs:attribute name="value" use="required">
       <xs:simpleType>

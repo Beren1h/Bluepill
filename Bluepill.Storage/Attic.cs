@@ -20,7 +20,7 @@ namespace Bluepill.Storage
         private IFacetCollectionReader _reader;
                 
         private const string CONNECTION = "mongodb://localhost";
-        private const string DATABASE = "bluepill_test";
+        private const string DATABASE = "bluepill_test2";
         
         public Attic(IQueryBuilder queryBuilder)
         {
@@ -114,11 +114,12 @@ namespace Bluepill.Storage
         /// <param name="collectionName"></param>
         /// <param name="fields"></param>
         /// <returns></returns>
-        public Retrieval GetBoxes(IList<Facet> facets, int perPage, int page, string collectionName, string[] fields = null)
+        public Retrieval GetBoxes(IEnumerable<long> facets, int perPage, int page, string collectionName, string[] fields = null)
         {
             if(fields == null)
                 fields = new [] { Fields.METADATA, Fields.OBJECT_ID, Fields.REDUCED_BYTES, Fields.REDUCED_BYTES_WIDTH, Fields.REDUCED_BYTES_HEIGHT };
 
+            //var query = _queryBuilder.Build((from v in facets select v.Value).ToList());
             var query = _queryBuilder.Build(facets);
             var results = new List<Box>();
             var collection = _database.GetCollection<Box>(collectionName);

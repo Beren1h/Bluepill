@@ -16,7 +16,8 @@ namespace Bluepill.Web.Framework
             _users.Add("uid", new BluePillUser { 
                 UserName = "uid", 
                 Password = "pwd", 
-                Collections = new List<string> {"collection1", "collection2", "collection3", "collection4", "collection5", "collection6", "collection7" } 
+                //Collections = new List<string> {"collection1", "collection2", "collection3", "collection4", "collection5", "collection6", "collection7" } 
+                Collections = new List<string> () 
             });
 
             _users.Add("me", new BluePillUser

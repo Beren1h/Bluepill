@@ -1,7 +1,8 @@
 ﻿$(document).ready(function () {
 
+    $(".button").button();
     $(".children-container").hide();
-    $("#selections").hide();
+    //$("#selections").hide();
 
     //console.log($(".children-container").length);
     //$(".children-container").each(function () {
@@ -19,6 +20,53 @@
     //});
 
 
+    $(".submit").click(function () {
+
+        //var s = $("input[type=checkbox]").serializeArray();
+        //console.log(JSON.stringify(s));
+
+        var facets = [];
+
+        //$("#Selections option").each(function () {
+        //    list.push($(this).val())
+        //});
+
+
+        $("input[type=checkbox]").each(function(){
+
+            if ($(this).is(":checked")) {
+                facets.push($(this).attr("id"));
+            }
+        });
+
+        //console.log(JSON.stringify(list));
+        //var data = { "file": "c:\\test\\test.txt", "facets": [{ "0": "1" }, { "1": "5" }] }
+
+        //var data = { "File": "c:\\test\\test.txt", "List": list }
+        //var data2 = $("#test").serializeArray();
+        //var data3 = { "List": list }
+
+        //$.post("\\layout\\create\\save", data3, function () {
+        //    console.log("posted");
+        //});
+
+        $.ajax({
+            type: "POST",
+            url: "\\layout\\create\\save",
+            data: { file: "c:\\test\\test.txt", list: facets },
+            traditional: true,
+            success: function (json) {
+                console.log(data);
+            }
+        });
+
+        //console.log(data);
+        //console.log(data2);
+        //console.log(data3);
+
+
+    });
+
     function ChildrenContainerOn(id) {
         
         var a = $("." + id + ".plus-minus a");
@@ -30,7 +78,7 @@
         //console.log("x = " + a.parent().position().left + ", y = " + a.parent().position().top);
         //console.log(id);
         //container.show();
-        container.css("width", "75%");
+        //container.css("width", "75%");
         children.show();
         a.text("-");
         //a.data("toggle-state", "on");
@@ -49,7 +97,7 @@
         //container.css({ "width": 50 });
         //container.css("display", "inline-block");
         a.text("+");
-        container.css("width", "25");
+        //container.css("width", "25");
         //a.data("toggle-state", "off");
     }
 
@@ -74,7 +122,7 @@
         var add = checkbox.is(":checked");
 
         if (add) {
-            $("#selections").append("<option value=\"" + id + "\" id=\"o" + id + "\">" + id + "</option>");
+            //$("#Selections").append("<option value=\"" + id + "\" id=\"o" + id + "\">" + id + "</option>");
             $("." + id + ".children-container").show();
             //$("." + id + ".children-container").css({ top: checkbox.position().top + 2 , left: checkbox.position().left + 20 });
             //console.log($("." + id + ".children-container").attr("class"));
@@ -87,7 +135,7 @@
             //ChildrenContainerOn(id);
         }
         else {
-            $("option[id=o" + id + "]", "#selections").remove();
+            //$("option[id=o" + id + "]", "#Selections").remove();
             $("." + id + ".children-container").hide();
             //ChildrenContainerOff(id);
         }

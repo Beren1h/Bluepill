@@ -35,14 +35,18 @@
         @Html.HiddenFor(x => x.Page)
         @Html.HiddenFor(x => x.PageDelta)
         @Html.HiddenFor(x => x.TotalPages)
-        <div id="accordion">
-            @Html.EditorFor(x => x.Facets)
+        <div class="search-interface">
+            <ul>
+                <li><a href="#" class="button submit">Search</a></li>
+                <li><a href="#" class="button cancel">Cancel</a></li>
+                @foreach (var facet in Model.Facets)
+                {
+                    @Html.Partial("Facet", facet)
+                }
+            </ul>
         </div>
-        <ul class="pull-right single-line">
-            <li><a href="#" class="button cancel">Cancel</a></li>
-            <li><a href="#" class="button submit">Search</a></li>
-        </ul>
      }
+
 </div>
 
 <div class="span12 height14 match-area">

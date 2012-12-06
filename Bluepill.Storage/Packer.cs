@@ -22,20 +22,23 @@ namespace Bluepill.Storage
             _resize = resize;
         }
 
-        public Box PackBox(string file, string userName, IList<Facet> facets)
+        public Box PackBox(string file, string userName, IEnumerable<long> facets)
         {
             var box = new Box();
             var metadata = new BsonDocument();
 
-            foreach (var facet in facets)
-            {
-                var aspectValues = new List<long>();
-                aspectValues.AddRange(from aspect in facet.Aspects where aspect.IsChecked select aspect.Value);
+            //foreach (var facet in facets)
+            //{
+            //    var aspectValues = new List<long>();
+            //    aspectValues.AddRange(from aspect in facet.Aspects where aspect.IsChecked select aspect.Value);
 
-                if (aspectValues.Count > 0)
-                    metadata.Add(facet.Name, new BsonArray(aspectValues));
+            //    if (aspectValues.Count > 0)
+            //        metadata.Add(facet.Name, new BsonArray(aspectValues));
 
-            }
+            //}
+
+            //metadata.Add("facets", new BsonArray((from v in facets select v.Value).ToList()));
+            metadata.Add("facets", new BsonArray(facets));
 
             box.MetaData = metadata;
             box.UserId = userName;
@@ -49,10 +52,8 @@ namespace Bluepill.Storage
                 }
 
                 var reducedScale = _resize.DetermineResizeScale(source.Width, source.Height, 200, 200);
-                //var comparisonScale = _resize.DetermineResizeScale(source.Width, source.Height, 50, 50);
 
                 box.ReducedBytes = _resize.CreateResizedPicture(file, reducedScale);
-                //box.ComparisonBytes = _resize.CreateResizedPicture(file, comparisonScale);
 
                 box.ReducedBytesWidth = reducedScale.Width;
                 box.ReducedBytesHeight = reducedScale.Height;
@@ -77,3 +78,4 @@ namespace Bluepill.Storage
         }
     }
 }
+

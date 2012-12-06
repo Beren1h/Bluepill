@@ -31,6 +31,8 @@ namespace Bluepill.Search
 
         public IList<FacetCollection> GetFacetCollections(string userName, HttpSessionStateBase session)
         {
+            return null;
+
             var collectionList = (List<FacetCollection>)session[FACET_COLLECTION_CACHE_KEY] ?? new List<FacetCollection>();
 
             if (collectionList.Count == 0)

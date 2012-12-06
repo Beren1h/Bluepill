@@ -1,2 +1,13 @@
 ﻿.add { text-align:center; }   
 .add img { border:1px solid #ffd800; opacity:0 }
+
+.children-container { border:1px solid #ffd800; background:#050c35; margin:3px; }
+.children-container li { margin-right:3px; }
+
+.plus-minus li { margin:5px; background:#11209c; border:1px solid #9b850c; width:20px; height:20px; line-height:20px; border-radius:5px; text-align:center; vertical-align:middle; }
+.plus-minus li a { font-size:24px; text-decoration:none; color:#ffd800 }
+
+.search-interface { display: inline-block; }
+.search-interface li { display: inline-block; vertical-align:top; }
+
+.submit { font-size:10px; float:left; }

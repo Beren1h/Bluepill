@@ -14,27 +14,30 @@ namespace Bluepill.Web.Areas.Bluepill.Controllers
 {
     public class SearchController : Controller
     {
-        private IFacetCollectionReader _facetCollectionReader;
+        //private IFacetCollectionReader _facetCollectionReader;
         private IPacker _packer;
         private IAttic _attic;
         private ICookieGateway _cookieGateway;
+        private IFacetReader _facetReader;
 
-        public SearchController(IFacetCollectionReader facetCollectionReader, IPacker packer, IAttic attic, ICookieGateway cookieGateway)
+        public SearchController(IFacetReader facetReader, IPacker packer, IAttic attic, ICookieGateway cookieGateway)
         {
-            _facetCollectionReader = facetCollectionReader;
+            //_facetCollectionReader = facetCollectionReader;
             _packer = packer;
             _attic = attic;
             _cookieGateway = cookieGateway;
+            _facetReader = facetReader;
         }
 
         public ActionResult Index()
         {
             var identity = (BluePillIdentity)ControllerContext.HttpContext.User.Identity;
-            var collections = _facetCollectionReader.GetFacetCollections(identity.Name, Session);
-            var cookieName = string.Format(Constants.PREFERENCE_COOKIE_FORMAT, identity.Name);
-            var workingCollection = _cookieGateway.GetVale(ControllerContext.HttpContext, cookieName, Constants.WORKING_COLLECTION_COOKIE_KEY) ?? collections[0].Name;
-            var collection = collections.FirstOrDefault(c => c.Name == workingCollection);
-            var model = new SearchModel { Facets = collection.Facets, Page = 1, PageDelta = 0 };
+            var facets = _facetReader.BuildFacets(identity.Name);
+            //var collections = _facetCollectionReader.GetFacetCollections(identity.Name, Session);
+            //var cookieName = string.Format(Constants.PREFERENCE_COOKIE_FORMAT, identity.Name);
+            //var workingCollection = _cookieGateway.GetVale(ControllerContext.HttpContext, cookieName, Constants.WORKING_COLLECTION_COOKIE_KEY) ?? collections[0].Name;
+            //var collection = collections.FirstOrDefault(c => c.Name == workingCollection);
+            var model = new SearchModel { Facets = facets, Page = 1, PageDelta = 0 };
 
             ViewBag.NavigationIndex = 1;
 
@@ -46,8 +49,13 @@ namespace Bluepill.Web.Areas.Bluepill.Controllers
         {
             ControllerContext.HttpContext.Session.Clear();
 
+            
+
             var identity = (BluePillIdentity)ControllerContext.HttpContext.User.Identity;
-            var results =_attic.GetBoxes(model.Facets, Constants.PER_PAGE, model.Page,identity.Name);
+
+            //var model = new SearchModel { Facets = _facetReader.BuildFacets(identity.Name) };
+
+            var results =_attic.GetBoxes(model.Selects, Constants.PER_PAGE, model.Page, identity.Name);
 
             ControllerContext.HttpContext.Session.Add(Constants.RETRIEVAL_SESSION_KEY, results.Boxes);
             

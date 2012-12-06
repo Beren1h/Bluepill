@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
 
-    InitializeBreadCrumb();
-    InitializeAccordion();
+    //InitializeBreadCrumb();
+    //InitializeAccordion();
 
     $(".match-area").mousewheel(MouseWheelHandler);
 
@@ -14,7 +14,7 @@
     });
 
     $(".submit").click(function () {
-            var data = $(this).closest("form").serializeArray();
+            //var data = $(this).closest("form").serializeArray();
             var results = $(".matches")
 
             results.data("page", "2");
@@ -30,6 +30,55 @@
     $("#pageCount").hide();
 
     $(".button").button();
+
+
+    //$(".submit").click(function () {
+    //    var facets = [];
+
+    //    $("input[type=checkbox]").each(function () {
+
+    //        if ($(this).is(":checked")) {
+    //            facets.push($(this).attr("id"));
+    //        }
+    //    });
+
+    //    //console.log(JSON.stringify(list));
+    //    //var data = { "file": "c:\\test\\test.txt", "facets": [{ "0": "1" }, { "1": "5" }] }
+
+    //    //var data = { "File": "c:\\test\\testme    simpl.txt", "List": list }
+    //    //var data2 = $("#test").serializeArray();
+    //    //var data3 = { "List": list }
+    //    //console.log($("#test").serializeArray());
+    //    //$.post("\\layout\\create\\save", data3, function () {
+    //    //    console.log("posted");
+    //    //});
+
+    //    $.ajax({
+    //        type: "POST",
+    //        url: "\\bluepill\\search\\find",
+    //        data: { page: $("#Page").val(), delta: $("#PageDelta").val(), total: $("#TotalPages").val(), selects: facets },
+    //        //data: $("#test").serializeArray(),
+    //        traditional: true,
+    //        success: function (response) {
+
+    //            var json = $.parseJSON(response);
+
+    //            var img = $(".add img");
+    //            var link = $(".add a");
+    //            var hidden = $("form #File");
+
+    //            img.css("opacity", 0);
+    //            img.attr("src", json.resizedSrc);
+    //            img.data("total", json.total);
+    //            link.attr("href", json.src);
+    //            hidden.val(json.file);
+
+    //            SetHeadingCount();
+
+    //        }
+    //    });
+    //});
+
 
 });
 
@@ -54,8 +103,51 @@ function MouseWheelHandler(event, delta, deltaX, deltaY) {
     if (increment != 0) {
         
         $("#Page").val(page + increment)
-        var data = $("#searchForm").serializeArray();
+        //var data = $("#searchForm").serializeArray();
+
+        var facets = [];
+
+        $("input[type=checkbox]").each(function () {
+            if ($(this).is(":checked")) {
+                facets.push($(this).attr("id"));
+            }
+        });
+
+        var datax = { Page: $("#Page").val(), PageDelta: $("#PageDelta").val(), TotalPages: $("#TotalPages").val(), selects: facets };
+        var data2 = $("#searchForm").serializeArray();
+        var data = $.param(datax, true);
+
+        console.log(data);
+        console.log(data2);
+
         $(".match-area").unmousewheel(MouseWheelHandler);
+
+        //$.ajax({
+        //    type: "POST",
+        //    url: "\\bluepill\\search\\find",
+        //    data: data,
+        //    //data: $("#test").serializeArray(),
+        //    traditional: true,
+        //    success: function (response) {
+
+        //        var json = $.parseJSON(response);
+
+        //        var img = $(".add img");
+        //        var link = $(".add a");
+        //        var hidden = $("form #File");
+
+        //        img.css("opacity", 0);
+        //        img.attr("src", json.resizedSrc);
+        //        img.data("total", json.total);
+        //        link.attr("href", json.src);
+        //        hidden.val(json.file);
+
+        //        SetHeadingCount();
+
+        //    }
+        //});
+
+
 
         $(".match-area").load("search\\find", data, function () {
 
