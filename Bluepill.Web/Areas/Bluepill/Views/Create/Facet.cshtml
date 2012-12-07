@@ -1,23 +1,23 @@
-﻿@model Bluepill.Search.Facet
+﻿@model IEnumerable<Bluepill.Search.Facet>
 
-    <li>
-        <input type="checkbox" id="@Model.Value" />
-        <label for="@Model.Value">@Model.Name</label>
-    </li>
-    @if (Model.Children.Count() > 0)
+@foreach(var facet in Model)
+{
+    <div class="a" id="@facet.Id" data-open="false">
+    <a href="#" class="facet">@facet.Display</a>    
+            
+    @foreach (var aspect in facet.Aspects)
     {
-        <li>
-            <div class="@Model.Value children-container" data-checkbox="@Model.Value">
-
-                    <ul class="@Model.Value plus-minus">
-                        <li><a href="#">-</a></li>
-                    </ul>
-                        @foreach(var facet in Model.Children)
-                        {
-                            <ul class="@Model.Value children" data-checkbox="@Model.Value">
-                                @Html.Partial("Facet", facet)
-                            </ul>
-                        }
-            </div>
-        </li>
+        <label>@aspect.Item1</label>
+        <input type="checkbox" data-value="@aspect.Item2" />
     }    
+
+    @if(facet.Descendants.Count() > 0)
+    {
+        <a href="#" class="ancestor">x</a>
+    }
+
+
+        @Html.Partial("Facet", facet.Descendants)
+    </div>
+}
+

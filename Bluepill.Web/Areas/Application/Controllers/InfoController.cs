@@ -21,14 +21,14 @@ namespace Bluepill.Web.Areas.Application.Controllers
 
         private long FindMax(IEnumerable<Facet> facets, long max)
         {
-            foreach(var facet in facets)
-            {
-                if (max < facet.Value)
-                    max = facet.Value;
+            //foreach(var facet in facets)
+            //{
+            //    if (max < facet.Value)
+            //        max = facet.Value;
 
-                max = FindMax(facet.Children, max);
+            //    max = FindMax(facet.Children, max);
 
-            }
+            //}
 
 
             return max;

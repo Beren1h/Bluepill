@@ -8,10 +8,10 @@ namespace Bluepill.Search
 {
     public class Facet
     {
-        public string Name { get; set; }
-        public long Value { get; set; }
+        public string Id { get; set; }
+        public string Display { get; set; }
         public bool IsChecked { get; set; }
-        public IEnumerable<Facet> Children { get; set; }
-        public IEnumerable<Aspect> Aspects { get; set; }
+        public IEnumerable<Facet> Descendants { get; set; }
+        public IEnumerable<Tuple<string, string, bool>> Aspects { get; set; }
     }
 }

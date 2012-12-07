@@ -33,50 +33,50 @@ namespace Bluepill.Search
         {
             return null;
 
-            var collectionList = (List<FacetCollection>)session[FACET_COLLECTION_CACHE_KEY] ?? new List<FacetCollection>();
+            //var collectionList = (List<FacetCollection>)session[FACET_COLLECTION_CACHE_KEY] ?? new List<FacetCollection>();
 
-            if (collectionList.Count == 0)
-            {
-                var config = _configurationReader.GetSearchConfiguration(userName);
+            //if (collectionList.Count == 0)
+            //{
+            //    var config = _configurationReader.GetSearchConfiguration(userName);
 
-                var collections = config.Root.Elements(COLLECTIONS_ROOT_ELEMENT);
-                var facets = config.Root.Elements(FACET_ROOT_ELEMENT);
+            //    var collections = config.Root.Elements(COLLECTIONS_ROOT_ELEMENT);
+            //    var facets = config.Root.Elements(FACET_ROOT_ELEMENT);
 
-                foreach (var collection in collections.Elements(COLLECTION_ELEMENT))
-                {
-                    var collectionName = collection.Attribute(COLLECTION_NAME_ATTRIBUTE).Value;
-                    var list = new List<Facet>();
+            //    foreach (var collection in collections.Elements(COLLECTION_ELEMENT))
+            //    {
+            //        var collectionName = collection.Attribute(COLLECTION_NAME_ATTRIBUTE).Value;
+            //        var list = new List<Facet>();
 
-                    foreach (var collectionFacet in collection.Descendants(FACET_ELEMENT))
-                    {
-                        var facet = facets.Elements(FACET_ELEMENT).Where(f => f.Attribute(FACET_NAME_ATTRIBUTE).Value == collectionFacet.Attribute(FACET_NAME_ATTRIBUTE).Value).FirstOrDefault();
+            //        foreach (var collectionFacet in collection.Descendants(FACET_ELEMENT))
+            //        {
+            //            var facet = facets.Elements(FACET_ELEMENT).Where(f => f.Attribute(FACET_NAME_ATTRIBUTE).Value == collectionFacet.Attribute(FACET_NAME_ATTRIBUTE).Value).FirstOrDefault();
 
-                        var facetName = facet.Attribute(FACET_NAME_ATTRIBUTE).Value;
+            //            var facetName = facet.Attribute(FACET_NAME_ATTRIBUTE).Value;
 
-                        var aspects = from element in facet.Descendants()
-                                      select new
-                                      {
-                                          name = element.Attribute(ASPECT_NAME_ATTRIBUTE).Value,
-                                          value = element.Attribute(ASPECT_VALUE_ATTRIBUTE).Value,
-                                      };
+            //            var aspects = from element in facet.Descendants()
+            //                          select new
+            //                          {
+            //                              name = element.Attribute(ASPECT_NAME_ATTRIBUTE).Value,
+            //                              value = element.Attribute(ASPECT_VALUE_ATTRIBUTE).Value,
+            //                          };
 
-                        list.Add(new Facet
-                        {
-                            Name = facetName,
-                            Aspects = from a in aspects orderby a.name select new Aspect { Name = a.name, Value = long.Parse(a.value), FacetName = facetName }
-                        });
+            //            list.Add(new Facet
+            //            {
+            //                Name = facetName,
+            //                Aspects = from a in aspects orderby a.name select new Aspect { Name = a.name, Value = long.Parse(a.value), FacetName = facetName }
+            //            });
 
                         
-                    }
+            //        }
 
-                    collectionList.Add(new FacetCollection { Name = collectionName, Facets = list });
+            //        collectionList.Add(new FacetCollection { Name = collectionName, Facets = list });
                     
-                }
+            //    }
 
-                session.Add(FACET_COLLECTION_CACHE_KEY, collectionList);
-            }
+            //    session.Add(FACET_COLLECTION_CACHE_KEY, collectionList);
+            //}
 
-            return collectionList;
+            //return collectionList;
 
         }
 

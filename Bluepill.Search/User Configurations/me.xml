@@ -1,198 +1,34 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://bluepill.org configuration.xsd">
-  <facet name="Muse" value="1">
-    <facet name="Mood" value="4">
-      <facet name="Dark" value="17" />
-      <facet name="Angry" value="18" />
-      <facet name="Happy" value="19" />
-      <facet name="Sad" value="20" />
-      <facet name="Funny" value="21" />
-      <facet name="Bright" value="22" />
-      <facet name="Thoughtful" value="23" />
-      <facet name="Peaceful" value="24" />
+<root>
+  <facets>
+    <facet id="0" default-display="muse" />
+    <facet id="1" default-display="mood">
+      <aspect value="0" text="happy" />
+      <aspect value="1" text="sad" />
     </facet>
-    <facet name="Genre" value="5">
-      <facet name="Comic" value="25" />
-      <facet name="Gaming" value="26" />
-      <facet name="Scifi" value="27" />
-      <facet name="Fantasy" value="28">
-        <facet name="Steampunk" value="29" />
-      </facet>
+    <facet id="2" default-display="focus" />
+    <facet id="3" default-display="costume">
+      <aspect value="0" text="makeup" />
+      <aspect value="1" text="armor" />
     </facet>
-    <facet name="Focus" value="6">
-      <facet name="Landscape" value="30" />
-      <facet name="Costume" value="31">
-        <facet name="Makeup" value="32" />
-        <facet name="Armor" value="33" />
-        <facet name="Jewlery" value="34" />
-      </facet>
-      <facet name="Creature" value="35">
-        <facet name="Dragon" value="36" />
-        <facet name="Demon" value="37" />
-      </facet>
-      <facet name="Animal" value="43">
-        <facet name="Dog" value="38" />
-        <facet name="Cat" value="39" />
-        <facet name="Horse" value="40" />
-        <facet name="Snake" value="41" />
-        <facet name="Lizard" value="42" />        
-      </facet>
-      <facet name="Pinup" value="44" />
-      <facet name="Machine" value="45">
-        <facet name="Robot" value="46" />
-        <facet name="Vehicle" value="47">
-          <facet name="Spaceship" value="48" />
-        </facet>
-        <facet name="Weapon" value="49">
-          <facet name="Gun" value="50" />
-          <facet name="Bow" value="51" />
-          <facet name="Sword" value="52" />
-          <facet name="Axe" value="53" />
-          <facet name="Knife" value="54" />
-        </facet>
-      </facet>
+    <facet id="4" default-display="body">
+      <aspect value="0" text="upper" />
+      <aspect value="1" text="lower" />
     </facet>
-    <facet name="Medium" value="7">
-      <facet name="Photo" value="55" />
-      <facet name="Photo Manipulation" value="56" />
-      <facet name="Digital" value="57" />
-      <facet name="3D" value="58" />
-      <facet name="Sketch" value="59" />
-      <facet name="Painting" value="60" />
+    <facet id="5" default-display="body-detail">
+      <aspect value="0" text="eyes" />
+      <aspect value="1" text="face" />
     </facet>
-    <facet name="Artist" value="8">
-      <facet name="Rio" value="61" />
-      <facet name="Turner" value="62" />
-      <facet name="Benes" value="63" />
-    </facet>
-  </facet>
-  <facet name="Reference" value="2">
-    <facet name="Action" value="9">
-      <facet name="Crawling" value="64" />
-      <facet name="Fighting" value="65" />
-      <facet name="Flying" value="66" />
-      <facet name="Running" value="67" />
-      <facet name="Shooting" value="68" />
-      <facet name="Sitting" value="69" />
-      <facet name="Swimming" value="70" />
-      <facet name="Walking" value="71" />
-    </facet>
-    <facet name="Body" value="10">
-      <facet name="Upper" value="85" />
-      <facet name="Lower" value="86" />
-      <facet name="Detail" value="87">
-        <facet name="Arms" value="72" />
-        <facet name="Legs" value="73" />
-        <facet name="Head" value="74" />
-        <facet name="Face" value="75" />
-        <facet name="Hair" value="76" />
-        <facet name="Eyes" value="77" />
-        <facet name="Nose" value="78" />
-        <facet name="Ear" value="79" />
-        <facet name="Lips" value="80" />
-        <facet name="Hands" value="81" />
-        <facet name="Feet" value="82" />
-        <facet name="Fingers" value="83" />
-        <facet name="Waist" value="84" />       
-      </facet>
-     </facet>
-    <facet name="Orientation" value="11">
-      <facet name="Front" value="88" />
-      <facet name="Back" value="89" />
-      <facet name="Top" value="90" />
-      <facet name="Bottom" value="91" />
-      <facet name="Side" value="92" />
-      <facet name="Skew" value="93">
-        <facet name="Front" value="94" />
-        <facet name="Back" value="95" />
-        <facet name="Top" value="96" />
-        <facet name="Bottom" value="97" />
-        <facet name="Side" value="98" />
-      </facet>
-    </facet>
-    <facet name="Gender" value="12">
-      <facet name="Male" value="99" />
-      <facet name="Female" value="100" />
-    </facet>
-  </facet>
-  <facet name="Franchise" value="3">
-    <facet name="Marvel Comics" value="101">
-      <facet name="Avengers" value="108" />
-      <facet name="Thor" value="109" />
-      <facet name="Elektra" value="110" />
-      <facet name="Pheonix" value="111" />
-      <facet name="Spiderman" value="112" />
-      <facet name="Fantastic Four" value="113" />
-      <facet name="Invisible Woman" value="114" />
-      <facet name="Doctor Doom" value="115" />
-      <facet name="Rogue" value="116" />
-      <facet name="Hulk" value="117" />
-    </facet>
-    <facet name="DC Comics" value="102">
-      <facet name="Batman" value="118" />
-      <facet name="Catwoman" value="119" />
-      <facet name="Superman" value="120" />
-      <facet name="Supergirl" value="121" />
-      <facet name="Poison Ivy" value="122" />
-      <facet name="Harley Quinn" value="123" />
-      <facet name="Wonder Woman" value="124" />
-      <facet name="Joker" value="125" />
-    </facet>
-    <facet name="Halo" value="103">
-      <facet name="Master Chief" value="126" />
-      <facet name="Cortana" value="127" />
-    </facet>
-    <facet name="Star Trek" value="104" />
-    <facet name="Star Wars" value="105" />
-    <facet name="Lord of the Rings" value="106" />
-    <facet name="Others" value="107">
-      <facet name="Witchblade" value="128" />
-      <facet name="Lady Death" value="129" />
-      <facet name="Bady Doll" value="130" />
-      <facet name="Leliana" value="131" />
-    </facet>
-  </facet>
-  <facet name="Life" value="13">
-    <facet name="Event" value="14">
-      <facet name="Christmas" value="134" />
-      <facet name="Halloween" value="135" />
-      <facet name="Easter" value="136" />
-    </facet>
-    <facet name="Subject" value="15">
-      <facet name="Benjamin" value="132" />
-      <facet name="Bryanna" value="133" />
-    </facet>
-    <facet name="Year" value="16">
-      <facet name="1990 - 1999" value="137">
-        <facet name="1990" value="140" />
-        <facet name="1991" value="141" />
-        <facet name="1992" value="142" />
-        <facet name="1993" value="143" />
-        <facet name="1994" value="144" />
-        <facet name="1995" value="145" />
-        <facet name="1996" value="146" />
-        <facet name="1997" value="147" />
-        <facet name="1998" value="148" />
-        <facet name="1999" value="149" />
-      </facet>
-      <facet name="2000 - 2009" value="138">
-        <facet name="2000" value="150" />
-        <facet name="2001" value="151" />
-        <facet name="2002" value="152" />
-        <facet name="2003" value="153" />
-        <facet name="2004" value="154" />
-        <facet name="2005" value="155" />
-        <facet name="2006" value="156" />
-        <facet name="2007" value="157" />
-        <facet name="2008" value="158" />
-        <facet name="2009" value="159" />
-      </facet>
-      <facet name="2010 - 2019" value="139">
-        <facet name="2010" value="160" />
-        <facet name="2011" value="161" />
-        <facet name="2012" value="162" />
-        <facet name="2013" value="163" />
-      </facet>
-    </facet>
-  </facet>
+  </facets>
+  <pointers>
+    <pointer facetId="0">
+      <pointer facetId="1" />
+      <pointer facetId="2">
+        <pointer facetId="3" />
+        <pointer facetId="4">
+          <pointer facetId="5" display="detail"/>
+        </pointer>
+      </pointer>
+    </pointer>
+  </pointers>
 </root>

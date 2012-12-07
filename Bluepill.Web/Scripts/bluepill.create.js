@@ -1,181 +1,54 @@
-﻿$(document).ready(function () {
+﻿$("document").ready(function () {
 
-    InitializeImageLoad();
+    $(".a").each(function () {
+        var parent = FindParent($(this));
+        if (parent.attr("id") == undefined) {
+            $(this).show();
+        }
+    });
 
-    $(".button").button();
-    $(".children-container").hide();
 
-    $(".submit").click(function () {
-        var facets = [];
+    $(".ancestor").click(function(){
+        var here = $(this).closest(".a");
+        var parent = here.parent().closest(".a").attr("id");
 
-        $("input[type=checkbox]").each(function () {
+        //console.log("here = " + here.attr("id") + ", parent = " + parent);
 
-            if ($(this).is(":checked")) {
-                facets.push($(this).attr("id"));
-            }
+        var facet = $(this).closest(".a");
+        var children = facet.children(".a");
+
+        children.each(function () {
+            $(this).hide();
         });
 
-        //console.log(JSON.stringify(list));
-        //var data = { "file": "c:\\test\\test.txt", "facets": [{ "0": "1" }, { "1": "5" }] }
+        here.data("open", false);
+        console.log(here.attr("id") + " : " + here.data("open"));
 
-        //var data = { "File": "c:\\test\\testme    simpl.txt", "List": list }
-        //var data2 = $("#test").serializeArray();
-        //var data3 = { "List": list }
-        //console.log($("#test").serializeArray());
-        //$.post("\\layout\\create\\save", data3, function () {
-        //    console.log("posted");
-        //});
+        return false;
+    });
 
-        $.ajax({
-            type: "POST",
-            url: "\\bluepill\\create\\savepicture",
-            data: { file: $("#File").val(), selects: facets },
-            //data: $("#test").serializeArray(),
-            traditional: true,
-            success: function (response) {
-
-                var json = $.parseJSON(response);
-
-                var img = $(".add img");
-                var link = $(".add a");
-                var hidden = $("form #File");
-
-                img.css("opacity", 0);
-                img.attr("src", json.resizedSrc);
-                img.data("total", json.total);
-                link.attr("href", json.src);
-                hidden.val(json.file);
-
-                SetHeadingCount();
-
-            }
+    $(".facet").click(function (e) {
+        var facet = $(this).closest(".a");
+        var children = facet.children(".a");
+        
+        children.each(function () {
+            $(this).show();
         });
+
+        facet.data("open", true);
+        console.log(facet.attr("id") + " : " + facet.data("open"));
     });
 
-    function ChildrenContainerOn(id) {
 
-        var a = $("." + id + ".plus-minus a");
-        var container = $("." + id + ".children-container");
-        var children = $("." + id + ".children");
-
-        children.show(200);
-        a.text("-");
-    }
-
-    function ChildrenContainerOff(id) {
-
-        var a = $("." + id + ".plus-minus a");
-        var container = $("." + id + ".children-container");
-        var children = $("." + id + ".children");
-
-        children.hide(200);
-        a.text("+");
-    }
-
-    $(".plus-minus a").click(function (e) {
-
-        var id = $(e.target).closest(".children-container").data("checkbox");
-
-        if ($(e.target).text() == "-") {
-            ChildrenContainerOff(id);
-        }
-        else {
-            ChildrenContainerOn(id);
-        }
-    });
-
-    $("input[type=checkbox]").click(function () {
-        Update($(this));
-    });
-
-    function Update(checkbox) {
-        var id = checkbox.attr("id");
-        var add = checkbox.is(":checked");
-
-        if (add) {
-            $("." + id + ".children-container").show(200);
-            //$("." + id + ".children-container").position({
-            //    "of": checkbox,
-            //    "my": "left top",
-            //    "at": "right bottom",
-            //    "offset": "3 3",
-            //});
-        }
-        else {
-            $("." + id + ".children-container").hide(200);
-        }
-
-        var children = $("." + id + ".children li");
-
-        if (!add) {
-            children.each(function () {
-                               
-                var childCheckbox = $(this).find($("input[type=checkbox]"));
-
-                if (childCheckbox.is(":checked")) {
-                    childCheckbox.attr("checked", false);
-                    Update(childCheckbox);
-                }
-
-            });
-        }
-
-        ChildrenContainerOn(id);
-    }
 
 });
 
-
-
-
-//$(function () {
-//    $(document).ready(function () {
-//        InitializeBreadCrumb();
-//        InitializeAccordion();
-//        InitializeImageLoad();
-//        InitializeFormSubmit();
-//    });
-//});
-
-function SetHeadingCount() {
-    $(".heading img").hide();
-    $(".heading span").text($(".add img").data("total") + " files");
+function FindParent(selector) {
+    var closest = selector.closest(".a");
+    var parent = closest.parent().closest(".a");
+    return parent;
 }
 
-//function InitializeCount() {
-//    $(".heading img").hide();
-//    $(".heading span").text($(".add img").data("total") + " files");
-//}
-
-//function InitializeFormSubmit() {
-//    $(".submit").click(function () {
-//        var data = $(this).closest("form").serializeArray();
-//        $(".heading img").show();
-//        $(".heading span").text("saving");
-//        $.post("\\bluepill\\create\\savepicture", data, function (response) {
-
-//            var json = $.parseJSON(response);
-
-//            var img = $(".add img");
-//            var link = $(".add a");
-//            var hidden = $("form #File");
-
-//            img.css("opacity", 0);
-//            img.attr("src", json.resizedSrc);
-//            img.data("total", json.total);
-//            link.attr("href", json.src);
-//            hidden.val(json.file);
-
-//            SetHeadingCount();
-//        });
-//    });
-//}
-
-function InitializeImageLoad() {
-    $(".add img").load(function () {
-        $(this).animate({ opacity: 1 }, 200, function () {
-            SetHeadingCount();
-        });
-        //ResetAccordion();
-    });
+function FindChildren(selector) {
+    return selector.find(".a");
 }

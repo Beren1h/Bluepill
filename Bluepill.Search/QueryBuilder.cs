@@ -29,10 +29,10 @@ namespace Bluepill.Search
 
             //queries.Add(Query.In("MetaData.facets", new BsonArray(facets)));
 
-            foreach(var facet in facets)
-            {
-                queries.Add(Query.And();
-            }
+            //foreach(var facet in facets)
+            //{
+            //    queries.Add(Query.And();
+            //}
 
             //queries.Add(Query.And(
 

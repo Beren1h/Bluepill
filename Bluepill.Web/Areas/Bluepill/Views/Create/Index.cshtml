@@ -20,27 +20,12 @@
  </h2>
 
 </div>
-<div class="span8">
+<div class="span6">
 
-    @using (Html.BeginForm("Save", "Create", FormMethod.Post, new { id = "test" }))
-    {
-        @Html.HiddenFor(x => x.File)
-        <div class="search-interface">
-            
-            <ul>
-                <li><a href="#"class="button submit">Save</a></li>
-                @foreach (var facet in Model.Facets)
-                {
-                    @Html.Partial("Facet", facet)
-                }
-            </ul>
-        </div>
-    }
+    @Html.Partial("Facet", Model.Facets)
 
 </div>
 
-<div class="span4 height12 add">
-    <a id="input" href="/application/picture/GetPicture?file=@Model.File" target="_blank">
-        <img src="/application/picture/GetResizePicture?file=@Model.File&height=@Model.ResizedHeight&width=@Model.ResizedWidth" data-total="@Model.TotalFileCount" alt="" />
-    </a>
+<div class="span6 height12 add">
+
 </div>
