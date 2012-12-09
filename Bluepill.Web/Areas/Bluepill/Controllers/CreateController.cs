@@ -62,9 +62,30 @@ namespace Bluepill.Web.Areas.Bluepill.Controllers
             return View(model);
         }
 
-        public ActionResult Save(CreateModel model)
+        [HttpPost]
+        public JObject SavePicture(CreateModel model)
         {
-            return null;
+            var fileInfo = new FileInfo(model.File);
+            var identity = (BluePillIdentity)ControllerContext.HttpContext.User.Identity;
+            //var box = _packer.PackBox(model.File, identity.Name, model.Facets);
+
+            //_attic.AddBox(box);
+
+            System.IO.File.Move(fileInfo.FullName, string.Format("{0}\\{1}", Constants.COMPLETE_PATH, fileInfo.Name));
+
+            var files = new List<FileInfo>(new DirectoryInfo(Constants.CREATE_PATH).GetFiles());
+            var list = files.Take(Constants.DISPLAY_COUNT).ToList();
+
+            var json = new JObject();
+
+            json.Add("file", list[0].FullName);
+            json.Add("total", files.Count);
+            json.Add("width", Constants.IMG_WIDTH);
+            json.Add("height", Constants.IMG_HEIGHT);
+            json.Add("src", string.Format(Constants.GET_PICTURE_URL_FORMAT, list[0].FullName));
+            json.Add("resizedSrc", string.Format(Constants.GET_RESIZE_PICTURE_URL_FORMAT, list[0].FullName, Constants.IMG_WIDTH, Constants.IMG_HEIGHT));
+
+            return json;
         }
 
         //public ActionResult GetFacet(string id)

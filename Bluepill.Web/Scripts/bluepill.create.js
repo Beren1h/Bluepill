@@ -18,33 +18,53 @@
     $(".submit").click(function () {
 
         var data = $("form").serializeArray();
-        console.log(JSON.stringify(data));
+        $(".heading img").show();
+        $(".heading span").text("saving");
+        $.post("\\bluepill\\create\\savepicture", data, function (response) {
 
+            var json = $.parseJSON(response);
 
-        $.ajax({
-            type: "POST",
-            url: "\\bluepill\\create\\savepicture",
-            data: { file: $("#File").val(), selects: facets },
-            //data: $("#test").serializeArray(),
-            traditional: true,
-            success: function (response) {
+            var img = $(".add img");
+            var link = $(".add a");
+            var hidden = $("form #File");
 
-                var json = $.parseJSON(response);
+            img.css("opacity", 0);
+            img.attr("src", json.resizedSrc);
+            img.data("total", json.total);
+            link.attr("href", json.src);
+            hidden.val(json.file);
 
-                var img = $(".add img");
-                var link = $(".add a");
-                var hidden = $("form #File");
-
-                img.css("opacity", 0);
-                img.attr("src", json.resizedSrc);
-                img.data("total", json.total);
-                link.attr("href", json.src);
-                hidden.val(json.file);
-
-                SetHeadingCount();
-
-            }
+            //SetHeadingCount();
         });
+
+        //var data = $("form").serializeArray();
+        //console.log(JSON.stringify(data));
+
+
+        //$.ajax({
+        //    type: "POST",
+        //    url: "\\bluepill\\create\\savepicture",
+        //    data: { file: $("#File").val(), selects: facets },
+        //    //data: $("#test").serializeArray(),
+        //    traditional: true,
+        //    success: function (response) {
+
+        //        var json = $.parseJSON(response);
+
+        //        var img = $(".add img");
+        //        var link = $(".add a");
+        //        var hidden = $("form #File");
+
+        //        img.css("opacity", 0);
+        //        img.attr("src", json.resizedSrc);
+        //        img.data("total", json.total);
+        //        link.attr("href", json.src);
+        //        hidden.val(json.file);
+
+        //        SetHeadingCount();
+
+        //    }
+        //});
 
 
 
