@@ -4,6 +4,8 @@
 /*.facet-container { background:#ff6a00; }*/
 .facet-action { cursor:pointer; display:block; border-radius:3px 3px 0px 0px; padding:0px 0px 0px 5px; margin:0px; }
 
+.facet-container { display:none; }
+
 /*.mycheckbox { display:none; }
 .mycheckbox + label { background:url(/content/images/checkbox_empty.png) no-repeat left center; padding:32px; }
 .mycheckbox + label { background:url(/content/images/checkbox_full.png) no-repeat left center }*/

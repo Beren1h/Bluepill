@@ -2,7 +2,7 @@
 
 @{ Layout = null; }
 
-<div class="facet-container" id="facet-@Model.Id">
+<div class="facet-container" id="facet-@Model.Id" data-top="@Model.Top">
     <h3 class="facet-action">@Model.Name</h3>
     <ul>
         @Html.EditorFor(x => x.Aspects)

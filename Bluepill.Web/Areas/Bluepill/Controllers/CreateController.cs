@@ -50,7 +50,8 @@ namespace Bluepill.Web.Areas.Bluepill.Controllers
             var files = new List<FileInfo>(new DirectoryInfo(Constants.CREATE_PATH).GetFiles());
             var list = files.Take(Constants.DISPLAY_COUNT).ToList();
             //var facets = _reader.BuildFacets(identity.Name);
-            var facets = _reader.Read(identity.Name).Where(x => x.Top == true);
+            //var facets = _reader.Read(identity.Name).Where(x => x.Top == true);
+            var facets = _reader.Read(identity.Name);
             //var longs = (from v in facets select v.Value).ToList();
 
             //var model = new CreateModel { Facets = collection.Facets, File = list[0].FullName, TotalFileCount = files.Count, ResizedHeight = Constants.IMG_HEIGHT, ResizedWidth = Constants.IMG_WIDTH };
@@ -61,16 +62,21 @@ namespace Bluepill.Web.Areas.Bluepill.Controllers
             return View(model);
         }
 
-        public ActionResult GetFacet(string id)
+        public ActionResult Save(CreateModel model)
         {
-            var identity = (BluePillIdentity)ControllerContext.HttpContext.User.Identity;
-            //var facet = _reader.Read(identity.Name).Where(x => x.Id == id).FirstOrDefault();
-            var facet = _reader.Read(identity.Name).Where(x => x.Id == id);
-
-            //return View("EditorTemplates/Facet", facet);
-            return View("Facet", facet);
-
+            return null;
         }
+
+        //public ActionResult GetFacet(string id)
+        //{
+        //    var identity = (BluePillIdentity)ControllerContext.HttpContext.User.Identity;
+        //    //var facet = _reader.Read(identity.Name).Where(x => x.Id == id).FirstOrDefault();
+        //    var facet = _reader.Read(identity.Name).Where(x => x.Id == id);
+
+        //    //return View("EditorTemplates/Facet", facet);
+        //    return View("Facet", facet);
+
+        //}
 
         //[HttpPost]
         //public JObject SavePicture(CreateModel model)
