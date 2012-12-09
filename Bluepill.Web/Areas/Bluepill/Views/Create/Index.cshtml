@@ -28,5 +28,7 @@
 </div>
 
 <div class="span6 height12 add">
-
+        <a id="input" href="/application/picture/GetPicture?file=@Model.File" target="_blank">
+        <img src="/application/picture/GetResizePicture?file=@Model.File&height=@Model.ResizedHeight&width=@Model.ResizedWidth" data-total="@Model.TotalFileCount" alt="" />
+    </a>
 </div>

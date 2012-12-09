@@ -1,5 +1,7 @@
 ﻿$("document").ready(function () {
 
+    InitializeImageLoad();
+
     //$(".facet-container").on("click", ".facet-action", function (e) {
     //    FacetActionClick($(e.target));
     //});
@@ -123,3 +125,14 @@
 
 
 });
+
+
+
+function InitializeImageLoad() {
+    $(".add img").load(function () {
+        $(this).animate({ opacity: 1 }, 200, function () {
+            SetHeadingCount();
+        });
+        //ResetAccordion();
+    });
+}
