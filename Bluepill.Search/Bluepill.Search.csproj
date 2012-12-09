@@ -64,6 +64,7 @@
     <Compile Include="QueryBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="User Configurations\fail.xml" />
     <Content Include="User Configurations\me.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

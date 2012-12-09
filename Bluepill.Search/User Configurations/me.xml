@@ -1,34 +1,44 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <root>
-  <facets>
-    <facet id="0" default-display="muse" />
-    <facet id="1" default-display="mood">
-      <aspect value="0" text="happy" />
-      <aspect value="1" text="sad" />
-    </facet>
-    <facet id="2" default-display="focus" />
-    <facet id="3" default-display="costume">
-      <aspect value="0" text="makeup" />
-      <aspect value="1" text="armor" />
-    </facet>
-    <facet id="4" default-display="body">
-      <aspect value="0" text="upper" />
-      <aspect value="1" text="lower" />
-    </facet>
-    <facet id="5" default-display="body-detail">
-      <aspect value="0" text="eyes" />
-      <aspect value="1" text="face" />
-    </facet>
-  </facets>
-  <pointers>
-    <pointer facetId="0">
-      <pointer facetId="1" />
-      <pointer facetId="2">
-        <pointer facetId="3" />
-        <pointer facetId="4">
-          <pointer facetId="5" display="detail"/>
-        </pointer>
-      </pointer>
-    </pointer>
-  </pointers>
+  <facet id="0" name="muse" top="yes">
+    <aspect value="0" text="mood" facet="1"/>
+    <aspect value="1" text="focus" facet="2"/>
+  </facet>
+  <facet id="4" name="study" top="yes">
+    <aspect value="0" text="action" facet="6" />
+    <aspect value="1" text="body" facet="" />
+  </facet>
+  <facet id="6" name="action">
+    <aspect value="0" text="running" />
+    <aspect value="1" text="shooting" />
+    <aspect value="2" text="flying" />
+  </facet>
+  <facet id="7" name="body">
+    <aspect value="0" text="upper" />
+    <aspect value="1" text="lower" />
+    <aspect value="2" text="body part" facet="8" />
+  </facet>
+  <facet id="8" name="body part">
+    <aspect value="0" text="eyes" />
+    <aspect value="1" text="lips" />
+    <aspect value="2" text="hips" />
+    <aspect value="3" text="face" />
+  </facet>
+  <facet id="5" name="life" top="yes">
+    <aspect value="0" text="event" />
+    <aspect value="1" text="subject" />
+    <aspect value="2" text="year" />
+  </facet>
+  <facet id="1" name="mood">
+    <aspect value="0" text="happy" />
+    <aspect value="1" text="sad" />
+  </facet>
+  <facet id="2" name="focus">
+    <aspect value="0" text="costume" facet="3" />
+    <aspect value="1" text="weapon" />
+  </facet>
+  <facet id="3" name="costume">
+    <aspect value="0" text="makeup" />
+    <aspect value="1" text="armor" />
+  </facet>
 </root>

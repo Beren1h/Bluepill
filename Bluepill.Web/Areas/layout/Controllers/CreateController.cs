@@ -22,14 +22,14 @@ namespace Bluepill.Web.Areas.layout.Controllers
             _reader = reader;
         }
 
-        public ActionResult Index()
-        {
-            //var selections = new List<SelectListItem>();
-            var identity = (BluePillIdentity)ControllerContext.HttpContext.User.Identity;
-            var model = new CreateModel{ Facets = _reader.BuildFacets(identity.Name) };
+        //public ActionResult Index()
+        //{
+        //    //var selections = new List<SelectListItem>();
+        //    var identity = (BluePillIdentity)ControllerContext.HttpContext.User.Identity;
+        //    //var model = new CreateModel{ Facets = _reader.BuildFacets(identity.Name) };
             
-            return View(model);
-        }
+        //    return View(model);
+        //}
 
         public void Save(CreateModel model)
         {

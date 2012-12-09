@@ -14,16 +14,14 @@
 }
 
 <div class="span12 heading">
- <h2>
-     <img src="\content\images\new-image-loading.gif" />
-     <span>loading</span>
- </h2>
-
+    <h2>Heading</h2>
 </div>
 <div class="span6">
-
-    @Html.Partial("Facet", Model.Facets)
-
+    <div class="facets-area">
+        @Html.Partial("Facet", @Model.Facets)
+        @*@Html.EditorFor(x => x.Facets)*@
+    </div>
+    <a href="#" class="submit">save</a>
 </div>
 
 <div class="span6 height12 add">

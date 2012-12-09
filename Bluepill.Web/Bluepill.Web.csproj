@@ -164,6 +164,7 @@
     <Compile Include="Framework\BluePillWebApplication.cs" />
     <Compile Include="Framework\Constants.cs" />
     <Compile Include="Framework\CookieGateway.cs" />
+    <Compile Include="Framework\Extensions.cs" />
     <Compile Include="Framework\HttpContextLifetimeManager.cs" />
     <Compile Include="Framework\IBluePillUserStore.cs" />
     <Compile Include="Framework\ICookieGateway.cs" />

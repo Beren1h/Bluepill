@@ -2,8 +2,9 @@
 
 @{ Layout = null; }
 
-<h3><a href="#">@Model.Name<span class="breadCrumb" id="breadCrumb-@Model.Name"></span></a></h3>
-<div>
-    @Html.HiddenFor(x => x.Name)
-    @Html.EditorFor(x => x.Aspects)
+<div class="facet-container" id="facet-@Model.Id">
+    <h3 class="facet-action">@Model.Name</h3>
+    <ul>
+        @Html.EditorFor(x => x.Aspects)
+    </ul>
 </div>

@@ -29,20 +29,20 @@ namespace Bluepill.Web.Areas.Bluepill.Controllers
             _facetReader = facetReader;
         }
 
-        public ActionResult Index()
-        {
-            var identity = (BluePillIdentity)ControllerContext.HttpContext.User.Identity;
-            var facets = _facetReader.BuildFacets(identity.Name);
-            //var collections = _facetCollectionReader.GetFacetCollections(identity.Name, Session);
-            //var cookieName = string.Format(Constants.PREFERENCE_COOKIE_FORMAT, identity.Name);
-            //var workingCollection = _cookieGateway.GetVale(ControllerContext.HttpContext, cookieName, Constants.WORKING_COLLECTION_COOKIE_KEY) ?? collections[0].Name;
-            //var collection = collections.FirstOrDefault(c => c.Name == workingCollection);
-            var model = new SearchModel { Facets = facets, Page = 1, PageDelta = 0 };
+        //public ActionResult Index()
+        //{
+        //    var identity = (BluePillIdentity)ControllerContext.HttpContext.User.Identity;
+        //    //var facets = _facetReader.BuildFacets(identity.Name);
+        //    //var collections = _facetCollectionReader.GetFacetCollections(identity.Name, Session);
+        //    //var cookieName = string.Format(Constants.PREFERENCE_COOKIE_FORMAT, identity.Name);
+        //    //var workingCollection = _cookieGateway.GetVale(ControllerContext.HttpContext, cookieName, Constants.WORKING_COLLECTION_COOKIE_KEY) ?? collections[0].Name;
+        //    //var collection = collections.FirstOrDefault(c => c.Name == workingCollection);
+        //    //var model = new SearchModel { Facets = facets, Page = 1, PageDelta = 0 };
 
-            ViewBag.NavigationIndex = 1;
+        //    ViewBag.NavigationIndex = 1;
 
-            return View(model);
-        }
+        //    return View(model);
+        //}
                
 
         public ActionResult Find(SearchModel model)

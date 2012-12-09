@@ -9,9 +9,10 @@ namespace Bluepill.Search
 {
     public interface IFacetReader
     {
-        XDocument Read(string name);
-        IEnumerable<Facet> BuildFacets(string userName);
+        //XDocument Read(string name);
+        //IEnumerable<Facet> BuildFacets(string userName);
         //IEnumerable<XElement> GetFacet(string name);
         //IEnumerable<XElement> GetFacet(long value);
+        IEnumerable<Facet> Read(string userName);
     }
 }

@@ -15,7 +15,7 @@ namespace Bluepill.Web.Areas.Administration.Models
         public string File { get; set; }
         public int ResizedWidth { get; set; }
         public int ResizedHeight { get; set; }
-        public IEnumerable<long> Selects { get; set; }
+        //public IEnumerable<long> Selects { get; set; }
 
         //public List<long> Facets { get; set; }
         //public int TotalFileCount { get; set; }

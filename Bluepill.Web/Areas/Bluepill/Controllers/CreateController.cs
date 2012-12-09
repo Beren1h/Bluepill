@@ -49,7 +49,8 @@ namespace Bluepill.Web.Areas.Bluepill.Controllers
             //var collection = collections.FirstOrDefault(c => c.Name == workingCollection);
             var files = new List<FileInfo>(new DirectoryInfo(Constants.CREATE_PATH).GetFiles());
             var list = files.Take(Constants.DISPLAY_COUNT).ToList();
-            var facets = _reader.BuildFacets(identity.Name);
+            //var facets = _reader.BuildFacets(identity.Name);
+            var facets = _reader.Read(identity.Name).Where(x => x.Top == true);
             //var longs = (from v in facets select v.Value).ToList();
 
             //var model = new CreateModel { Facets = collection.Facets, File = list[0].FullName, TotalFileCount = files.Count, ResizedHeight = Constants.IMG_HEIGHT, ResizedWidth = Constants.IMG_WIDTH };
@@ -60,30 +61,41 @@ namespace Bluepill.Web.Areas.Bluepill.Controllers
             return View(model);
         }
 
-        [HttpPost]
-        public JObject SavePicture(CreateModel model)
+        public ActionResult GetFacet(string id)
         {
-            var fileInfo = new FileInfo(model.File);
             var identity = (BluePillIdentity)ControllerContext.HttpContext.User.Identity;
-            var box = _packer.PackBox(model.File, identity.Name, model.Selects);
-            
-            _attic.AddBox(box);
+            //var facet = _reader.Read(identity.Name).Where(x => x.Id == id).FirstOrDefault();
+            var facet = _reader.Read(identity.Name).Where(x => x.Id == id);
 
-            System.IO.File.Move(fileInfo.FullName, string.Format("{0}\\{1}", Constants.COMPLETE_PATH, fileInfo.Name));
+            //return View("EditorTemplates/Facet", facet);
+            return View("Facet", facet);
 
-            var files = new List<FileInfo>(new DirectoryInfo(Constants.CREATE_PATH).GetFiles());
-            var list = files.Take(Constants.DISPLAY_COUNT).ToList();
-
-            var json = new JObject();
-
-            json.Add("file", list[0].FullName);
-            json.Add("total", files.Count);
-            json.Add("width", Constants.IMG_WIDTH);
-            json.Add("height", Constants.IMG_HEIGHT);
-            json.Add("src", string.Format(Constants.GET_PICTURE_URL_FORMAT, list[0].FullName));
-            json.Add("resizedSrc", string.Format(Constants.GET_RESIZE_PICTURE_URL_FORMAT, list[0].FullName, Constants.IMG_WIDTH, Constants.IMG_HEIGHT));
-
-            return json;
         }
+
+        //[HttpPost]
+        //public JObject SavePicture(CreateModel model)
+        //{
+        //    var fileInfo = new FileInfo(model.File);
+        //    var identity = (BluePillIdentity)ControllerContext.HttpContext.User.Identity;
+        //    var box = _packer.PackBox(model.File, identity.Name, model.Selects);
+            
+        //    _attic.AddBox(box);
+
+        //    System.IO.File.Move(fileInfo.FullName, string.Format("{0}\\{1}", Constants.COMPLETE_PATH, fileInfo.Name));
+
+        //    var files = new List<FileInfo>(new DirectoryInfo(Constants.CREATE_PATH).GetFiles());
+        //    var list = files.Take(Constants.DISPLAY_COUNT).ToList();
+
+        //    var json = new JObject();
+
+        //    json.Add("file", list[0].FullName);
+        //    json.Add("total", files.Count);
+        //    json.Add("width", Constants.IMG_WIDTH);
+        //    json.Add("height", Constants.IMG_HEIGHT);
+        //    json.Add("src", string.Format(Constants.GET_PICTURE_URL_FORMAT, list[0].FullName));
+        //    json.Add("resizedSrc", string.Format(Constants.GET_RESIZE_PICTURE_URL_FORMAT, list[0].FullName, Constants.IMG_WIDTH, Constants.IMG_HEIGHT));
+
+        //    return json;
+        //}
     }
 }

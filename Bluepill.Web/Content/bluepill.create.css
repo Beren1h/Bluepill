@@ -1,2 +1,14 @@
-﻿.a { background:#ff6a00; display:none; }
-.b { background:#b6ff00 }
+﻿.facets-area li { display:inline-block; }
+.facets-area ul { display:none; padding:5px;  border-bottom:1px solid #06216d; }
+
+/*.facet-container { background:#ff6a00; }*/
+.facet-action { cursor:pointer; display:block; border-radius:3px 3px 0px 0px; padding:0px 0px 0px 5px; margin:0px; }
+
+/*.mycheckbox { display:none; }
+.mycheckbox + label { background:url(/content/images/checkbox_empty.png) no-repeat left center; padding:32px; }
+.mycheckbox + label { background:url(/content/images/checkbox_full.png) no-repeat left center }*/
+
+input[type=checkbox] { display:none; }
+label { padding-left:22px; }
+label.off { background:url(/content/images/checkbox_empty.png) no-repeat left center; background-size:20px 20px }
+label.on { background:url(/content/images/checkbox_full.png) no-repeat left center; background-size:20px 20px }
