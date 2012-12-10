@@ -8,7 +8,7 @@ namespace Bluepill.Search
 {
     public class Facet
     {
-        public string Id { get; set; }
+        public long Id { get; set; }
         public string Name { get; set; }
         public bool Top { get; set; }
         //public IEnumerable<Facet> Descendants { get; set; }

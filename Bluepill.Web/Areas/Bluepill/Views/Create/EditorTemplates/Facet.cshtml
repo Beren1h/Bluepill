@@ -2,6 +2,9 @@
 
 @{ Layout = null; }
 
+@Html.HiddenFor(x => x.Name)
+@Html.HiddenFor(x => x.Id)
+
 <div class="facet-container" id="facet-@Model.Id" data-top="@Model.Top">
     <h3 class="facet-action">@Model.Name</h3>
     <ul>

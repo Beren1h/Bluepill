@@ -1,44 +1,166 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <root>
-  <facet id="0" name="muse" top="yes">
-    <aspect value="0" text="mood" facet="1"/>
-    <aspect value="1" text="focus" facet="2"/>
+  <facet id="0" name="Muse" top="yes">
+    <aspect value="0" text="Mood" facet="1"/>
+    <aspect value="1" text="Focus" facet="2"/>
+    <aspect value="2" text="Pinup" />
+    <aspect value="3" text="Genre" facet="12"/>
+    <aspect value="4" text="Franchise" facet="18" />
   </facet>
-  <facet id="4" name="study" top="yes">
-    <aspect value="0" text="action" facet="6" />
-    <aspect value="1" text="body" facet="" />
+  <facet id="18" name="Franchise">
+    <aspect value="0" text="Marvel Comics" facet="19" />
+    <aspect value="1" text="DC Comics" facet="20" />
+    <aspect value="2" text="Halo" />
+    <aspect value="3" text="Star Trek" />
+    <aspect value="4" text="Star Wars" />
+    <aspect value="5" text="Lord of the Rings" />
+    <aspect value="6" text="Other Franchise" facet="21" />
   </facet>
-  <facet id="6" name="action">
-    <aspect value="0" text="running" />
-    <aspect value="1" text="shooting" />
-    <aspect value="2" text="flying" />
+  <facet id="21" name="Other Franchise">
+    <aspect value="0" text="Witchblade" />
+    <aspect value="1" text="Lady Death" />
+    <aspect value="2" text="Baby Doll" />
+    <aspect value="3" text="Leliana" />
   </facet>
-  <facet id="7" name="body">
-    <aspect value="0" text="upper" />
-    <aspect value="1" text="lower" />
-    <aspect value="2" text="body part" facet="8" />
+  <facet id="19" name="Marvel Comics">
+    <aspect value="0" text="Avengers" />
+    <aspect value="1" text="Elektra" />
+    <aspect value="2" text="Hulk" />
+    <aspect value="3" text="Spiderman" />
+    <aspect value="4" text="X-men" />
+    <aspect value="5" text="Rogue" />
+    <aspect value="6" text="Phoenix" />
+    <aspect value="7" text="Black Cat" />
+    <aspect value="8" text="Thor" />
   </facet>
-  <facet id="8" name="body part">
-    <aspect value="0" text="eyes" />
-    <aspect value="1" text="lips" />
-    <aspect value="2" text="hips" />
-    <aspect value="3" text="face" />
+  <facet id="20" name="DC Comics">
+    <aspect value="0" text="Batman" />
+    <aspect value="1" text="Catwoman " />
+    <aspect value="2" text="Superman" />
+    <aspect value="3" text="Poison Ivy" />
+    <aspect value="4" text="Haley Quinn" />
+    <aspect value="5" text="Joker" />
+    <aspect value="6" text="Supergirl" />
+    <aspect value="7" text="Wonder Woman" />
   </facet>
-  <facet id="5" name="life" top="yes">
+  <facet id="12" name="Genre">
+    <aspect value="0" text="Comic" />
+    <aspect value="1" text="Gaming" />
+    <aspect value="2" text="Fantasy" />
+    <aspect value="3" text="Scifi" />
+    <aspect value="4" text="Steampunk" />
+  </facet>
+  <facet id="4" name="Study" top="yes">
+    <aspect value="0" text="Action" facet="6" />
+    <aspect value="1" text="Body" facet="7" />
+    <aspect value="2" text="Gender" facet="9" />
+    <aspect value="3" text="Orientation" facet="10"/>
+  </facet>
+  <facet id="9" name="Gender">
+    <aspect value="0" text="Male" />
+    <aspect value="1" text="Female" />
+  </facet>
+  <facet id="10" name="Orientation">
+    <aspect value="0" text="Top" />
+    <aspect value="1" text="Bottom" />
+    <aspect value="2" text="Front" />
+    <aspect value="3" text="Back" />
+    <aspect value="4" text="Side" />
+    <aspect value="5" text="Skew" facet="11" />
+  </facet>
+  <facet id="11" name="Skew">
+    <aspect value="0" text="Top" />
+    <aspect value="1" text="Bottom" />
+    <aspect value="2" text="Front" />
+    <aspect value="3" text="Back" />
+    <aspect value="4" text="Side" />
+  </facet>
+  <facet id="6" name="Action">
+    <aspect value="0" text="Running" />
+    <aspect value="1" text="Shooting" />
+    <aspect value="2" text="Flying" />
+    <aspect value="3" text="Crawling" />
+    <aspect value="4" text="Fighting" />
+    <aspect value="5" text="Laying" />
+    <aspect value="6" text="Sitting" />
+    <aspect value="7" text="Swimming" />
+    <aspect value="8" text="Walking" />
+    <aspect value="9" text="Dancing" />
+  </facet>
+  <facet id="7" name="Body">
+    <aspect value="0" text="Upper" />
+    <aspect value="1" text="Lower" />
+    <aspect value="2" text="Part" facet="8" />
+  </facet>
+  <facet id="8" name="Part">
+    <aspect value="0" text="Eyes" />
+    <aspect value="1" text="Lips" />
+    <aspect value="2" text="Hips" />
+    <aspect value="3" text="Face" />
+    <aspect value="4" text="Arms" />
+    <aspect value="5" text="Nose" />
+    <aspect value="6" text="Legs" />
+    <aspect value="7" text="Hands" />
+    <aspect value="8" text="Feet" />
+    <aspect value="9" text="Fingers" />
+    <aspect value="10" text="Hair" />
+    <aspect value="11" text="Head" />
+    <aspect value="12" text="Ears" />
+  </facet>
+  <facet id="5" name="Life" top="yes">
     <aspect value="0" text="event" />
     <aspect value="1" text="subject" />
     <aspect value="2" text="year" />
   </facet>
-  <facet id="1" name="mood">
-    <aspect value="0" text="happy" />
-    <aspect value="1" text="sad" />
+  <facet id="1" name="Mood">
+    <aspect value="0" text="Happy" />
+    <aspect value="1" text="Sad" />
+    <aspect value="2" text="Angry" />
+    <aspect value="3" text="Dark" />
+    <aspect value="4" text="Funny" />
+    <aspect value="5" text="Bright" />
+    <aspect value="6" text="Provocative" />
+    <aspect value="7" text="Creepy" />
   </facet>
-  <facet id="2" name="focus">
-    <aspect value="0" text="costume" facet="3" />
-    <aspect value="1" text="weapon" />
+  <facet id="2" name="Focus">
+    <aspect value="0" text="Costume" facet="3" />
+    <aspect value="1" text="Weapon" facet="13" />
+    <aspect value="2" text="Machine" facet="14" />
+    <aspect value="3" text="Landscape" />
+    <aspect value="4" text="Creature" facet="16" />
+    <aspect value="5" text="Animal" facet="17" />
   </facet>
-  <facet id="3" name="costume">
-    <aspect value="0" text="makeup" />
-    <aspect value="1" text="armor" />
+  <facet id="17" name="Animal">
+    <aspect value="0" text="Dog" />
+    <aspect value="1" text="Cat" />
+    <aspect value="2" text="Horse" />
+    <aspect value="3" text="Reptile" />
+  </facet>
+  <facet id="16" name="Creature">
+    <aspect value="0" text="Dragon" />
+    <aspect value="1" text="Demon" />
+    <aspect value="2" text="Vampire" />
+    <aspect value="3" text="Alien" />
+  </facet>
+  <facet id="14" name="Machine">
+    <aspect value="0" text="Robot" />
+    <aspect value="1" text="Vehicle" facet="15" />
+  </facet>
+  <facet id="15" name="Vehicle">
+    <aspect value="0" text="Spaceship" />
+    <aspect value="1" text="Boat" />
+    <aspect value="2" text="Airplane" />
+  </facet>
+  <facet id="13" name="Weapon">
+    <aspect value="0" text="Gun" />
+    <aspect value="1" text="Bow" />
+    <aspect value="2" text="Sword" />
+    <aspect value="3" text="Axe" />
+    <aspect value="4" text="Knife" />
+  </facet>
+  <facet id="3" name="Costume">
+    <aspect value="0" text="Makeup" />
+    <aspect value="1" text="Armor" />
+    <aspect value="2" text="Jewlery" />
   </facet>
 </root>

@@ -67,9 +67,9 @@ namespace Bluepill.Web.Areas.Bluepill.Controllers
         {
             var fileInfo = new FileInfo(model.File);
             var identity = (BluePillIdentity)ControllerContext.HttpContext.User.Identity;
-            //var box = _packer.PackBox(model.File, identity.Name, model.Facets);
+            var box = _packer.PackBox(model.File, identity.Name, model.Facets);
 
-            //_attic.AddBox(box);
+            _attic.AddBox(box);
 
             System.IO.File.Move(fileInfo.FullName, string.Format("{0}\\{1}", Constants.COMPLETE_PATH, fileInfo.Name));
 

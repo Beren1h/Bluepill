@@ -10,6 +10,6 @@ namespace Bluepill.Storage
     public interface IPacker
     {
         //Box PackBox(string file, string userName, IEnumerable<Facet> factes);
-        Box PackBox(string file, string userName, IEnumerable<long> factes);
+        Box PackBox(string file, string userName, IEnumerable<Facet> factes);
     }
 }

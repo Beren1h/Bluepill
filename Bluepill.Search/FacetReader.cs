@@ -35,12 +35,12 @@ namespace Bluepill.Search
 
                  list.Add(new Facet
                         {
-                            Id = facet.Attribute("id").Value,
+                            Id = long.Parse(facet.Attribute("id").Value),
                             Name = facet.Attribute("name").Value,
                             Top = (facet.Attribute("top") != null && facet.Attribute("top").Value == "yes"),
                             Aspects = from aspect in aspects orderby aspect.text select new Aspect 
                             { 
-                                Value = aspect.value, 
+                                Value = long.Parse(aspect.value), 
                                 Text = aspect.text, 
                                 Facet = aspect.facet
                             }

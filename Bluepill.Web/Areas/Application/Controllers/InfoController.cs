@@ -19,47 +19,48 @@ namespace Bluepill.Web.Areas.Application.Controllers
             _reader = reader;
         }
 
-        private long FindMax(IEnumerable<Facet> facets, long max)
-        {
-            //foreach(var facet in facets)
-            //{
-            //    if (max < facet.Value)
-            //        max = facet.Value;
-
-            //    max = FindMax(facet.Children, max);
-
-            //}
-
-
-            return max;
-        }
-
-        //public ActionResult Index()
+        //private long FindMax(IEnumerable<Facet> facets, long max)
         //{
-        //    var identity = (BluePillIdentity)ControllerContext.HttpContext.User.Identity;
+        //    return facets.Max(f => f.Id);
 
-        //    //var collections = _reader.GetFacetCollections(identity.Name, ControllerContext.HttpContext.Session);
-        //    var facets = _reader.BuildFacets(identity.Name);
-
-        //    long max = -1;
-
-        //    max = FindMax(facets, max);
-            
-        //    //foreach (var collection in collections)
+        //    //foreach (var facet in facets)
         //    //{
-        //    //   foreach (var facet in collection.Facets)
-        //    //   {
-        //    //       foreach (var aspect in facet.Aspects)
-        //    //       {
-        //    //           max = (aspect.Value > max) ? aspect.Value : max;
-        //    //       }
-        //    //   }
+        //    //    if (max < facet.Value)
+        //    //        max = facet.Value;
+
+        //    //    max = FindMax(facet.Children, max);
         //    //}
 
-        //    var model = new InfoModel { MaxFacetValue = max };
 
-        //   return View(model);
+        //    //return max;
         //}
+
+        public ActionResult Index()
+        {
+            var identity = (BluePillIdentity)ControllerContext.HttpContext.User.Identity;
+
+            //var collections = _reader.GetFacetCollections(identity.Name, ControllerContext.HttpContext.Session);
+            var facets = _reader.Read(identity.Name);
+
+            //long max = -1;
+
+            //max = FindMax(facets, max);
+
+            //foreach (var collection in collections)
+            //{
+            //   foreach (var facet in collection.Facets)
+            //   {
+            //       foreach (var aspect in facet.Aspects)
+            //       {
+            //           max = (aspect.Value > max) ? aspect.Value : max;
+            //       }
+            //   }
+            //}
+
+            var model = new InfoModel { MaxFacetValue = facets.Max(f => f.Id) };
+
+            return View(model);
+        }
 
     }
 }

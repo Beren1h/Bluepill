@@ -12,7 +12,7 @@ namespace Bluepill.Search
         //public long Value { get; set; }
         //public string FacetName { get; set; }
         //public bool IsChecked { get; set; }
-        public string Value { get; set; }
+        public long Value { get; set; }
         public string Text { get; set; }
         public string Facet { get; set; }
         public bool IsChecked { get; set; }

@@ -22,23 +22,25 @@ namespace Bluepill.Storage
             _resize = resize;
         }
 
-        public Box PackBox(string file, string userName, IEnumerable<long> facets)
+        public Box PackBox(string file, string userName, IEnumerable<Facet> facets)
         {
             var box = new Box();
             var metadata = new BsonDocument();
 
-            //foreach (var facet in facets)
-            //{
-            //    var aspectValues = new List<long>();
-            //    aspectValues.AddRange(from aspect in facet.Aspects where aspect.IsChecked select aspect.Value);
+            foreach (var facet in facets)
+            {
+                var aspectValues = new List<long>();
+                aspectValues.AddRange(from aspect in facet.Aspects where aspect.IsChecked select aspect.Value);
 
-            //    if (aspectValues.Count > 0)
-            //        metadata.Add(facet.Name, new BsonArray(aspectValues));
+                if (aspectValues.Count > 0)
+                    metadata.Add(facet.Name, new BsonArray(aspectValues));
 
-            //}
+                metadata.Add(facet.Id.ToString(), new BsonArray(aspectValues));
+            }
 
             //metadata.Add("facets", new BsonArray((from v in facets select v.Value).ToList()));
-            metadata.Add("facets", new BsonArray(facets));
+            //metadata.Add("facets", new BsonArray(facets));
+            
 
             box.MetaData = metadata;
             box.UserId = userName;
