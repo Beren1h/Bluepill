@@ -5,8 +5,8 @@
 @Html.HiddenFor(x => x.Name)
 @Html.HiddenFor(x => x.Id)
 
-<div class="facet-container" id="facet-@Model.Id" data-top="@Model.Top">
-    <h3 class="facet-action">@Model.Name</h3>
+<div class="facet-container hide" id="facet-@Model.Id" data-top="@Model.Top">
+    <h3 class="facet-action">@Model.Name<span></span></h3>
     <ul>
         @Html.EditorFor(x => x.Aspects)
     </ul>

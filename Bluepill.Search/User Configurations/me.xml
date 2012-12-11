@@ -6,6 +6,21 @@
     <aspect value="2" text="Pinup" />
     <aspect value="3" text="Genre" facet="12"/>
     <aspect value="4" text="Franchise" facet="18" />
+    <aspect value="5" text="Artist" facet="22"/>
+    <aspect value="6" text="Style" facet="23" />
+  </facet>
+  <facet id="22" name="Artist">
+    <aspect value="0" text="Benes" />
+    <aspect value="1" text="Rio" />
+    <aspect value="2" text="Turner" />
+  </facet>
+  <facet id="23" name="Style">
+    <aspect value="0" text="Photo" />
+    <aspect value="1" text="Photo Manipulation" />
+    <aspect value="2" text="Digital" />
+    <aspect value="3" text="Sketch" />
+    <aspect value="4" text="3D" />
+    <aspect value="5" text="Painting" />
   </facet>
   <facet id="18" name="Franchise">
     <aspect value="0" text="Marvel Comics" facet="19" />

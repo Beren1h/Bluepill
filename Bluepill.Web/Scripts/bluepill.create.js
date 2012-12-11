@@ -1,10 +1,13 @@
-﻿$("document").ready(function () {
+﻿
+$("document").ready(function () {
 
     InitializeImageLoad();
 
+    $(".submit").button();
+
     $(".facet-container").each(function () {
         if ($(this).data("top") == "True") {
-            $(this).show();
+            $(this).show("slow");
         }
     });
 
@@ -27,13 +30,13 @@
             link.attr("href", json.src);
             hidden.val(json.file);
 
-            //SetHeadingCount();
+            SetHeadingCount();
             ResetForm();
         });
     });
 
     $(".facets-area").on("click", ".facet-action", function () {
-        $(this).siblings("ul").toggle("show");
+        $(this).siblings("ul").slideToggle(300);
         return false;
     });
     
@@ -42,18 +45,15 @@
     });
 
     $(".facets-area").on("change", "input[type=checkbox]", function (e) {
-        
         var area = $(".facets-area");
         var target = $(e.target);
         var isChecked = target.is(":checked");
         var facet = target.data("facet");
         var container = area.find("#facet-" + facet);
 
-        console.log(facet + ", " + isChecked);
-
         if (facet != "" && isChecked) {
             target.closest(".facet-container").after(container);
-            container.show();
+            container.slideToggle(300);
         }
         else if (facet != undefined && !isChecked) {
             var child = area.find("#facet-" + facet);
@@ -66,35 +66,55 @@
                         $(this).trigger("change");
                     }
                 });
-                child.hide();
+                child.slideToggle(300);
             }
         }
-        
+        ShowSubmit();
+        SetSelection(target);
     });
-
-
 });
 
 
 function InitializeImageLoad() {
     $(".add img").load(function () {
-        $(this).animate({ opacity: 1 }, 200, function () {
+        $(this).animate({ opacity: 1 }, 300, function () {
             SetHeadingCount();
         });
-        //ResetAccordion();
     });
 }
 
-function ResetForm() {
+function SetSelection(target) {
+    var on = target.closest("ul").find("input[type=checkbox]").is(":checked")
 
+    if (on) {
+        target.closest(".facet-container").find("h3").addClass("selections");
+    }
+    else {
+        target.closest(".facet-container").find("h3").removeClass("selections");
+    }
+}
+
+function SetHeadingCount() {
+    $(".heading img").hide();
+    $(".heading span").text($(".add img").data("total") + " files");
+}
+
+function ShowSubmit() {
+    var show = $("input[type=checkbox]").is(":checked");
+
+    if (show) {
+        $(".submit").show();
+    }
+    else {
+        $(".submit").hide();
+    }
+};
+
+function ResetForm() {
     $("input[type=checkbox]").each(function () {
         $(this).attr("checked", false);
         $("label[for=" + $(this).attr("id") + "]").removeClass("on").addClass("off");
-        //$("label[for=" + $(this).attr("id") + "]").trigger("click");
-        //$(this).trigger("change");
-        //console.log($(this).attr("id"));
     });
-   
 
     $(".facet-container").each(function () {
         if ($(this).data("top") == "True") {
@@ -106,5 +126,5 @@ function ResetForm() {
     });
 
     $(".facets-area ul").hide();
-
+    $(".submit").hide();
 }

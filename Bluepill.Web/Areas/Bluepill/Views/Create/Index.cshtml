@@ -14,21 +14,23 @@
 }
 
 <div class="span12 heading">
-    <h2>Heading</h2>
+     <h2>
+         <img src="\content\images\new-image-loading.gif" />
+         <span>loading</span>
+     </h2>
 </div>
 <div class="span6">
     <form>
-    @Html.HiddenFor(x => x.File)
-    <div class="facets-area">
-        @*@Html.Partial("Facet", @Model.Facets)*@
-        @Html.EditorFor(x => x.Facets)
-    </div>
-    <a href="#" class="submit">save</a>
-        </form>
+        @Html.HiddenFor(x => x.File)
+        <div class="facets-area">
+            @Html.EditorFor(x => x.Facets)
+        </div>
+        <a href="#" class="submit">save</a>
+    </form>
 </div>
 
 <div class="span6 height12 add">
-        <a id="input" href="/application/picture/GetPicture?file=@Model.File" target="_blank">
+    <a id="input" href="/application/picture/GetPicture?file=@Model.File" target="_blank">
         <img src="/application/picture/GetResizePicture?file=@Model.File&height=@Model.ResizedHeight&width=@Model.ResizedWidth" data-total="@Model.TotalFileCount" alt="" />
     </a>
 </div>
