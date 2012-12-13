@@ -289,10 +289,6 @@
     <Content Include="Views\Shared\EditorTemplates\Facet.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Aspect.cshtml" />
     <Content Include="Areas\Bluepill\Views\Search\Dialog.cshtml" />
-    <Content Include="Areas\Bluepill\Views\Search\EditorTemplates\Aspect.cshtml" />
-    <Content Include="Areas\Bluepill\Views\Search\EditorTemplates\Facet.cshtml" />
-    <Content Include="Areas\Bluepill\Views\Create\EditorTemplates\Aspect.cshtml" />
-    <Content Include="Areas\Bluepill\Views\Create\EditorTemplates\Facet.cshtml" />
     <Content Include="Areas\Bluepill\Views\Search\Retreival.cshtml" />
     <Content Include="Areas\Bluepill\Views\Search\Empty.cshtml" />
     <Content Include="Areas\Framework\Views\Web.config" />

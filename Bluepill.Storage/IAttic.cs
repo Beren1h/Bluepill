@@ -11,7 +11,7 @@ namespace Bluepill.Storage
     public interface IAttic
     {
         void AddBox(Box box);
-        Retrieval GetBoxes(IEnumerable<long> facets, int perPage, int page, string collectionName, string[] fields = null);
+        Retrieval GetBoxes(IEnumerable<Facet> facets, int perPage, int page, string collectionName, string[] fields = null);
         Retrieval GetBox(ObjectId id, string collectionName, string[] fields = null);
         void RemoveBox(ObjectId id, string collectionName);
 

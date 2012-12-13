@@ -11,7 +11,7 @@ namespace Bluepill.Search
     public interface IQueryBuilder
     {
         //IMongoQuery Build(IEnumerable<Facet> facets);
-        IMongoQuery Build(IEnumerable<long> facets);
+        IMongoQuery Build(IEnumerable<Facet> facets);
         IMongoQuery Build(ObjectId id);
         
     }

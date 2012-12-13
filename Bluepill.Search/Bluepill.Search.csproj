@@ -67,6 +67,7 @@
     <Content Include="User Configurations\fail.xml" />
     <Content Include="User Configurations\me.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="User Configurations\test.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

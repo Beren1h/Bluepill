@@ -11,7 +11,7 @@
 .submit, .cancel { margin:3px 0 0 0; float:right; }*/
 
 
-
+/*
 .children-container { border:1px solid #ffd800; background:#050c35; margin:3px; }
 .children-container li { margin-right:3px; }
 
@@ -20,3 +20,15 @@
 
 .search-interface { display: inline-block; }
 .search-interface li { display: inline-block; vertical-align:top; }
+*/
+
+.facets-area li { display:inline-block; }
+.facets-area ul { display:none; padding:5px;  border-bottom:1px solid #06216d; }
+
+.facet-action { cursor:pointer; display:block; border-radius:3px 3px 0px 0px; padding:0px 0px 0px 5px; margin:0px; }
+
+label { padding-left:22px; cursor:pointer; }
+label.off { background:url(/content/images/checkbox_empty.png) no-repeat left center; background-size:20px 20px }
+label.on { background:url(/content/images/checkbox_full.png) no-repeat left center; background-size:20px 20px; color:#4cff00 }
+
+.selections { color:#4cff00 }

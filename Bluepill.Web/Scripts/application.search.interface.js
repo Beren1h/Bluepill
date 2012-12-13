@@ -1,135 +1,114 @@
-﻿$(document).ready(function () {
+﻿
+$("document").ready(function () {
 
-    InitializeImageLoad();
+    //$(".submit").button();
 
-    $(".button").button();
-    $(".children-container").hide();
-
-
-    function ChildrenContainerOn(id) {
-
-        var a = $("." + id + ".plus-minus a");
-        var container = $("." + id + ".children-container");
-        var children = $("." + id + ".children");
-
-        children.show(200);
-        a.text("-");
-    }
-
-    function ChildrenContainerOff(id) {
-
-        var a = $("." + id + ".plus-minus a");
-        var container = $("." + id + ".children-container");
-        var children = $("." + id + ".children");
-
-        children.hide(200);
-        a.text("+");
-    }
-
-    $(".plus-minus a").click(function (e) {
-
-        var id = $(e.target).closest(".children-container").data("checkbox");
-
-        if ($(e.target).text() == "-") {
-            ChildrenContainerOff(id);
-        }
-        else {
-            ChildrenContainerOn(id);
+    $(".facet-container").each(function () {
+        if ($(this).data("top") == "True") {
+            $(this).show("slow");
         }
     });
 
-    $("input[type=checkbox]").click(function () {
-        Update($(this));
+    //$(".submit").click(function () {
+
+    //    var data = $("form").serializeArray();
+    //    $(".heading img").show();
+    //    $(".heading span").text("saving");
+    //    $.post("\\bluepill\\create\\savepicture", data, function (response) {
+
+    //        var json = $.parseJSON(response);
+
+    //        var img = $(".add img");
+    //        var link = $(".add a");
+    //        var hidden = $("form #File");
+
+    //        img.css("opacity", 0);
+    //        img.attr("src", json.resizedSrc);
+    //        img.data("total", json.total);
+    //        link.attr("href", json.src);
+    //        hidden.val(json.file);
+
+    //        SetHeadingCount();
+    //        ResetForm();
+    //    });
+    //});
+
+    $(".facets-area").on("click", ".facet-action", function () {
+        $(this).siblings("ul").slideToggle(300);
+        return false;
     });
 
-    function Update(checkbox) {
-        var id = checkbox.attr("id");
-        var add = checkbox.is(":checked");
+    $(".facets-area").on("click", "label", function (e) {
+        $(e.target).toggleClass("on").toggleClass("off");
+    });
 
-        if (add) {
-            $("." + id + ".children-container").show(200);
-            //$("." + id + ".children-container").position({
-            //    "of": checkbox,
-            //    "my": "left top",
-            //    "at": "right bottom",
-            //    "offset": "3 3",
-            //});
+    $(".facets-area").on("change", "input[type=checkbox]", function (e) {
+        var area = $(".facets-area");
+        var target = $(e.target);
+        var isChecked = target.is(":checked");
+        var facet = target.data("facet");
+        var container = area.find("#facet-" + facet);
+
+        if (facet != "" && isChecked) {
+            target.closest(".facet-container").after(container);
+            container.slideToggle(300);
         }
-        else {
-            $("." + id + ".children-container").hide(200);
+        else if (facet != undefined && !isChecked) {
+            var child = area.find("#facet-" + facet);
+
+            if (child.length > 0) {
+                $("input[type=checkbox]", child).each(function () {
+                    if ($(this).is(":checked")) {
+                        $(this).attr("checked", false);
+                        $("label[for=" + $(this).attr("id") + "]").trigger("click");
+                        $(this).trigger("change");
+                    }
+                });
+                child.slideToggle(300);
+            }
         }
-
-        var children = $("." + id + ".children li");
-
-        if (!add) {
-            children.each(function () {
-
-                var childCheckbox = $(this).find($("input[type=checkbox]"));
-
-                if (childCheckbox.is(":checked")) {
-                    childCheckbox.attr("checked", false);
-                    Update(childCheckbox);
-                }
-
-            });
-        }
-
-        ChildrenContainerOn(id);
-    }
-
+        ShowSubmit();
+        SetSelection(target);
+    });
 });
 
+function SetSelection(target) {
+    var on = target.closest("ul").find("input[type=checkbox]").is(":checked")
 
-
-
-//$(function () {
-//    $(document).ready(function () {
-//        InitializeBreadCrumb();
-//        InitializeAccordion();
-//        InitializeImageLoad();
-//        InitializeFormSubmit();
-//    });
-//});
-
-function SetHeadingCount() {
-    $(".heading img").hide();
-    $(".heading span").text($(".add img").data("total") + " files");
+    if (on) {
+        target.closest(".facet-container").find("h3").addClass("selections");
+    }
+    else {
+        target.closest(".facet-container").find("h3").removeClass("selections");
+    }
 }
 
-//function InitializeCount() {
-//    $(".heading img").hide();
-//    $(".heading span").text($(".add img").data("total") + " files");
-//}
+function ShowSubmit() {
+    var show = $("input[type=checkbox]").is(":checked");
 
-//function InitializeFormSubmit() {
-//    $(".submit").click(function () {
-//        var data = $(this).closest("form").serializeArray();
-//        $(".heading img").show();
-//        $(".heading span").text("saving");
-//        $.post("\\bluepill\\create\\savepicture", data, function (response) {
+    if (show) {
+        $(".submit").show();
+    }
+    else {
+        $(".submit").hide();
+    }
+};
 
-//            var json = $.parseJSON(response);
-
-//            var img = $(".add img");
-//            var link = $(".add a");
-//            var hidden = $("form #File");
-
-//            img.css("opacity", 0);
-//            img.attr("src", json.resizedSrc);
-//            img.data("total", json.total);
-//            link.attr("href", json.src);
-//            hidden.val(json.file);
-
-//            SetHeadingCount();
-//        });
-//    });
-//}
-
-function InitializeImageLoad() {
-    $(".add img").load(function () {
-        $(this).animate({ opacity: 1 }, 200, function () {
-            SetHeadingCount();
-        });
-        //ResetAccordion();
+function ResetForm() {
+    $("input[type=checkbox]").each(function () {
+        $(this).attr("checked", false);
+        $("label[for=" + $(this).attr("id") + "]").removeClass("on").addClass("off");
     });
+
+    $(".facet-container").each(function () {
+        if ($(this).data("top") == "True") {
+            $(this).show();
+        }
+        else {
+            $(this).hide();
+        }
+    });
+
+    $(".facets-area ul").hide();
+    $(".submit").hide();
 }

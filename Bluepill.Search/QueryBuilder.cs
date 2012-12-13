@@ -11,23 +11,23 @@ namespace Bluepill.Search
 {
     public class QueryBuilder : IQueryBuilder
     {
-        public IMongoQuery Build(IEnumerable<long> facets)
+        public IMongoQuery Build(IEnumerable<Facet> facets)
         {
             var queries = new List<IMongoQuery>();
 
-            //foreach (var facet in facets)
-            //{
-            //    var aspects = new List<long>();
+            foreach (var facet in facets)
+            {
+                var aspects = new List<long>();
 
-            //    aspects.AddRange(from a in facet.Aspects where a.IsChecked select a.Value);
+                aspects.AddRange(from a in facet.Aspects where a.IsChecked select a.Value);
 
-            //    if (aspects.Count > 0)
-            //    {
-            //        queries.Add(Query.In("MetaData." + facet.Name, new BsonArray(aspects)));
-            //    }
-            //}
+                if (aspects.Count > 0)
+                {
+                    queries.Add(Query.In("MetaData." + facet.Id, new BsonArray(aspects)));
+                }
+            }
 
-            //queries.Add(Query.In("MetaData.facets", new BsonArray(facets)));
+            //queries.Add(Query.In("MetaData." + facets.i, new BsonArray(facets)));
 
             //foreach(var facet in facets)
             //{

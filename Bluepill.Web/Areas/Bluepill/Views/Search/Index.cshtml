@@ -20,9 +20,11 @@
         <li><span id="boxes">42</span> matches  -  <span id="maxPage">500</span> pages</li>
     </ul>
 </div>
+
 <div class="span7 drop-gradient height2 heading trash">
     <h2>Drag picture to remove</h2>
 </div>
+
 <div class="span2 small-font height2 height2-vertical-align heading">
    <div class="pull-right">
        <a href="#" class="button edit">Edit Search</a>
@@ -30,25 +32,19 @@
 </div>
 
 <div class="span12 interface">
-     @using(Html.BeginForm("FindMatches", "Search", FormMethod.Post, new {id="searchForm"}))
-     {
+    <form>
         @Html.HiddenFor(x => x.Page)
         @Html.HiddenFor(x => x.PageDelta)
         @Html.HiddenFor(x => x.TotalPages)
-        <div class="search-interface">
-            <ul>
-                <li><a href="#" class="button submit">Search</a></li>
-                <li><a href="#" class="button cancel">Cancel</a></li>
-                @foreach (var facet in Model.Facets)
-                {
-                    @Html.Partial("Facet", facet)
-                }
-            </ul>
+        <div class="facets-area">
+            @Html.EditorFor(x => x.Facets)
         </div>
-     }
-
+        <a href="#" class="button submit">search</a>
+        <a href="#" class="button cancel">cancel</a>
+    </form>
 </div>
 
-<div class="span12 height14 match-area">
+<div class="span12 height14 match-area hide">
+    <p>matches</p>
     <div class="matches" data-page="2" data-max="0" data-boxes="0"></div>
 </div>
