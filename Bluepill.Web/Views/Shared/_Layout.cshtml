@@ -32,7 +32,8 @@
             }
             else
             {
-                { Html.RenderAction("index", "settings", new { area = "application" }); }
+                //{ Html.RenderAction("index", "settings", new { area = "application" }); }
+                @Html.Partial("/Areas/Application/Views/Settings/Index.cshtml")
             }
              @RenderBody()
          </div>

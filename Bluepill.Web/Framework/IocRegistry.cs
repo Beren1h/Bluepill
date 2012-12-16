@@ -19,7 +19,6 @@ namespace Bluepill.Web.Framework
             container.RegisterType<IBluePillUserStore, BluePillUserStore>(new ContainerControlledLifetimeManager());
             container.RegisterType<IPictureGateway, PictureGateway>();
             container.RegisterType<IResize, Resize>();
-            container.RegisterType<IFacetCollectionReader, FacetCollectionReader>();
             container.RegisterType<IConfigurationReader, ConfigurationReader>();
             container.RegisterType<IQueryBuilder, QueryBuilder>();
             container.RegisterType<IPacker, Packer>();

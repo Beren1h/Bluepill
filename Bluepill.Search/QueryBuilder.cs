@@ -27,15 +27,6 @@ namespace Bluepill.Search
                 }
             }
 
-            //queries.Add(Query.In("MetaData." + facets.i, new BsonArray(facets)));
-
-            //foreach(var facet in facets)
-            //{
-            //    queries.Add(Query.And();
-            //}
-
-            //queries.Add(Query.And(
-
             return (queries.Count == 0) ? null : Query.And(queries);
             
         }

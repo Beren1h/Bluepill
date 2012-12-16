@@ -23,10 +23,10 @@ namespace Bluepill.Web.Framework
         public string GetKeyValue(HttpContextBase context, string cookieName, string key)
         {
             var cookie = context.Request.Cookies[cookieName];
-            dynamic x = "test";
+
             if (cookie != null)
             {
-                return cookie.Values[x];
+                return cookie.Values[key];
             }
 
             return null;

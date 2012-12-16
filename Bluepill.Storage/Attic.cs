@@ -17,10 +17,9 @@ namespace Bluepill.Storage
         private MongoServer _server;
         private MongoDatabase _database;
         private IQueryBuilder _queryBuilder;
-        private IFacetCollectionReader _reader;
                 
         private const string CONNECTION = "mongodb://localhost";
-        private const string DATABASE = "bluepill_test2";
+        private const string DATABASE = "bluepill";
         
         public Attic(IQueryBuilder queryBuilder)
         {

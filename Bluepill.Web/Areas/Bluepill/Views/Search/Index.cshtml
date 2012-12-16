@@ -21,17 +21,17 @@
     </ul>
 </div>
 
-<div class="span7 drop-gradient height2 heading trash">
-    <h2>Drag picture to remove</h2>
+<div class="span7 height2 heading drop-gradient trash">
+    <h2>Drag picture here to remove.</h2>
 </div>
 
 <div class="span2 small-font height2 height2-vertical-align heading">
-   <div class="pull-right">
-       <a href="#" class="button edit">Edit Search</a>
-   </div>
+    <div class="pull-right">
+        <a href="#" class="button edit">Edit Search</a>
+    </div>
 </div>
 
-<div class="span12 interface">
+<div class="span12 height14 interface">
     <form>
         @Html.HiddenFor(x => x.Page)
         @Html.HiddenFor(x => x.PageDelta)
@@ -39,8 +39,8 @@
         <div class="facets-area">
             @Html.EditorFor(x => x.Facets)
         </div>
-        <a href="#" class="button submit">search</a>
-        <a href="#" class="button cancel">cancel</a>
+        <a href="#" class="button submit">Search</a>
+        <a href="#" class="button cancel">Cancel</a>
     </form>
 </div>
 

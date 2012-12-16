@@ -8,24 +8,19 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Newtonsoft.Json.Linq;
-//using WebConstants = Bluepill.Web.Framework.Constants;
 
 namespace Bluepill.Web.Areas.Bluepill.Controllers
 {
     public class SearchController : Controller
     {
-        //private IFacetCollectionReader _facetCollectionReader;
         private IPacker _packer;
         private IAttic _attic;
-        private ICookieGateway _cookieGateway;
         private IFacetReader _facetReader;
 
-        public SearchController(IFacetReader facetReader, IPacker packer, IAttic attic, ICookieGateway cookieGateway)
+        public SearchController(IFacetReader facetReader, IPacker packer, IAttic attic)
         {
-            //_facetCollectionReader = facetCollectionReader;
             _packer = packer;
             _attic = attic;
-            _cookieGateway = cookieGateway;
             _facetReader = facetReader;
         }
 
@@ -33,10 +28,6 @@ namespace Bluepill.Web.Areas.Bluepill.Controllers
         {
             var identity = (BluePillIdentity)ControllerContext.HttpContext.User.Identity;
             var facets = _facetReader.Read(identity.Name);
-            //var collections = _facetCollectionReader.GetFacetCollections(identity.Name, Session);
-            //var cookieName = string.Format(Constants.PREFERENCE_COOKIE_FORMAT, identity.Name);
-            //var workingCollection = _cookieGateway.GetVale(ControllerContext.HttpContext, cookieName, Constants.WORKING_COLLECTION_COOKIE_KEY) ?? collections[0].Name;
-            //var collection = collections.FirstOrDefault(c => c.Name == workingCollection);
             var model = new SearchModel { Facets = facets, Page = 1, PageDelta = 0 };
 
             ViewBag.NavigationIndex = 1;
@@ -49,11 +40,7 @@ namespace Bluepill.Web.Areas.Bluepill.Controllers
         {
             ControllerContext.HttpContext.Session.Clear();
 
-            
-
             var identity = (BluePillIdentity)ControllerContext.HttpContext.User.Identity;
-
-            //var model = new SearchModel { Facets = _facetReader.BuildFacets(identity.Name) };
 
             var results =_attic.GetBoxes(model.Facets, Constants.PER_PAGE, model.Page, identity.Name);
 
@@ -70,6 +57,5 @@ namespace Bluepill.Web.Areas.Bluepill.Controllers
 
             return View("Retreival", model);
         }
-
     }
 }

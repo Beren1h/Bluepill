@@ -10,7 +10,6 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-//using WebConstants = Bluepill.Web.Framework.Constants;
 
 namespace Bluepill.Web.Areas.Application.Controllers
 {

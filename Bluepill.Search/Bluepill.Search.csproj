@@ -51,13 +51,9 @@
   <ItemGroup>
     <Compile Include="Aspect.cs" />
     <Compile Include="ConfigurationReader.cs" />
-    <Compile Include="ConfigurationSection.cs" />
     <Compile Include="Facet.cs" />
-    <Compile Include="FacetCollection.cs" />
-    <Compile Include="FacetCollectionReader.cs" />
     <Compile Include="FacetReader.cs" />
     <Compile Include="IConfigurationReader.cs" />
-    <Compile Include="IFacetCollectionReader.cs" />
     <Compile Include="IFacetReader.cs" />
     <Compile Include="IQueryBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

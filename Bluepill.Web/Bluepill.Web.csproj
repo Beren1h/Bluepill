@@ -147,11 +147,7 @@
     <Compile Include="Areas\Framework\FrameworkAreaRegistration.cs" />
     <Compile Include="Areas\Framework\Controllers\AuthenticationController.cs" />
     <Compile Include="Areas\Application\Controllers\PictureController.cs" />
-    <Compile Include="Areas\Application\Controllers\SearchInterfaceController.cs" />
-    <Compile Include="Areas\Application\Controllers\SettingsController.cs" />
     <Compile Include="Areas\Framework\Models\AuthenticationModel.cs" />
-    <Compile Include="Areas\Application\Models\SearchInterfaceModel.cs" />
-    <Compile Include="Areas\Application\Models\SettingsModel.cs" />
     <Compile Include="Areas\Framework\Models\Validators\AuthenticationModelValidator.cs" />
     <Compile Include="Areas\layout\Controllers\CreateController.cs" />
     <Compile Include="Areas\layout\layoutAreaRegistration.cs" />
@@ -281,14 +277,10 @@
     <Content Include="Scripts\application.search.interface.js" />
     <Content Include="Scripts\application.settings.js" />
     <Content Include="Scripts\bluepill.search.js" />
-    <Content Include="Areas\Application\Views\SearchInterface\Index.cshtml" />
-    <Content Include="Areas\Application\Views\SearchInterface\EditorTemplates\Facet.cshtml" />
-    <Content Include="Areas\Application\Views\SearchInterface\EditorTemplates\Aspect.cshtml" />
     <Content Include="Scripts\jquery.mousewheel.js" />
     <Content Include="Scripts\layout.create.js" />
     <Content Include="Views\Shared\EditorTemplates\Facet.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Aspect.cshtml" />
-    <Content Include="Areas\Bluepill\Views\Search\Dialog.cshtml" />
     <Content Include="Areas\Bluepill\Views\Search\Retreival.cshtml" />
     <Content Include="Areas\Bluepill\Views\Search\Empty.cshtml" />
     <Content Include="Areas\Framework\Views\Web.config" />
@@ -298,18 +290,14 @@
     <Content Include="Areas\Application\Views\Info\Index.cshtml" />
     <Content Include="Areas\layout\Views\Create\base.cshtml" />
     <Content Include="Areas\layout\Views\Create\Facet.cshtml" />
-    <Content Include="Areas\Bluepill\Views\Create\Facet.cshtml" />
-    <Content Include="Areas\Bluepill\Views\Search\Facet.cshtml" />
     <None Include="Scripts\jquery-1.8.1.intellisense.js" />
     <Content Include="Scripts\authentication.js" />
     <Content Include="Scripts\bluepill.create.js" />
-    <Content Include="Scripts\global.js" />
     <Content Include="Scripts\jquery-1.8.1.js" />
     <Content Include="Scripts\jquery-1.8.1.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.23.js" />
     <Content Include="Scripts\jquery-ui-1.8.23.min.js" />
     <Content Include="Scripts\jquery-ui-combobox.js" />
-    <Content Include="Scripts\settings.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

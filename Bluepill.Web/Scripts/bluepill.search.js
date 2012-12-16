@@ -22,8 +22,6 @@
     $(".match-area").hide();
     $(".heading").hide();
     $(".cancel").hide();
-    //$("#matchCount").hide();
-    //$("#pageCount").hide();
 });
 
 function IncrememntPage(page, max, delta) {
@@ -65,9 +63,13 @@ function ShowResults() {
 
     if ($(".matches").data("boxes") == "0") {
         $(".match-counts ul").hide();
+        $(".trash h2").hide();
+        $(".trash").removeClass("drop-gradient");
     }
     else {
         $(".match-counts ul").show();
+        $(".trash h2").show();
+        $(".trash").addClass("drop-gradient");
     }
     $(".cancel").show();
 }
@@ -89,27 +91,11 @@ function MouseWheelHandler(event, delta, deltaX, deltaY) {
     var max = parseInt(results.data("max"));
     var increment = IncrememntPage(page, max, delta);
 
-    //console.log("page = " + page + ", max = " + max + ", delta = " + delta + ", increment = " + increment);
-
     if (increment != 0) {
 
         $("#Page").val(page + increment)
-        //var data = $("#searchForm").serializeArray();
 
-        //var facets = [];
-
-        //$("input[type=checkbox]").each(function () {
-        //    if ($(this).is(":checked")) {
-        //        facets.push($(this).attr("id"));
-        //    }
-        //});
-
-        //var datax = { Page: $("#Page").val(), PageDelta: $("#PageDelta").val(), TotalPages: $("#TotalPages").val(), selects: facets };
         var data = $("form").serializeArray();
-        //var data = $.param(datax, true);
-
-        //console.log(data);
-        //console.log(data2);
 
         $(".match-area").unmousewheel(MouseWheelHandler);
 

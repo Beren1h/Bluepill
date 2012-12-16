@@ -1,28 +1,4 @@
-﻿/*#accordion { font-size:12px; overflow:hidden; }
-
-.aspectContainer { float:left; }
-.aspectLabel { margin:2px; }
-
-.breadCrumb { color:#330303; float:right; }
-
-.ui-accordion .ui-accordion-content { overflow:hidden !important; }
-.ui-accordion-content { border-radius:0px !important; }
-
-.submit, .cancel { margin:3px 0 0 0; float:right; }*/
-
-
-/*
-.children-container { border:1px solid #ffd800; background:#050c35; margin:3px; }
-.children-container li { margin-right:3px; }
-
-.plus-minus li { margin:5px; background:#11209c; border:1px solid #9b850c; width:20px; height:20px; line-height:20px; border-radius:5px; text-align:center; vertical-align:middle; }
-.plus-minus li a { font-size:24px; text-decoration:none; color:#ffd800 }
-
-.search-interface { display: inline-block; }
-.search-interface li { display: inline-block; vertical-align:top; }
-*/
-
-.facets-area li { display:inline-block; }
+﻿.facets-area li { display:inline-block; }
 .facets-area ul { display:none; padding:5px;  border-bottom:1px solid #06216d; }
 
 .facet-action { cursor:pointer; display:block; border-radius:3px 3px 0px 0px; padding:0px 0px 0px 5px; margin:0px; }
@@ -32,3 +8,5 @@ label.off { background:url(/content/images/checkbox_empty.png) no-repeat left ce
 label.on { background:url(/content/images/checkbox_full.png) no-repeat left center; background-size:20px 20px; color:#4cff00 }
 
 .selections { color:#4cff00 }
+
+.button { margin-top:10px; }
