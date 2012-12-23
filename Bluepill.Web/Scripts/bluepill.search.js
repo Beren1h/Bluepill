@@ -63,13 +63,13 @@ function ShowResults() {
 
     if ($(".matches").data("boxes") == "0") {
         $(".match-counts ul").hide();
-        $(".trash h2").hide();
-        $(".trash").removeClass("drop-gradient");
+        //$(".trash h2").hide();
+        //$(".trash").removeClass("drop-gradient");
     }
     else {
         $(".match-counts ul").show();
-        $(".trash h2").show();
-        $(".trash").addClass("drop-gradient");
+        //$(".trash h2").show();
+        //$(".trash").addClass("drop-gradient");
     }
     $(".cancel").show();
 }
@@ -105,7 +105,9 @@ function MouseWheelHandler(event, delta, deltaX, deltaY) {
 
                 $(this).animate({ opacity: 1 }, 200);
 
-                $(".match").draggable();
+                $(".match").draggable({
+                    revert:true
+                });
 
                 $(".trash").droppable({
                     drop: function (e, ui) {
@@ -122,18 +124,18 @@ function MouseWheelHandler(event, delta, deltaX, deltaY) {
 
 
                         $(".drop-gradient").animate({ opacity: 0.2 }, 200, function () {
-                            $(".drop-gradient h2").show();
+                            //$(".drop-gradient h2").show();
                         });
                         $(ui.draggable).remove();
                     },
                     over: function (e, ui) {
                         $(".drop-gradient").animate({ opacity: 1 }, 200, function () {
-                            $(".drop-gradient h2").hide();
+                            //$(".drop-gradient h2").hide();
                         });
                     },
                     out: function (e, ui) {
                         $(".drop-gradient").animate({ opacity: 0.2 }, 200, function () {
-                            $(".drop-gradient h2").show();
+                            //$(".drop-gradient h2").show();
                         });
                     }
                 });

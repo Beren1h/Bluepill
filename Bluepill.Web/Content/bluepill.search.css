@@ -8,21 +8,31 @@
 .small-font { font-size:11px; }
 
 .height2-vertical-align { vertical-align:middle; line-height:50px; }
+.height2-vertical-align img { vertical-align:middle; }
 
 .drop-gradient {
-background: rgb(247,213,91); /* Old browsers */
-background: -moz-linear-gradient(top, rgba(247,213,91,1) 1%, rgba(193,167,17,1) 99%); /* FF3.6+ */
-background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,rgba(247,213,91,1)), color-stop(99%,rgba(193,167,17,1))); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(top, rgba(247,213,91,1) 1%,rgba(193,167,17,1) 99%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(top, rgba(247,213,91,1) 1%,rgba(193,167,17,1) 99%); /* Opera 11.10+ */
-background: -ms-linear-gradient(top, rgba(247,213,91,1) 1%,rgba(193,167,17,1) 99%); /* IE10+ */
-background: linear-gradient(to bottom, rgba(247,213,91,1) 1%,rgba(193,167,17,1) 99%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7d55b', endColorstr='#c1a711',GradientType=0 ); /* IE6-9 */
-opacity: 0.2;
-border: 2px solid #f7c35b;
-color: #370404;
-border-radius:15px;
+/* IE10 Consumer Preview */ 
+background-image: -ms-radial-gradient(center bottom, ellipse farthest-side, #0A1B4A 0%, #152885 100%);
 
+/* Mozilla Firefox */ 
+background-image: -moz-radial-gradient(center bottom, ellipse farthest-side, #0A1B4A 0%, #152885 100%);
+
+/* Opera */ 
+background-image: -o-radial-gradient(center bottom, ellipse farthest-side, #0A1B4A 0%, #152885 100%);
+
+/* Webkit (Safari/Chrome 10) */ 
+background-image: -webkit-gradient(radial, center bottom, 0, center bottom, 487, color-stop(0, #0A1B4A), color-stop(1, #152885));
+
+/* Webkit (Chrome 11+) */ 
+background-image: -webkit-radial-gradient(center bottom, ellipse farthest-side, #0A1B4A 0%, #152885 100%);
+
+/* W3C Markup, IE10 Release Preview */ 
+background-image: radial-gradient(ellipse farthest-side at center bottom, #0A1B4A 0%, #152885 100%);
+
+opacity:0.2;
 }
 
-.drop-gradient h2 { text-align:center; margin-top:10px; }
+
+.drop-gradient h2 { text-align:center; vertical-align:middle; margin-top:15px; font-size:12px; }
+
+.trash {border-radius:15px;}
