@@ -38,10 +38,6 @@ namespace Bluepill.Storage
                 metadata.Add(facet.Id.ToString(), new BsonArray(aspectValues));
             }
 
-            //metadata.Add("facets", new BsonArray((from v in facets select v.Value).ToList()));
-            //metadata.Add("facets", new BsonArray(facets));
-            
-
             box.MetaData = metadata;
             box.UserId = userName;
             
@@ -74,8 +70,6 @@ namespace Bluepill.Storage
             }
 
             return box;
-            
-            
 
         }
     }

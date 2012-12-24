@@ -10,7 +10,6 @@ namespace Bluepill.Storage
     {
         public const string OBJECT_ID = "ObjectId";
         public const string METADATA = "MetaData";
-        //public const string COMPARISON_BYTES = "ComparisonBytes";
         public const string REDUCED_BYTES = "ReducedBytes";
         public const string BYTES = "Bytes";
         public const string REDUCED_BYTES_WIDTH = "ReducedBytesWidth";

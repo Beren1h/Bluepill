@@ -24,8 +24,10 @@ $("document").ready(function () {
         var container = area.find("#facet-" + facet);
 
         if (facet != "" && isChecked) {
-            target.closest(".facet-container").after(container);
-            container.slideToggle(300);
+            target.closest(".facet-container").before(container);
+            container.slideToggle(200, "linear", function () {
+                $(".facet-action", container).siblings("ul").slideDown(300);
+            });
         }
         else if (facet != undefined && !isChecked) {
             var child = area.find("#facet-" + facet);
@@ -81,6 +83,8 @@ function ResetForm() {
         else {
             $(this).hide();
         }
+        $("label", $(this)).removeClass("on").addClass("off");
+        $("h3", $(this)).removeClass("selections");
     });
 
     $(".facets-area ul").hide();

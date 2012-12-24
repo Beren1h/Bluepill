@@ -16,7 +16,6 @@ namespace Bluepill.Storage
         public BsonDocument MetaData { get; set; }
         public int ReducedBytesWidth { get; set; }
         public int ReducedBytesHeight { get; set; }
-        //public byte[] ComparisonBytes { get; set; }
         public byte[] ReducedBytes { get; set; }
         public byte[] Bytes { get; set; }
         public string UserId { get; set; }

@@ -140,19 +140,22 @@ namespace Bluepill.Storage
         {
             var collection = _database.GetCollection<Box>(box.UserId);
 
-            var options = new IndexOptionsDocument();
-            options.Add(new BsonDocument("unique", true));
+            //var options = new IndexOptionsDocument();
+            //options.Add(new BsonDocument("unique", true));
 
-            var ensureUnique = new IndexKeysDocument();
-            ensureUnique.Add(Fields.HASH, box.Hash);
+            //var ensureUnique = new IndexKeysDocument();
+            //ensureUnique.Add(Fields.HASH, box.Hash);
 
-            var keys = new IndexKeysDocument();
+            //var keys = new IndexKeysDocument();
             foreach (var item in box.MetaData)
             {
                 collection.EnsureIndex(item.Name);
             }
+            
+            //collection.EnsureIndex(ensureUnique, options);
 
-            collection.EnsureIndex(ensureUnique, options);
+            collection.EnsureIndex(new IndexKeysBuilder().Ascending(Fields.HASH), IndexOptions.SetUnique(true));
+
 
             return collection;
         }

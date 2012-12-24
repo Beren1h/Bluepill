@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<root>
+<root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://bluepill.org configuration.xsd">
   <facet id="0" name="Muse" top="yes">
     <aspect value="0" text="Mood" facet="1"/>
     <aspect value="1" text="Focus" facet="2"/>
@@ -30,6 +30,7 @@
     <aspect value="4" text="Star Wars" />
     <aspect value="5" text="Lord of the Rings" />
     <aspect value="6" text="Other Franchise" facet="21" />
+    <aspect value="7" text="Fathom" />
   </facet>
   <facet id="21" name="Other Franchise">
     <aspect value="0" text="Witchblade" />
@@ -47,6 +48,7 @@
     <aspect value="6" text="Phoenix" />
     <aspect value="7" text="Black Cat" />
     <aspect value="8" text="Thor" />
+    <aspect value="9" text="Deadpool" />
   </facet>
   <facet id="20" name="DC Comics">
     <aspect value="0" text="Batman" />
@@ -136,6 +138,8 @@
     <aspect value="5" text="Bright" />
     <aspect value="6" text="Provocative" />
     <aspect value="7" text="Creepy" />
+    <aspect value="8" text="Cold" />
+    <aspect value="9" text="Hot" />
   </facet>
   <facet id="2" name="Focus">
     <aspect value="0" text="Costume" facet="3" />
