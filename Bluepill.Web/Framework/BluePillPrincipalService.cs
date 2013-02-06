@@ -1,4 +1,5 @@
 ﻿using Bluepill.Search;
+using Bluepill.Storage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,11 +13,13 @@ namespace Bluepill.Web.Framework
     {
         private IBluePillUserStore _userStore;
         private ICookieGateway _cookieGateway;
+        private IAttic _attic;
 
-        public BluePillPrincipalService(IBluePillUserStore userStore, ICookieGateway cookieGateway)
+        public BluePillPrincipalService(IBluePillUserStore userStore, ICookieGateway cookieGateway, IAttic attic)
         {
             _userStore = userStore;
             _cookieGateway = cookieGateway;
+            _attic = attic;
         }
 
         public IPrincipal GetPrincipal()
@@ -37,6 +40,10 @@ namespace Bluepill.Web.Framework
 
                 if(user != null)
                     identity.Collections = user.Collections;
+
+                identity.AccessToken = _attic.GetToken(identity.Name);
+                   
+
             }
 
             return new GenericPrincipal(identity, roles.ToArray());

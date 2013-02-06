@@ -1,4 +1,5 @@
-﻿using Bluepill.Search;
+﻿//using Bluepill.Dropbox;
+using Bluepill.Search;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
@@ -20,12 +21,36 @@ namespace Bluepill.Storage
                 
         private const string CONNECTION = "mongodb://localhost";
         private const string DATABASE = "bluepill";
+        private const string TOKEN_COLLECTION = "tokens";
         
         public Attic(IQueryBuilder queryBuilder)
         {
             _server = MongoServer.Create(CONNECTION);
             _database = _server.GetDatabase(DATABASE);
             _queryBuilder = queryBuilder;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="token"></param>
+        public void AddToken(Token token)
+        {
+            var collection = _database.GetCollection<Token>(TOKEN_COLLECTION);
+            collection.EnsureIndex(new IndexKeysBuilder().Ascending(Fields.TOKEN_USER_ID), IndexOptions.SetUnique(true));
+            collection.Insert(token);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        public Token GetToken(string user)
+        {
+            var query = Query.EQ(Fields.TOKEN_USER_ID, user);
+            var collection = _database.GetCollection<Token>(TOKEN_COLLECTION);
+            return collection.FindAs<Token>(query).FirstOrDefault();
         }
 
         /// <summary>

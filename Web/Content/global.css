@@ -1,0 +1,5 @@
+﻿body { background-color:#100f0f; color:#f3bf77 }
+
+.small { font-size:0.8em }
+.ui-dialog .ui-dialog-titlebar { height:20px; background:none; border:none; padding:0; margin:0 }
+.settings { float:right; margin-top:-15px; }

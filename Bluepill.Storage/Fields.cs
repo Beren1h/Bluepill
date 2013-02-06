@@ -18,5 +18,9 @@ namespace Bluepill.Storage
         public const string GRIDFS_ID = "GridFSId";
         public const string USER_ID = "UserId";
         public const string HASH = "Hash";
+
+        //Token
+        public const string TOKEN_USER_ID = "UserId";
+
     }
 }

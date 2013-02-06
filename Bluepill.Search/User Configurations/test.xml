@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://bluepill.org configuration.xsd">
+  <facet name="Muse" value="1">
+    <facet name="Style" value="2">
+      <facet name="Photo" value="3" />
+      <facet name="Art" value="4" />
+      <facet name="Photo Manipulation" value="64" />
+      <facet name="3D" value="65" />
+      <facet name="Sketch" value="66" />
+    </facet>
+    <facet name="Mood" value="38">
+      <facet name="Happy" value="39" />
+      <facet name="Sad" value="40" />
+      <facet name="Angry" value="41" />
+      <facet name="Dark" value="42" />
+      <facet name="Funny" value="43" />
+      <facet name="Bright" value="44" />
+      <facet name="Provocative" value="45" />
+      <facet name="Thoughtful" value="46" />
+    </facet>
+    <facet name="Body" value="47">
+      <facet name="Full" value="60">
+        <facet name="Upper" value="61"/>
+        <facet name="Lower" value="62" />
+      </facet>
+      <facet name="Partial" value="63">
+        <facet name="Head" value="48" />
+        <facet name="Eyes" value="49" />
+        <facet name="Arms" value="50" />
+        <facet name="Face" value="51" />
+        <facet name="Lips" value="52" />
+        <facet name="Hands" value="53" />
+        <facet name="Fingers" value="54" />
+        <facet name="Nose" value="55" />
+        <facet name="Ear" value="56" />
+        <facet name="Legs" value="57" />
+        <facet name="Feet" value="58" />
+        <facet name="Hair" value="59" />  
+      </facet>
+    </facet>
+    <facet name="Genre" value="32">
+      <facet name="Comic" value="33" />
+      <facet name="Fantasy" value="34" />
+      <facet name="Gaming" value="35" />
+      <facet name="Scifi" value="36" />
+    </facet>
+    <facet name="Focus" value="5">
+      <facet name="Animal" value="11">
+        <facet name="Cat" value="12" />
+        <facet name="Dog" value="13" />
+        <facet name="Horse" value="14" />
+      </facet>
+      <facet name="Costume" value="15" />
+      <facet name="Creature" value="16">
+        <facet name="Vampire" value="17"/>
+        <facet name="Humaniod" value="18" />
+      </facet>
+      <facet name="Human" value="6" />
+      <facet name="Robot" value="24" />
+      <facet name="Vehicle" value="25">
+        <facet name="Car" value="26" />
+        <facet name="Airplane" value="27" />
+        <facet name="Spaceship" value="28" />
+      </facet>
+      <facet name="Landscape" value="31" />
+      <facet name="Object" value="29">
+        <facet name="Jewlery" value="30" />
+        <facet name="Weapon" value="7">
+          <facet name="Gun" value="8">
+            <facet name="Modren" value="19" />
+            <facet name="Historical" value="20" />
+            <facet name="Scifi" value="21" />
+          </facet>
+          <facet name="Bow" value="9" />
+          <facet name="Sword" value="22" />
+          <facet name="Knife" value="23" />
+        </facet>
+        <facet name="Armor" value="37" />
+      </facet>
+     
+    </facet>
+  </facet>
+  <facet name="Family" value="10">
+  </facet>
+</root> 

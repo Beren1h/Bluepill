@@ -9,6 +9,6 @@ namespace Bluepill.Storage
 {
     public interface IPacker
     {
-        Box PackBox(string file, string userName, IEnumerable<Facet> factes);
+        Box PackBox(byte[] bytes, string userName, IEnumerable<Facet> factes);
     }
 }

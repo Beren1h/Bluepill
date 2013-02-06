@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bluepill.Storage;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Principal;
@@ -27,6 +28,8 @@ namespace Bluepill.Web.Framework
         /// 
         /// </summary>
         public List<string> Collections { get; set; }
+
+        public Token AccessToken { get; set; }
         
     }
 }

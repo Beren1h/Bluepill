@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bluepill.Storage.Test", "Bl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bluepill.Search", "Bluepill.Search\Bluepill.Search.csproj", "{17E26727-DB5C-4BA7-8B21-FBDDF1876EC7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bluepill.Dropbox", "Bluepill.Dropbox\Bluepill.Dropbox.csproj", "{67B81AAF-3047-4C38-AFD1-9C64094102E4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{17E26727-DB5C-4BA7-8B21-FBDDF1876EC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{17E26727-DB5C-4BA7-8B21-FBDDF1876EC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{17E26727-DB5C-4BA7-8B21-FBDDF1876EC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67B81AAF-3047-4C38-AFD1-9C64094102E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67B81AAF-3047-4C38-AFD1-9C64094102E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67B81AAF-3047-4C38-AFD1-9C64094102E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67B81AAF-3047-4C38-AFD1-9C64094102E4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

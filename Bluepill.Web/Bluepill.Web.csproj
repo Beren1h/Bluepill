@@ -136,7 +136,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Areas\Application\Controllers\DropboxController.cs" />
     <Compile Include="Areas\Application\Controllers\InfoController.cs" />
+    <Compile Include="Areas\Application\Models\DropboxModel.cs" />
     <Compile Include="Areas\Application\Models\InfoModel.cs" />
     <Compile Include="Areas\Bluepill\Controllers\CreateController.cs" />
     <Compile Include="Areas\Bluepill\Controllers\SearchController.cs" />
@@ -288,6 +290,7 @@
     <Content Include="Areas\Application\Views\Info\Index.cshtml" />
     <Content Include="Areas\layout\Views\Create\base.cshtml" />
     <Content Include="Areas\layout\Views\Create\Facet.cshtml" />
+    <Content Include="Areas\Application\Views\Dropbox\Index.cshtml" />
     <None Include="Scripts\jquery-1.8.1.intellisense.js" />
     <Content Include="Scripts\authentication.js" />
     <Content Include="Scripts\bluepill.create.js" />
@@ -327,6 +330,10 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Bluepill.Dropbox\Bluepill.Dropbox.csproj">
+      <Project>{67b81aaf-3047-4c38-afd1-9c64094102e4}</Project>
+      <Name>Bluepill.Dropbox</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Bluepill.Picture\Bluepill.Picture.csproj">
       <Project>{196dd9c1-e189-47d3-a586-3defb63a9999}</Project>
       <Name>Bluepill.Picture</Name>

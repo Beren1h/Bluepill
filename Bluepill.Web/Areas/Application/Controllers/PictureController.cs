@@ -1,4 +1,5 @@
-﻿using Bluepill.Picture;
+﻿using Bluepill.Dropbox;
+using Bluepill.Picture;
 using Bluepill.Storage;
 using Bluepill.Web.Framework;
 using MongoDB.Bson;
@@ -8,6 +9,8 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -17,28 +20,38 @@ namespace Bluepill.Web.Areas.Application.Controllers
     {
         private IResize _resize;
         private IAttic _attic;
+        private IApiRequest _dropbox;
 
-        public PictureController(IResize resize, IAttic attic)
+        public PictureController(IResize resize, IAttic attic, IApiRequest dropbox)
         {
             _resize = resize;
             _attic = attic;
+            _dropbox = dropbox;
         }
 
-        public FileContentResult GetResizePicture(string file, int width, int height)
+        public async Task<FileContentResult> GetResizePicture(string file, int width, int height)
         {
-            
-            using (var source = new Bitmap(file))
+
+            var client = new HttpClient();
+            var response = await client.GetByteArrayAsync(file);
+
+            using (var rms = new MemoryStream(response))
             {
-                using (var ms = new MemoryStream())
+                using (var source = new Bitmap(rms))
                 {
-                    source.Save(ms, ImageFormat.Png);
+                    using (var ms = new MemoryStream())
+                    {
+                        source.Save(ms, ImageFormat.Png);
+                    }
+
+                    var scale = _resize.DetermineResizeScale(source.Width, source.Height, width, height);
+                    var bytes = _resize.CreateResizedPicture(rms, scale);
+
+                    return new FileContentResult(bytes, "image/png");
                 }
-
-                var scale = _resize.DetermineResizeScale(source.Width, source.Height, width, height);
-                var bytes = _resize.CreateResizedPicture(file, scale);
-
-                return new FileContentResult(bytes, "image/png");
             }
+
+            
         }
 
         public FileContentResult GetPicture(string file)
@@ -93,15 +106,17 @@ namespace Bluepill.Web.Areas.Application.Controllers
                 var box = boxes[index];
                 var retrieval = _attic.GetBox(box._id, identity.Name, new[] { Fields.BYTES, Fields.IS_LARGE, Fields.GRIDFS_ID, Fields.OBJECT_ID });
 
-                using (var ms = new MemoryStream(retrieval.Boxes[0].Bytes))
-                {
-                    using (var bitmap = new Bitmap(ms))
-                    {
-                        var removedFile = string.Format("{0}\\removed_{1}.png", "c:\\bluepill\\input", retrieval.Boxes[0]._id);
-                        using (var fs = new FileStream(removedFile, FileMode.Create)) { }
-                        bitmap.Save(removedFile);
-                    }
-                }
+                //using (var ms = new MemoryStream(retrieval.Boxes[0].Bytes))
+                //{
+                    //using (var bitmap = new Bitmap(ms))
+                    //{
+                        //var removedFile = string.Format("{0}\\removed_{1}.png", "c:\\bluepill\\input", retrieval.Boxes[0]._id);
+                        //using (var fs = new FileStream(removedFile, FileMode.Create)) { }
+                        //bitmap.Save(removedFile);
+                        var filename = string.Format("removed_{0}.png", retrieval.Boxes[0]._id);
+                        _dropbox.Upload(identity.AccessToken, filename, retrieval.Boxes[0].Bytes);
+                    //}
+                //}
 
                 _attic.RemoveBox(retrieval.Boxes[0]._id, identity.Name);
 

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using Bluepill.Web.Gateways;
 using Bluepill.Storage;
+using Bluepill.Dropbox;
 
 namespace Bluepill.Web.Framework
 {
@@ -25,6 +26,9 @@ namespace Bluepill.Web.Framework
             container.RegisterType<IAttic, Attic>();
             container.RegisterType<ICookieGateway, CookieGateway>();
             container.RegisterType<IFacetReader, FacetReader>();
+            container.RegisterType<IApiRequestParameters, ApiRequestParameters>();
+            container.RegisterType<IApiRequest, ApiRequest>();
+            container.RegisterType<ISignature, Signature>();
 
             FluentValidation.AssemblyScanner.FindValidatorsInAssemblyContaining<Web.Areas.Application.Models.Validators.AuthenticationModelValidator>()
                 .ForEach(result => container.RegisterType(result.InterfaceType, result.ValidatorType));

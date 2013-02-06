@@ -13,24 +13,33 @@
     <script src="/scripts/bluepill.create.js" type="text/javascript"></script>
 }
 
-<div class="span12 heading">
+<div class="span12 heading" data-total="@Model.TotalFileCount">
      <h2>
          <img src="\content\images\new-image-loading.gif" />
          <span>loading</span>
      </h2>
 </div>
-<div class="span6">
-    <form>
-        @Html.HiddenFor(x => x.File)
-        <div class="facets-area">
-            @Html.EditorFor(x => x.Facets)
-        </div>
-        <a href="#" class="submit">save</a>
-    </form>
-</div>
 
-<div class="span6 height12 add">
-    <a id="input" href="/application/picture/GetPicture?file=@Model.File" target="_blank">
-        <img src="/application/picture/GetResizePicture?file=@Model.File&height=@Model.ResizedHeight&width=@Model.ResizedWidth" data-total="@Model.TotalFileCount" alt="" />
-    </a>
-</div>
+@if(Model.TotalFileCount == 0)
+{
+    <div class="span12 height12"></div>
+}
+else
+{
+    <div class="span6 facets">
+        <form>
+            @Html.HiddenFor(x => x.Url)
+            @Html.HiddenFor(x => x.File)
+            <div class="facets-area hide">
+                @Html.EditorFor(x => x.Facets)
+            </div>
+            <a href="#" class="submit">save</a>
+        </form>
+    </div>
+
+    <div class="span6 height12 add">
+        <a id="input" href="@Model.Url" target="_blank">
+            <img src="/application/picture/GetResizePicture?file=@Model.Url&height=@Model.ResizedHeight&width=@Model.ResizedWidth" alt="" />
+        </a>
+    </div>
+}

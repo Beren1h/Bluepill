@@ -1,4 +1,5 @@
-﻿using Bluepill.Search;
+﻿//using Bluepill.Dropbox;
+using Bluepill.Search;
 using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,8 @@ namespace Bluepill.Storage
         Retrieval GetBoxes(IEnumerable<Facet> facets, int perPage, int page, string collectionName, string[] fields = null);
         Retrieval GetBox(ObjectId id, string collectionName, string[] fields = null);
         void RemoveBox(ObjectId id, string collectionName);
+        void AddToken(Token token);
+        Token GetToken(string user);
 
         void Empty();
     }

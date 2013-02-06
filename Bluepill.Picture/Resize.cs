@@ -43,9 +43,9 @@ namespace Bluepill.Picture
         /// <param name="source"></param>
         /// <param name="scale"></param>
         /// <returns></returns>
-        public byte[] CreateResizedPicture(string file, Scale scale)
+        public byte[] CreateResizedPicture(dynamic pic, Scale scale)
         {
-            using (var source = new Bitmap(file))
+            using (var source = new Bitmap(pic))
             {
                 using (var resized = new Bitmap(scale.Width, scale.Height))
                 {
@@ -64,6 +64,13 @@ namespace Bluepill.Picture
                 }
             }
         }
+           
+
+
+
+
+
+
 
 
 

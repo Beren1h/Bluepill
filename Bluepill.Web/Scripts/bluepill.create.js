@@ -6,7 +6,6 @@ $("document").ready(function () {
     $(".submit").button();
 
     $(".submit").click(function () {
-
         var data = $("form").serializeArray();
         $(".heading img").show();
         $(".heading span").text("saving");
@@ -14,15 +13,27 @@ $("document").ready(function () {
 
             var json = $.parseJSON(response);
 
-            var img = $(".add img");
-            var link = $(".add a");
-            var hidden = $("form #File");
+            $(".heading").data("total", json.total);
 
-            img.css("opacity", 0);
-            img.attr("src", json.resizedSrc);
-            img.data("total", json.total);
-            link.attr("href", json.src);
-            hidden.val(json.file);
+            if (json.total > 0) {
+
+                var img = $(".add img");
+                var link = $(".add a");
+                var hidden = $("form #File");
+
+                img.css("opacity", 0);
+                img.attr("src", json.resizedSrc);
+
+                link.attr("href", json.src);
+
+                $("form #File").val(json.file);
+                $("form #Url").val(json.url);
+            }
+            else {
+                $(".facets").remove();
+                $(".add").remove();
+                $(".heading").addClass("height12");
+            }
 
             SetHeadingCount();
             ResetForm();
@@ -40,6 +51,18 @@ function InitializeImageLoad() {
 }
 
 function SetHeadingCount() {
+
+    var total = $(".heading").data("total") 
+
     $(".heading img").hide();
-    $(".heading span").text($(".add img").data("total") + " files");
+
+    if (parseInt(total) == 0) {
+        $(".heading span").text("upload images to begin");
+        $(".add").remove();
+    }
+    else {
+        $(".heading span").text(total + " files");
+        $(".facets-area").fadeIn();
+    }
+
 }

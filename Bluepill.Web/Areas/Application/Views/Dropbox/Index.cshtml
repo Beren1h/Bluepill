@@ -1,0 +1,23 @@
+﻿@model Bluepill.Web.Areas.Application.Models.DropboxModel
+
+<a href="https://www.dropbox.com/1/oauth/authorize?oauth_token=@Model.AuthorizationToken" target="_blank">Dropbox Authorization</a>
+
+@using (Html.BeginForm("GetAccessToken", "Dropbox", new { area = "Application" }))
+{
+    @Html.TextBoxFor(x => x.AuthorizationToken);
+    @Html.TextBoxFor(x => x.AuthorizationSecret);
+    <input type="submit" value="submit" />
+}
+
+
+<ul>
+    <li>
+        access token = @Model.AccessToken
+    </li>
+    <li>
+        secret token = @Model.AccessSecret
+    </li>
+</ul>
+
+
+<a href="@Url.Action("GetMetaData")">meta test</a>

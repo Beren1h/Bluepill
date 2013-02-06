@@ -22,7 +22,7 @@ namespace Bluepill.Storage
             _resize = resize;
         }
 
-        public Box PackBox(string file, string userName, IEnumerable<Facet> facets)
+        public Box PackBox(byte[] bytes, string userName, IEnumerable<Facet> facets)
         {
             var box = new Box();
             var metadata = new BsonDocument();
@@ -40,29 +40,43 @@ namespace Bluepill.Storage
 
             box.MetaData = metadata;
             box.UserId = userName;
-            
-            using(var source = new Bitmap(file))
+
+            using (var ms = new MemoryStream(bytes))
             {
-                using (var ms = new MemoryStream())
+                using (var source = new Bitmap(ms))
                 {
-                    source.Save(ms, ImageFormat.Png);
-                    box.Bytes = ms.ToArray();
+                    box.Bytes = bytes;
+                    var reducedScale = _resize.DetermineResizeScale(source.Width, source.Height, 200, 200);
+                    box.ReducedBytes = _resize.CreateResizedPicture(source, reducedScale);
+
+                    box.ReducedBytesWidth = reducedScale.Width;
+                    box.ReducedBytesHeight = reducedScale.Height;
                 }
-
-                var reducedScale = _resize.DetermineResizeScale(source.Width, source.Height, 200, 200);
-
-                box.ReducedBytes = _resize.CreateResizedPicture(file, reducedScale);
-
-                box.ReducedBytesWidth = reducedScale.Width;
-                box.ReducedBytesHeight = reducedScale.Height;
             }
 
-            if (box.Bytes.Length > 16777216)
-            {
-                box.Bytes = null;
-                box.IsLarge = true;
-                box.file = file;
-            }
+
+            //using(var source = new Bitmap(bytes))
+            //{
+            //    using (var ms = new MemoryStream())
+            //    {
+            //        source.Save(ms, ImageFormat.Png);
+            //        box.Bytes = ms.ToArray();
+            //    }
+
+            //    var reducedScale = _resize.DetermineResizeScale(source.Width, source.Height, 200, 200);
+
+            //    box.ReducedBytes = _resize.CreateResizedPicture(file, reducedScale);
+
+            //    box.ReducedBytesWidth = reducedScale.Width;
+            //    box.ReducedBytesHeight = reducedScale.Height;
+            //}
+
+            //if (box.Bytes.Length > 16777216)
+            //{
+            //    box.Bytes = null;
+            //    box.IsLarge = true;
+            //    box.file = file;
+            //}
 
             using (var sha1 = new SHA1CryptoServiceProvider())
             {

@@ -10,6 +10,9 @@ using Bluepill.Picture;
 using System.IO;
 using Bluepill.Web.Areas.Administration.Models;
 using Newtonsoft.Json.Linq;
+using Bluepill.Dropbox;
+using System.Threading.Tasks;
+using System.Net.Http;
 
 namespace Bluepill.Web.Areas.Bluepill.Controllers
 {
@@ -20,53 +23,119 @@ namespace Bluepill.Web.Areas.Bluepill.Controllers
         private IPacker _packer;
         private IAttic _attic;
         private ICookieGateway _cookieGateway;
+        private IApiRequest _dropbox;
+        private List<string> _mimeTypes;
+        private HttpClient _client;
 
-        public CreateController(IFacetReader reader, IPacker packer, IAttic attic, ICookieGateway cookieGateway)
+        public CreateController(IFacetReader reader, IPacker packer, IAttic attic, ICookieGateway cookieGateway, IApiRequest dropbox)
         {
             _packer = packer;
             _attic = attic;
             _cookieGateway = cookieGateway;
             _reader = reader;
+            _dropbox = dropbox;
+            _mimeTypes = new List<string> { "image/jpeg", "image/png" };
+            _client = new HttpClient();
         }
 
-        public ActionResult Index()
+
+        public async Task<ActionResult> Index()
         {
             var identity = (BluePillIdentity)ControllerContext.HttpContext.User.Identity;
-            var files = new List<FileInfo>(new DirectoryInfo(Constants.CREATE_PATH).GetFiles());
-            var list = files.Take(Constants.DISPLAY_COUNT).ToList();
+            var metadata = await _dropbox.GetMetaData(identity.AccessToken);
             var facets = _reader.Read(identity.Name);
+            var list = GetFileListFromMetaData(metadata);
 
-            var model = new CreateModel { Facets = facets, File = list[0].FullName, TotalFileCount = files.Count, ResizedHeight = Constants.IMG_HEIGHT, ResizedWidth = Constants.IMG_WIDTH };
+            var model = new CreateModel
+            {
+                Facets = facets,
+                TotalFileCount = 0,
+                Url = "",
+                ResizedHeight = Constants.IMG_HEIGHT,
+                ResizedWidth = Constants.IMG_WIDTH,
+                File = ""
+            };
 
-            ViewBag.NavigationIndex = 0;
+            if (list.Count > 0)
+            {
+                var media = await _dropbox.GetMedia(identity.AccessToken, list[0]);
+                var url = GetUrlFromMedia(media);
+                
+                model.TotalFileCount = list.Count();
+                model.Url = url;
+                model.File = list[0];
+            }
 
             return View(model);
         }
 
         [HttpPost]
-        public JObject SavePicture(CreateModel model)
+        public async Task<JObject> SavePicture(CreateModel model)
         {
-            var fileInfo = new FileInfo(model.File);
             var identity = (BluePillIdentity)ControllerContext.HttpContext.User.Identity;
-            var box = _packer.PackBox(model.File, identity.Name, model.Facets);
+
+            var bytes = await _client.GetByteArrayAsync(model.Url);
+
+            var box = _packer.PackBox(bytes, identity.Name, model.Facets);
 
             _attic.AddBox(box);
 
-            System.IO.File.Move(fileInfo.FullName, string.Format("{0}\\{1}", Constants.COMPLETE_PATH, fileInfo.Name));
+            await _dropbox.Delete(identity.AccessToken, model.File);
 
-            var files = new List<FileInfo>(new DirectoryInfo(Constants.CREATE_PATH).GetFiles());
-            var list = files.Take(Constants.DISPLAY_COUNT).ToList();
+            var metadata = await _dropbox.GetMetaData(identity.AccessToken);
+
+            var list = GetFileListFromMetaData(metadata);
 
             var json = new JObject();
 
-            json.Add("file", list[0].FullName);
-            json.Add("total", files.Count);
-            json.Add("width", Constants.IMG_WIDTH);
-            json.Add("height", Constants.IMG_HEIGHT);
-            json.Add("src", string.Format(Constants.GET_PICTURE_URL_FORMAT, list[0].FullName));
-            json.Add("resizedSrc", string.Format(Constants.GET_RESIZE_PICTURE_URL_FORMAT, list[0].FullName, Constants.IMG_WIDTH, Constants.IMG_HEIGHT));
+            json.Add("total", list.Count);
 
+            if (list.Count > 0)
+            {
+                var media = await _dropbox.GetMedia(identity.AccessToken, list[0]);
+                var url = GetUrlFromMedia(media);
+
+                json.Add("width", Constants.IMG_WIDTH);
+                json.Add("height", Constants.IMG_HEIGHT);
+                json.Add("file", list[0]);
+                json.Add("url", url);
+                json.Add("src", string.Format(Constants.GET_PICTURE_URL_FORMAT, url));
+                json.Add("resizedSrc", string.Format(Constants.GET_RESIZE_PICTURE_URL_FORMAT, url, Constants.IMG_WIDTH, Constants.IMG_HEIGHT));
+            }
+            
             return json;
         }
+
+        private async Task<byte[]> GetPictureBytes(string url)
+        {
+            var client = new HttpClient();
+            var bytes = await client.GetByteArrayAsync(url);
+            return bytes;
+        }
+
+        private async void Delete(string file)
+        {
+            var identity = (BluePillIdentity)ControllerContext.HttpContext.User.Identity;
+
+            await _dropbox.Delete(identity.AccessToken, file);
+        }
+
+        private List<string> GetFileListFromMetaData(JObject content)
+        {
+            var json = from item in content["contents"] select JObject.Parse(item.ToString());
+
+            var list = (from item in json.Where(x => x.Property("mime_type") != null &&
+                            _mimeTypes.Contains(x.Property("mime_type").Value.ToString()))
+                            select item.Property("path").Value.ToString()).ToList();
+
+            return list;
+        }
+
+        private string GetUrlFromMedia(JObject media)
+        {
+            var identity = (BluePillIdentity)ControllerContext.HttpContext.User.Identity;
+            return media.Property("url").Value.ToString();
+        }
+
     }
 }

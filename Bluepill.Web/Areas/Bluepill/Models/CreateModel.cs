@@ -10,5 +10,6 @@ namespace Bluepill.Web.Areas.Administration.Models
         public string File { get; set; }
         public int ResizedWidth { get; set; }
         public int ResizedHeight { get; set; }
+        public string Url { get; set; }
     }
 }
