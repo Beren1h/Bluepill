@@ -11,13 +11,13 @@ namespace Bluepill.Web.Framework
 {
     public class BluePillPrincipalService : IPrincipalService
     {
-        private IBluePillUserStore _userStore;
+        //private IBluePillUserStore _userStore;
         private ICookieGateway _cookieGateway;
         private IAttic _attic;
 
-        public BluePillPrincipalService(IBluePillUserStore userStore, ICookieGateway cookieGateway, IAttic attic)
+        public BluePillPrincipalService(/*IBluePillUserStore userStore,*/ ICookieGateway cookieGateway, IAttic attic)
         {
-            _userStore = userStore;
+            //_userStore = userStore;
             _cookieGateway = cookieGateway;
             _attic = attic;
         }
@@ -36,10 +36,10 @@ namespace Bluepill.Web.Framework
                 identity.Name = ticket.Name;
                 identity.AuthenticationType = "FormsAuthentication";
                                 
-                var user = _userStore.GetUser(identity.Name);
+                //var user = _userStore.GetUser(identity.Name);
 
-                if(user != null)
-                    identity.Collections = user.Collections;
+                //if(user != null)
+                //    identity.Collections = user.Collections;
 
                 identity.AccessToken = _attic.GetToken(identity.Name);
                    

@@ -22,5 +22,8 @@ namespace Bluepill.Storage
         //Token
         public const string TOKEN_USER_ID = "UserId";
 
+        //User
+        public const string BLUEPILL_USER_ID = "Name";
+
     }
 }

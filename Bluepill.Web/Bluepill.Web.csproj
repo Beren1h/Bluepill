@@ -15,7 +15,7 @@
     <AssemblyName>Bluepill.Web</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -39,6 +39,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BCrypt.Net">
+      <HintPath>..\packages\BCrypt-Official.0.1.107\lib\BCrypt.Net.dll</HintPath>
+    </Reference>
     <Reference Include="FluentValidation">
       <HintPath>..\packages\FluentValidation.3.4.0.0\lib\Net40\FluentValidation.dll</HintPath>
     </Reference>
@@ -157,14 +160,11 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Framework\BluePillIdentity.cs" />
     <Compile Include="Framework\BluePillPrincipalService.cs" />
-    <Compile Include="Framework\BluePillUser.cs" />
-    <Compile Include="Framework\BluePillUserStore.cs" />
     <Compile Include="Framework\BluePillWebApplication.cs" />
     <Compile Include="Framework\Constants.cs" />
     <Compile Include="Framework\CookieGateway.cs" />
     <Compile Include="Framework\Extensions.cs" />
     <Compile Include="Framework\HttpContextLifetimeManager.cs" />
-    <Compile Include="Framework\IBluePillUserStore.cs" />
     <Compile Include="Framework\ICookieGateway.cs" />
     <Compile Include="Framework\IIocRegistry.cs" />
     <Compile Include="Framework\IocDependencyResolver.cs" />
@@ -274,6 +274,7 @@
     <Content Include="Content\bluepill.create.css" />
     <Content Include="Areas\Bluepill\Views\Search\Index.cshtml" />
     <Content Include="Content\bluepill.search.css" />
+    <Content Include="LICENSE.txt" />
     <Content Include="Scripts\application.search.interface.js" />
     <Content Include="Scripts\application.settings.js" />
     <Content Include="Scripts\bluepill.search.js" />
@@ -366,7 +367,9 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>3013</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:5198/</IISUrl>
+          <IISUrl>http://bluepill.org</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://bluepill.org</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

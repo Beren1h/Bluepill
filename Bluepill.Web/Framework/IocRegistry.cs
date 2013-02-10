@@ -17,7 +17,7 @@ namespace Bluepill.Web.Framework
         {
             container.RegisterType<IPrincipalService, BluePillPrincipalService>(new HttpContextLifetimeManager<IPrincipalService>());
             container.RegisterType<IAuthenticationGateway, AuthenticationGateway>(new ContainerControlledLifetimeManager());
-            container.RegisterType<IBluePillUserStore, BluePillUserStore>(new ContainerControlledLifetimeManager());
+            //container.RegisterType<IBluePillUserStore, BluePillUserStore>(new ContainerControlledLifetimeManager());
             container.RegisterType<IPictureGateway, PictureGateway>();
             container.RegisterType<IResize, Resize>();
             container.RegisterType<IConfigurationReader, ConfigurationReader>();

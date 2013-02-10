@@ -80,10 +80,12 @@ namespace Bluepill.Storage
         {
             if (box.IsLarge)
             {
-                using(var stream = new FileStream(box.file, FileMode.Open))
+                using(var ms = new MemoryStream(box.Bytes))
+                //using(var stream = new FileStream(box.file, FileMode.Open))
                 {
-                    var gridFSItem = _database.GridFS.Upload(stream, box.file);
+                    var gridFSItem = _database.GridFS.Upload(ms, new Guid().ToString());
                     box.GridFSId = gridFSItem.Id;
+                    box.Bytes = null;
                 }
             }
 

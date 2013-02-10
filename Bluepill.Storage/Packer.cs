@@ -71,12 +71,12 @@ namespace Bluepill.Storage
             //    box.ReducedBytesHeight = reducedScale.Height;
             //}
 
-            //if (box.Bytes.Length > 16777216)
-            //{
-            //    box.Bytes = null;
-            //    box.IsLarge = true;
-            //    box.file = file;
-            //}
+            if (box.Bytes.Length > 16777216)
+            {
+                //box.Bytes = null;
+                box.IsLarge = true;
+                //box.file = file;
+            }
 
             using (var sha1 = new SHA1CryptoServiceProvider())
             {
