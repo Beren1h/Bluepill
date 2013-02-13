@@ -12,16 +12,17 @@ namespace Bluepill.Dropbox
 {
     public class ApiRequest : IApiRequest
     {
+        public const string AUTHORIZATION_URL = "https://www.dropbox.com/1/oauth/authorize?oauth_token={0}";
+
         private ISignature _signature;
         private HttpClient _client;
-
+        
         private const string METADATA = "https://api.dropbox.com/1/metadata/sandbox/";
         private const string MEDIA = "https://api.dropbox.com/1/media/sandbox/{0}";
         private const string DELETE = "https://api.dropbox.com/1/fileops/delete?root=sandbox&path={0}";
         private const string UPLOAD = "https://api-content.dropbox.com/1/files_put/sandbox/{0}";
 
         private const string REQUEST_TOKEN = "https://api.dropbox.com/1/oauth/request_token";
-        private const string AUTHORIZATION_URL = "https://www.dropbox.com/1/oauth/authorize?oauth_token={0}";
         private const string ACCESS_TOKEN = "https://api.dropbox.com/1/oauth/access_token";
 
         public ApiRequest(ISignature signature)
@@ -29,13 +30,32 @@ namespace Bluepill.Dropbox
             _signature = signature;
             _client = new HttpClient();
         }
-
-        public async Task<Dictionary<string, string>> GetToken(Uri uri, string token, string secret)
+                
+        public async Task<Dictionary<string, string>> RequestAuthorizationToken()
         {
-            var client = new HttpClient();
-            //var token = await _dropbox.GetToken(new Uri(Api.REQUEST_TOKEN), "", "");
-            //var uri = new Uri(REQUEST_TOKEN);
-            var parameters = _signature.GetQueryString(uri, token, secret);
+            var uri = new Uri(REQUEST_TOKEN);
+            var parameters = _signature.GetQueryString(uri, "", "");
+            var request = string.Format("{0}?{1}", uri, parameters);
+            var response = await _client.GetAsync(request);
+            var dictionary = new Dictionary<string, string>();
+
+            response.EnsureSuccessStatusCode();
+
+            var result = response.Content.ReadAsStringAsync().Result;
+
+            foreach (var item in result.Split('&'))
+            {
+                var kvp = item.Split('=');
+                dictionary.Add(kvp[0], kvp[1]);
+            }
+
+            return dictionary;
+        }
+
+        public async Task<Dictionary<string, string>> RequestAccessToken(string authorizationToken, string authorizationSecret)
+        {
+            var uri = new Uri(ACCESS_TOKEN);
+            var parameters = _signature.GetQueryString(uri, authorizationToken, authorizationSecret);
             var request = string.Format("{0}?{1}", uri, parameters);
             var response = await _client.GetAsync(request);
             var dictionary = new Dictionary<string, string>();
@@ -100,6 +120,12 @@ namespace Bluepill.Dropbox
 
             return await _client.PutAsync(request, content);
         }
+
+        public string GetAuthorizationUrl(string authorizationToken, string authorizationSecret)
+        {
+            return string.Format(AUTHORIZATION_URL, authorizationToken, authorizationSecret);
+        }
+
         //public async Task<JObject> GetMetaData(Uri uri, Token accessToken)
         //{
         //    var querystring = _signature.GetQueryString(uri, accessToken.Value, accessToken.Secret);

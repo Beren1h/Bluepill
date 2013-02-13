@@ -12,10 +12,12 @@ namespace Bluepill.Dropbox
 {
     public interface IApiRequest
     {
-        Task<Dictionary<string, string>> GetToken(Uri uri, string token, string secret);
+        Task<Dictionary<string, string>> RequestAuthorizationToken();
+        Task<Dictionary<string, string>> RequestAccessToken(string authorizationToken, string authorizationSecret);
         Task<JObject> GetMetaData(Token token);
         Task<JObject> GetMedia(Token token, string path);
         Task<JObject> Delete(Token token, string path);
         Task<HttpResponseMessage> Upload(Token token, string path, byte[] file);
+        string GetAuthorizationUrl(string authorizationToken, string authorizationSecret);
     }
 }

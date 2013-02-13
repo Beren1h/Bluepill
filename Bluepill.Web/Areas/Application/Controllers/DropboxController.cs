@@ -26,13 +26,13 @@ namespace Bluepill.Web.Areas.Application.Controllers
 
         public async Task<ActionResult> Index()
         {
-            var token = await _dropbox.GetToken(new Uri(Api.REQUEST_TOKEN), "", "");
+            var token = await _dropbox.RequestAuthorizationToken();
 
             var model = new DropboxModel
             {
                 AuthorizationToken = token[Keys.TOKEN],
                 AuthorizationSecret = token[Keys.SECRET],
-                AuthorizationUrl = string.Format(Api.AUTHORIZATION_URL, token[Keys.TOKEN])
+                AuthorizationUrl = _dropbox.GetAuthorizationUrl(token[Keys.TOKEN], token[Keys.SECRET])
             };
 
             var identity = (BluePillIdentity)ControllerContext.HttpContext.User.Identity;
@@ -42,8 +42,7 @@ namespace Bluepill.Web.Areas.Application.Controllers
 
         public async Task<ActionResult> GetAccessToken(DropboxModel model)
         {
-            var uri = new Uri(Api.ACCESS_TOKEN);
-            var token = await _dropbox.GetToken(uri, model.AuthorizationToken, model.AuthorizationSecret);
+            var token = await _dropbox.RequestAccessToken(model.AuthorizationToken, model.AuthorizationSecret);
 
             model.AccessToken = token[Keys.TOKEN];
             model.AccessSecret = token[Keys.SECRET];
@@ -56,15 +55,8 @@ namespace Bluepill.Web.Areas.Application.Controllers
 
         public async Task<JObject> GetMetaData(DropboxModel model)
         {
-            //var uri = new Uri(Api.METADATA);
             var identity = (BluePillIdentity)ControllerContext.HttpContext.User.Identity;
             var content = await _dropbox.GetMetaData(identity.AccessToken);
-
-            //var json = from item in content["contents"] select JObject.Parse(item.ToString());
-
-            //var list = (from item in json.Where(x => x.Property("mime_type") != null &&
-            //                x.Property("mime_type").Value.ToString() == "image/jpeg")
-            //                select item.Property("path").Value.ToString()).ToList();
 
             return content;
         }

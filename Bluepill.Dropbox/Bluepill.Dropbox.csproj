@@ -44,7 +44,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Api.cs" />
     <Compile Include="ApiRequest.cs" />
     <Compile Include="ApiRequestParameters.cs" />
     <Compile Include="IApiRequestParameters.cs" />
