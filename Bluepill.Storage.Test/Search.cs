@@ -20,14 +20,8 @@ namespace Bluepill.Storage.Test
         public void TearDown() { }
 
         [Test]
-        public void Reader()
+        public void Test()
         {
-            var file = "c:\\solutions\\bluepill\\bluepill.search\\bin\\debug\\user configurations\\me.xml";
-            var doc = XDocument.Load(file);
-            var values = from v in doc.Root.Elements("facets").Elements("facet").Elements("aspect").Attributes("value") select v;
-            var max = (from v in values select int.Parse(v.Value)).Max();
-
-            Assert.AreEqual(0, max, string.Format("max value is {0}", max));
         }
     }
 }
