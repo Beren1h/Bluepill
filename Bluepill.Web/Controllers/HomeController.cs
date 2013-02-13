@@ -11,7 +11,8 @@ namespace Bluepill.Web.Controllers
         [AllowAnonymous]
         public ActionResult Index()
         {
-            return RedirectToAction("index", "authentication", new { Area = "framework" });
+            //return RedirectToAction("index", "authentication", new { Area = "framework" });
+            return View();
         }
 
     }
