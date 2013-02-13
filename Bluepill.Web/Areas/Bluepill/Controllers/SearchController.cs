@@ -13,11 +13,11 @@ namespace Bluepill.Web.Areas.Bluepill.Controllers
 {
     public class SearchController : Controller
     {
-        private IPacker _packer;
-        private IAttic _attic;
+        private IBoxPacker _packer;
+        private IBoxStorage _attic;
         private IFacetReader _facetReader;
 
-        public SearchController(IFacetReader facetReader, IPacker packer, IAttic attic)
+        public SearchController(IFacetReader facetReader, IBoxPacker packer, IBoxStorage attic)
         {
             _packer = packer;
             _attic = attic;

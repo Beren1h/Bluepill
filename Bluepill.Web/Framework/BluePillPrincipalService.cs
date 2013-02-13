@@ -13,13 +13,13 @@ namespace Bluepill.Web.Framework
     {
         //private IBluePillUserStore _userStore;
         private ICookieGateway _cookieGateway;
-        private IAttic _attic;
+        private ITokenStorage _storage;
 
-        public BluePillPrincipalService(/*IBluePillUserStore userStore,*/ ICookieGateway cookieGateway, IAttic attic)
+        public BluePillPrincipalService(/*IBluePillUserStore userStore,*/ ICookieGateway cookieGateway, ITokenStorage storage)
         {
             //_userStore = userStore;
             _cookieGateway = cookieGateway;
-            _attic = attic;
+            _storage = storage;
         }
 
         public IPrincipal GetPrincipal()
@@ -41,7 +41,7 @@ namespace Bluepill.Web.Framework
                 //if(user != null)
                 //    identity.Collections = user.Collections;
 
-                identity.AccessToken = _attic.GetToken(identity.Name);
+                identity.AccessToken = _storage.GetToken(identity.Name);
                    
 
             }

@@ -1,6 +1,7 @@
 ﻿using Bluepill.Dropbox;
 using Bluepill.Picture;
 using Bluepill.Storage;
+using Bluepill.Storage.StorageTypes;
 using Bluepill.Web.Framework;
 using MongoDB.Bson;
 using System;
@@ -19,10 +20,10 @@ namespace Bluepill.Web.Areas.Application.Controllers
     public class PictureController : Controller
     {
         private IResize _resize;
-        private IAttic _attic;
+        private IBoxStorage _attic;
         private IApiRequest _dropbox;
 
-        public PictureController(IResize resize, IAttic attic, IApiRequest dropbox)
+        public PictureController(IResize resize, IBoxStorage attic, IApiRequest dropbox)
         {
             _resize = resize;
             _attic = attic;

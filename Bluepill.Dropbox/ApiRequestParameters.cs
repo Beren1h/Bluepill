@@ -14,12 +14,12 @@ namespace Bluepill.Dropbox
         private Random _random;
         //private const string _appKey = "o4k9zx12fv6pzl3";
         //private const string _appSecret = "qkkwupwbdhr0wla";
-        private IAttic _attic;
+        private ITokenStorage _storage;
 
-        public ApiRequestParameters(IAttic attic)
+        public ApiRequestParameters(ITokenStorage storage)
         {
             _random = new Random();
-            _attic = attic;
+            _storage = storage;
         }
 
         public string GetParameters2(Uri uri, string token, string tokenSecret)
@@ -31,7 +31,7 @@ namespace Bluepill.Dropbox
             var timestamp = "1359515166";
 
 
-            var app = _attic.GetToken("bluepill");
+            var app = _storage.GetToken("bluepill");
             //var hash = new HMACSHA1() { Key = GetHashKey(_appSecret, tokenSecret) };
             var hash = new HMACSHA1() { Key = GetHashKey(app.Secret, tokenSecret) };
 
@@ -70,7 +70,7 @@ namespace Bluepill.Dropbox
         {
             var nonce = _random.Next(123400, 9999999).ToString();
             var timestamp = GetTimestamp();
-            var app = _attic.GetToken("bluepill");
+            var app = _storage.GetToken("bluepill");
             //var hash = new HMACSHA1() { Key = GetHashKey(_appSecret, tokenSecret) };
             var hash = new HMACSHA1() { Key = GetHashKey(app.Secret, tokenSecret) };
 

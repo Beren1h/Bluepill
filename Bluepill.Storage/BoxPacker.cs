@@ -1,5 +1,6 @@
 ﻿using Bluepill.Picture;
 using Bluepill.Search;
+using Bluepill.Storage.StorageTypes;
 using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
@@ -13,11 +14,11 @@ using System.Threading.Tasks;
 
 namespace Bluepill.Storage
 {
-    public class Packer : IPacker
+    public class BoxPacker : IBoxPacker
     {
         private IResize _resize;
 
-        public Packer(IResize resize)
+        public BoxPacker(IResize resize)
         {
             _resize = resize;
         }

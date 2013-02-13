@@ -1,4 +1,5 @@
 ﻿using Bluepill.Storage;
+using Bluepill.Storage.StorageTypes;
 using System;
 using System.Collections.Generic;
 using System.Linq;

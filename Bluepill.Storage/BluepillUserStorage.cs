@@ -1,4 +1,5 @@
-﻿using MongoDB.Driver;
+﻿using Bluepill.Storage.StorageTypes;
+using MongoDB.Driver;
 using MongoDB.Driver.Builders;
 using System;
 using System.Collections.Generic;
@@ -8,22 +9,15 @@ using System.Threading.Tasks;
 
 namespace Bluepill.Storage
 {
-    public class UserGateway
+    public class BluepillUserStorage : IBluepillUserStorage
     {
-        private MongoServer _server;
-        private MongoDatabase _database;
         private MongoCollection<BluepillUser> _collection;
+        private IStorageContext _context;
 
-        private const string CONNECTION = "mongodb://localhost";
-        private const string DATABASE = "bluepill";
-        private const string USERS_COLLECTION = "users";
-        
-
-        public UserGateway()
+        public BluepillUserStorage(IStorageContext context)
         {
-            _server = MongoServer.Create(CONNECTION);
-            _database = _server.GetDatabase(DATABASE);
-            _collection = _database.GetCollection<BluepillUser>(USERS_COLLECTION);
+            _context = context;
+            _collection = _context.Database.GetCollection<BluepillUser>(Fields.USERS_COLLECTION);
         }
 
         public void SaveUser(BluepillUser user)

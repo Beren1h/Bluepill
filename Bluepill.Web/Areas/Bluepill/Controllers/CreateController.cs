@@ -20,14 +20,14 @@ namespace Bluepill.Web.Areas.Bluepill.Controllers
     {
         private IFacetReader _reader;
 
-        private IPacker _packer;
-        private IAttic _attic;
+        private IBoxPacker _packer;
+        private IBoxStorage _attic;
         private ICookieGateway _cookieGateway;
         private IApiRequest _dropbox;
         private List<string> _mimeTypes;
         private HttpClient _client;
 
-        public CreateController(IFacetReader reader, IPacker packer, IAttic attic, ICookieGateway cookieGateway, IApiRequest dropbox)
+        public CreateController(IFacetReader reader, IBoxPacker packer, IBoxStorage attic, ICookieGateway cookieGateway, IApiRequest dropbox)
         {
             _packer = packer;
             _attic = attic;

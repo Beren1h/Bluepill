@@ -1,5 +1,6 @@
 ﻿using Bluepill.Dropbox;
 using Bluepill.Storage;
+using Bluepill.Storage.StorageTypes;
 using Bluepill.Web.Areas.Application.Models;
 using Bluepill.Web.Framework;
 using Newtonsoft.Json.Linq;
@@ -15,12 +16,12 @@ namespace Bluepill.Web.Areas.Application.Controllers
     public class DropboxController : Controller
     {
         private IApiRequest _dropbox;
-        private IAttic _attic;
+        private ITokenStorage _storage;
 
-        public DropboxController(IApiRequest dropbox, IAttic attic)
+        public DropboxController(IApiRequest dropbox, ITokenStorage storage)
         {
             _dropbox = dropbox;
-            _attic = attic;
+            _storage = storage;
         }
 
         public async Task<ActionResult> Index()
@@ -48,7 +49,7 @@ namespace Bluepill.Web.Areas.Application.Controllers
             model.AccessSecret = token[Keys.SECRET];
 
             var identity = (BluePillIdentity)ControllerContext.HttpContext.User.Identity;
-            _attic.AddToken(new Token { UserId = identity.Name, Value = token[Keys.TOKEN], Secret = token[Keys.SECRET] });
+            _storage.AddToken(new Token { UserId = identity.Name, Value = token[Keys.TOKEN], Secret = token[Keys.SECRET] });
             
             return View("Index", model);
         }

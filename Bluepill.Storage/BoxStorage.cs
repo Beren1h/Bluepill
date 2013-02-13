@@ -1,5 +1,5 @@
-﻿//using Bluepill.Dropbox;
-using Bluepill.Search;
+﻿using Bluepill.Search;
+using Bluepill.Storage.StorageTypes;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
@@ -13,44 +13,15 @@ using System.Threading.Tasks;
 
 namespace Bluepill.Storage
 {
-    public class Attic : IAttic
+    public class BoxStorage : IBoxStorage
     {
-        private MongoServer _server;
-        private MongoDatabase _database;
+        private IStorageContext _context;
         private IQueryBuilder _queryBuilder;
-                
-        private const string CONNECTION = "mongodb://localhost";
-        private const string DATABASE = "bluepill";
-        private const string TOKEN_COLLECTION = "tokens";
         
-        public Attic(IQueryBuilder queryBuilder)
+        public BoxStorage(IQueryBuilder queryBuilder, IStorageContext context)
         {
-            _server = MongoServer.Create(CONNECTION);
-            _database = _server.GetDatabase(DATABASE);
+            _context = context;
             _queryBuilder = queryBuilder;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="token"></param>
-        public void AddToken(Token token)
-        {
-            var collection = _database.GetCollection<Token>(TOKEN_COLLECTION);
-            collection.EnsureIndex(new IndexKeysBuilder().Ascending(Fields.TOKEN_USER_ID), IndexOptions.SetUnique(true));
-            collection.Insert(token);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="user"></param>
-        /// <returns></returns>
-        public Token GetToken(string user)
-        {
-            var query = Query.EQ(Fields.TOKEN_USER_ID, user);
-            var collection = _database.GetCollection<Token>(TOKEN_COLLECTION);
-            return collection.FindAs<Token>(query).FirstOrDefault();
         }
 
         /// <summary>
@@ -61,12 +32,13 @@ namespace Bluepill.Storage
         public void RemoveBox(ObjectId id, string collectionName)
         {
             var query = _queryBuilder.Build(id);
-            var collection = _database.GetCollection<Box>(collectionName);
-            var box = collection.FindAs<Box>(query).SetFields(new []{Fields.GRIDFS_ID, Fields.IS_LARGE, Fields.BYTES, Fields.OBJECT_ID}).FirstOrDefault();
+            var collection = _context.GetCollection(collectionName);
+
+            var box = collection.FindAs<Box>(query).SetFields(new[] { Fields.GRIDFS_ID, Fields.IS_LARGE }).FirstOrDefault();
 
             if (box.IsLarge)
             {
-                _database.GridFS.DeleteById(box.GridFSId);
+                _context.GridFSDelete(box.GridFSId);
             }
             
             collection.Remove(query);
@@ -81,15 +53,25 @@ namespace Bluepill.Storage
             if (box.IsLarge)
             {
                 using(var ms = new MemoryStream(box.Bytes))
-                //using(var stream = new FileStream(box.file, FileMode.Open))
                 {
-                    var gridFSItem = _database.GridFS.Upload(ms, new Guid().ToString());
+                    var gridFSItem = _context.GridFSUpload(ms);
                     box.GridFSId = gridFSItem.Id;
                     box.Bytes = null;
                 }
             }
 
-            GetIndexedCollection(box).Insert(box);
+            var collection = _context.GetCollection(box.UserId);
+
+            //make sure indexes on the searchable fields
+            foreach (var item in box.MetaData)
+            {
+                collection.EnsureIndex(item.Name);
+            }
+
+            //make sure unique index on image hash (prevents duplicate images in db)
+            collection.EnsureIndex(new IndexKeysBuilder().Ascending(Fields.HASH), IndexOptions.SetUnique(true));
+
+            collection.Insert(box);
         }
 
         /// <summary>
@@ -102,13 +84,14 @@ namespace Bluepill.Storage
         public Retrieval GetBox(ObjectId id, string collectionName, string[] fields)
         {
             var query = _queryBuilder.Build(id);
-            var collection = _database.GetCollection<Box>(collectionName);
+            var collection = _context.GetCollection(collectionName);
+            
             var cursor = collection.FindAs<Box>(query).SetFields(fields);
             var box = cursor.FirstOrDefault();
             var retrieval = new Retrieval();
             if (box.IsLarge)
             {
-                var file = _database.GridFS.FindOneById(box.GridFSId);
+                var file = _context.Database.GridFS.FindOneById(box.GridFSId);
 
                 using (var stream = file.OpenRead())
                 {
@@ -145,10 +128,9 @@ namespace Bluepill.Storage
             if(fields == null)
                 fields = new [] { Fields.METADATA, Fields.OBJECT_ID, Fields.REDUCED_BYTES, Fields.REDUCED_BYTES_WIDTH, Fields.REDUCED_BYTES_HEIGHT };
 
-            //var query = _queryBuilder.Build((from v in facets select v.Value).ToList());
             var query = _queryBuilder.Build(facets);
             var results = new List<Box>();
-            var collection = _database.GetCollection<Box>(collectionName);
+            var collection = _context.GetCollection(collectionName);
 
             var cursor = (query == null) ? collection.FindAllAs<Box>().SetFields(fields) : collection.FindAs<Box>(query).SetFields(fields); 
 
@@ -157,50 +139,6 @@ namespace Bluepill.Storage
 
             return new Retrieval { Boxes = cursor.ToList(), Total = cursor.Count() };
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="box"></param>
-        /// <returns></returns>
-        private MongoCollection<Box> GetIndexedCollection(Box box)
-        {
-            var collection = _database.GetCollection<Box>(box.UserId);
-
-            //var options = new IndexOptionsDocument();
-            //options.Add(new BsonDocument("unique", true));
-
-            //var ensureUnique = new IndexKeysDocument();
-            //ensureUnique.Add(Fields.HASH, box.Hash);
-
-            //var keys = new IndexKeysDocument();
-            foreach (var item in box.MetaData)
-            {
-                collection.EnsureIndex(item.Name);
-            }
-            
-            //collection.EnsureIndex(ensureUnique, options);
-
-            collection.EnsureIndex(new IndexKeysBuilder().Ascending(Fields.HASH), IndexOptions.SetUnique(true));
-
-
-            return collection;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public void Empty()
-        {
-            foreach (var collection in _database.GetCollectionNames())
-            {
-                _database.GetCollection<Box>(collection).Drop();
-            }
-
-            _database.GridFS.Files.Drop();
-        }
-
-
     }
 }
 

@@ -1,4 +1,5 @@
 ﻿using Bluepill.Storage;
+using Bluepill.Storage.StorageTypes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,16 +13,16 @@ namespace Bluepill.Dropbox
 {
     public class Signature : ISignature
     {
-        private IAttic _attic;
+        private ITokenStorage _storage;
         private Random _random;
         private Token _app;
         private const string UNRESERVED_CHARACTERS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_.~";
 
-        public Signature(IAttic attic)
+        public Signature(ITokenStorage storage)
         {
-            _attic = attic;
+            _storage = storage;
             _random = new Random();
-            _app = _attic.GetToken("bluepill");
+            _app = _storage.GetToken("bluepill");
         }
 
         public string GetQueryString(Uri uri, string token, string tokenSecret, string method = "GET")

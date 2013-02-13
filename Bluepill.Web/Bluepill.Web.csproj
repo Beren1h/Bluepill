@@ -174,8 +174,10 @@
     <Compile Include="Framework\ValidatorFactory.cs" />
     <Compile Include="Gateways\AuthenticationGateway.cs" />
     <Compile Include="Gateways\CookieGateway.cs" />
+    <Compile Include="Gateways\DropboxGateway.cs" />
     <Compile Include="Gateways\IAuthenticationGateway.cs" />
     <Compile Include="Gateways\ICookieGateway.cs" />
+    <Compile Include="Gateways\IDropboxGateway.cs" />
     <Compile Include="Gateways\IMongoGateway.cs" />
     <Compile Include="Gateways\IPictureGateway.cs" />
     <Compile Include="Gateways\MongoGateway.cs" />

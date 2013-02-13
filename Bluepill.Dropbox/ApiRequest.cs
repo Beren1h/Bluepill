@@ -1,4 +1,5 @@
 ﻿using Bluepill.Storage;
+using Bluepill.Storage.StorageTypes;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -32,9 +33,11 @@ namespace Bluepill.Dropbox
         public async Task<Dictionary<string, string>> GetToken(Uri uri, string token, string secret)
         {
             var client = new HttpClient();
+            //var token = await _dropbox.GetToken(new Uri(Api.REQUEST_TOKEN), "", "");
+            //var uri = new Uri(REQUEST_TOKEN);
             var parameters = _signature.GetQueryString(uri, token, secret);
             var request = string.Format("{0}?{1}", uri, parameters);
-            var response = await client.GetAsync(request);
+            var response = await _client.GetAsync(request);
             var dictionary = new Dictionary<string, string>();
 
             response.EnsureSuccessStatusCode();
