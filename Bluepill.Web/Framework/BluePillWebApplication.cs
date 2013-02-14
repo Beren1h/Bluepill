@@ -51,7 +51,7 @@ namespace Bluepill.Web.Framework
         private void RegisterGlobalFilters()
         {
             GlobalFilters.Filters.Add(new AuthorizeAttribute());
-            GlobalFilters.Filters.Add(new RequireHttpsAttribute());
+            GlobalFilters.Filters.Add(new AppHarbor.Web.RequireHttpsAttribute());
             //GlobalFilters.Filters.Add(new AllowAnonymousAttribute());
         }
 

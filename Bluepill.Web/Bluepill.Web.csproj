@@ -168,6 +168,7 @@
     <Compile Include="Framework\IocRegistry.cs" />
     <Compile Include="Framework\IocInitializer.cs" />
     <Compile Include="Framework\IPrincipalService.cs" />
+    <Compile Include="Framework\RequireHttpsAttribute.cs" />
     <Compile Include="Framework\ValidatorFactory.cs" />
     <Compile Include="Gateways\AuthenticationGateway.cs" />
     <Compile Include="Gateways\CookieGateway.cs" />
