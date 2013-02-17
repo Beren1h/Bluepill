@@ -64,6 +64,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="User Configurations\test.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
