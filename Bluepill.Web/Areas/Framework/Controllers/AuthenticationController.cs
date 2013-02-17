@@ -16,10 +16,10 @@ namespace Bluepill.Web.Areas.Framework.Controllers
         {
             if (ModelState.IsValid)
             {
-                //FormsAuthentication.SetAuthCookie(model.UserName, false);
-                var cookie = FormsAuthentication.GetAuthCookie(model.UserName, false);
-                cookie.Secure = true;
-                ControllerContext.HttpContext.Response.Cookies.Add(cookie);
+                FormsAuthentication.SetAuthCookie(model.UserName, false);
+                //var cookie = FormsAuthentication.GetAuthCookie(model.UserName, false);
+                //cookie.Secure = true;
+                //ControllerContext.HttpContext.Response.Cookies.Add(cookie);
 
                 return RedirectToAction("index", "create", new { area = "bluepill" });
             }
