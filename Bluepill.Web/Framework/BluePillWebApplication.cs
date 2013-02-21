@@ -22,6 +22,7 @@ namespace Bluepill.Web.Framework
         protected void Application_Start()
         {
             DependencyResolver.SetResolver(new IocDependencyResolver(IocInitializer.CreateContainer()));
+            //DependencyResolver.SetResolver(new Bluepill.Injector.IocDependencyResolver(Bluepill.Injector.IocInitializer.CreateContainer()));
 
             AreaRegistration.RegisterAllAreas();
 

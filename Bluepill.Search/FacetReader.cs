@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,9 +20,16 @@ namespace Bluepill.Search
         public IEnumerable<Facet> Read(string userName)
         {
             var list = new List<Facet>();
-            var file = string.Format("{0}/bin/user configurations/{1}.xml", AppDomain.CurrentDomain.BaseDirectory, userName);
+            var file = string.Format("{0}/user configurations/{1}.xml", AppDomain.CurrentDomain.BaseDirectory, userName);
             var doc = XDocument.Load(file);
             var facets = doc.Root.Elements("facet");
+
+            var ms = new MemoryStream();
+            doc.Save(ms);
+            byte[] bytes = ms.ToArray();
+
+            var ms2 = new MemoryStream(bytes);
+            var doc2 = XDocument.Load(ms2);
 
             foreach (var facet in facets)
             {

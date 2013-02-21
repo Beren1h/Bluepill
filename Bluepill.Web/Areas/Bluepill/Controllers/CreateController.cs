@@ -18,8 +18,6 @@ namespace Bluepill.Web.Areas.Bluepill.Controllers
 {
     public class CreateController : Controller
     {
-        private IFacetReader _reader;
-
         private IBoxPacker _packer;
         private IBoxStorage _attic;
         private ICookieGateway _cookieGateway;
@@ -27,12 +25,11 @@ namespace Bluepill.Web.Areas.Bluepill.Controllers
         private List<string> _mimeTypes;
         private HttpClient _client;
 
-        public CreateController(IFacetReader reader, IBoxPacker packer, IBoxStorage attic, ICookieGateway cookieGateway, IApiRequest dropbox)
+        public CreateController(IBoxPacker packer, IBoxStorage attic, ICookieGateway cookieGateway, IApiRequest dropbox)
         {
             _packer = packer;
             _attic = attic;
             _cookieGateway = cookieGateway;
-            _reader = reader;
             _dropbox = dropbox;
             _mimeTypes = new List<string> { "image/jpeg", "image/png" };
             _client = new HttpClient();
@@ -43,7 +40,7 @@ namespace Bluepill.Web.Areas.Bluepill.Controllers
         {
             var identity = (BluePillIdentity)ControllerContext.HttpContext.User.Identity;
             var metadata = await _dropbox.GetMetaData(identity.AccessToken);
-            var facets = _reader.Read(identity.Name);
+            var facets = identity.Facets;
             var list = GetFileListFromMetaData(metadata);
 
             var model = new CreateModel

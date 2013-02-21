@@ -1,4 +1,5 @@
-﻿using Bluepill.Storage.StorageTypes;
+﻿using Bluepill.Search;
+using Bluepill.Storage.StorageTypes;
 using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,8 @@ namespace Bluepill.Storage.StorageTypes
         public ObjectId _id { get; set; }
         public string Hash { get; set; }
         public string Name { get; set; }
+        public byte[] SearchConfiguration { get; set; }
+        public IEnumerable<Facet> Facets { get; set; }
         public int WorkFactor { get; set; }
     }
 }

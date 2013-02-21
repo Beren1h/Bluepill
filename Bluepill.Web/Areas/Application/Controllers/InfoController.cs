@@ -11,18 +11,11 @@ namespace Bluepill.Web.Areas.Application.Controllers
 {
     public class InfoController : Controller
     {
-        private IFacetReader _reader;
-
-        public InfoController(IFacetReader reader)
-        {
-            _reader = reader;
-        }
-
         public ActionResult Index()
         {
             var identity = (BluePillIdentity)ControllerContext.HttpContext.User.Identity;
 
-            var facets = _reader.Read(identity.Name);
+            var facets = identity.Facets;
 
             var model = new InfoModel { MaxFacetValue = facets.Max(f => f.Id) };
 

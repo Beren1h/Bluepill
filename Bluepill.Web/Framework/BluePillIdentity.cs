@@ -1,4 +1,5 @@
-﻿using Bluepill.Storage;
+﻿using Bluepill.Search;
+using Bluepill.Storage;
 using Bluepill.Storage.StorageTypes;
 using System;
 using System.Collections.Generic;
@@ -31,6 +32,8 @@ namespace Bluepill.Web.Framework
         public List<string> Collections { get; set; }
 
         public Token AccessToken { get; set; }
+
+        public IEnumerable<Facet> Facets { get; set; }
         
     }
 }

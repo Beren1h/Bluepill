@@ -15,19 +15,17 @@ namespace Bluepill.Web.Areas.Bluepill.Controllers
     {
         private IBoxPacker _packer;
         private IBoxStorage _attic;
-        private IFacetReader _facetReader;
 
-        public SearchController(IFacetReader facetReader, IBoxPacker packer, IBoxStorage attic)
+        public SearchController(IBoxPacker packer, IBoxStorage attic)
         {
             _packer = packer;
             _attic = attic;
-            _facetReader = facetReader;
         }
 
         public ActionResult Index()
         {
             var identity = (BluePillIdentity)ControllerContext.HttpContext.User.Identity;
-            var facets = _facetReader.Read(identity.Name);
+            var facets = identity.Facets;
             var model = new SearchModel { Facets = facets, Page = 1, PageDelta = 0 };
 
             ViewBag.NavigationIndex = 1;
