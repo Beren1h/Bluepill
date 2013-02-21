@@ -194,6 +194,9 @@
     <Content Include="Content\application.search.interface.css" />
     <Content Include="Content\application.settings.css" />
     <Content Include="Content\authentication.css" />
+    <Content Include="Content\images\checkbox_empty.png" />
+    <Content Include="Content\images\checkbox_full.png" />
+    <Content Include="Content\images\new-image-loading.gif" />
     <Content Include="Content\page.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
