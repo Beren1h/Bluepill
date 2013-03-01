@@ -16,7 +16,7 @@ using System.Net.Http;
 
 namespace Bluepill.Web.Areas.Bluepill.Controllers
 {
-    public class CreateController : Controller
+    public class CreateController : BluepillController
     {
         private IBoxPacker _packer;
         private IBoxStorage _attic;
@@ -38,9 +38,9 @@ namespace Bluepill.Web.Areas.Bluepill.Controllers
 
         public async Task<ActionResult> Index()
         {
-            var identity = (BluePillIdentity)ControllerContext.HttpContext.User.Identity;
-            var metadata = await _dropbox.GetMetaData(identity.AccessToken);
-            var facets = identity.Facets;
+            //var identity = (BluePillIdentity)ControllerContext.HttpContext.User.Identity;
+            var metadata = await _dropbox.GetMetaData(Identity.AccessToken);
+            var facets = Identity.Facets;
             var list = GetFileListFromMetaData(metadata);
 
             var model = new CreateModel
@@ -55,7 +55,7 @@ namespace Bluepill.Web.Areas.Bluepill.Controllers
 
             if (list.Count > 0)
             {
-                var media = await _dropbox.GetMedia(identity.AccessToken, list[0]);
+                var media = await _dropbox.GetMedia(Identity.AccessToken, list[0]);
                 var url = GetUrlFromMedia(media);
                 
                 model.TotalFileCount = list.Count();
@@ -63,23 +63,27 @@ namespace Bluepill.Web.Areas.Bluepill.Controllers
                 model.File = list[0];
             }
 
-            return View(model);
+            return GetView(model, "Mobile");
+            //if (identity.IsMobile)
+                //return View("Mobile", model);
+
+            //return View(model);
         }
 
         [HttpPost]
         public async Task<JObject> SavePicture(CreateModel model)
         {
-            var identity = (BluePillIdentity)ControllerContext.HttpContext.User.Identity;
+            //var identity = (BluePillIdentity)ControllerContext.HttpContext.User.Identity;
 
             var bytes = await _client.GetByteArrayAsync(model.Url);
 
-            var box = _packer.PackBox(bytes, identity.Name, model.Facets);
+            var box = _packer.PackBox(bytes, Identity.Name, model.Facets);
 
             _attic.AddBox(box);
 
-            await _dropbox.Delete(identity.AccessToken, model.File);
+            await _dropbox.Delete(Identity.AccessToken, model.File);
 
-            var metadata = await _dropbox.GetMetaData(identity.AccessToken);
+            var metadata = await _dropbox.GetMetaData(Identity.AccessToken);
 
             var list = GetFileListFromMetaData(metadata);
 
@@ -89,7 +93,7 @@ namespace Bluepill.Web.Areas.Bluepill.Controllers
 
             if (list.Count > 0)
             {
-                var media = await _dropbox.GetMedia(identity.AccessToken, list[0]);
+                var media = await _dropbox.GetMedia(Identity.AccessToken, list[0]);
                 var url = GetUrlFromMedia(media);
 
                 json.Add("width", Constants.IMG_WIDTH);

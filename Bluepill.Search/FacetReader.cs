@@ -24,13 +24,6 @@ namespace Bluepill.Search
             var doc = XDocument.Load(file);
             var facets = doc.Root.Elements("facet");
 
-            var ms = new MemoryStream();
-            doc.Save(ms);
-            byte[] bytes = ms.ToArray();
-
-            var ms2 = new MemoryStream(bytes);
-            var doc2 = XDocument.Load(ms2);
-
             foreach (var facet in facets)
             {
                  var aspects = from aspect in facet.Elements("aspect")

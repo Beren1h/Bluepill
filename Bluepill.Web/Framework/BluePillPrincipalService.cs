@@ -46,6 +46,8 @@ namespace Bluepill.Web.Framework
                 identity.AccessToken = _storage.GetToken(identity.Name);
 
                 identity.Facets = _user.GetUser(identity.Name).Facets;
+
+                identity.IsMobile = new HttpContextWrapper(HttpContext.Current).Request.Browser.IsMobileDevice;
                    
 
             }

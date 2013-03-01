@@ -34,6 +34,8 @@ namespace Bluepill.Web.Framework
         public Token AccessToken { get; set; }
 
         public IEnumerable<Facet> Facets { get; set; }
+
+        public bool IsMobile { get; set; }
         
     }
 }
