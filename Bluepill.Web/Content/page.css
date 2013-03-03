@@ -1,42 +1,20 @@
-﻿body { background:#000 }
+﻿.blue { background-color:#0094ff }
+.orange { background-color:#ff6a00 }
+.green { background-color:#00ff21 }
 
-div { border-radius:4px; text-align:left; }
-ul { list-style-type:none; -webkit-padding-start:0; }
-li { text-align:left; }
+ body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
 
-div.page { width:1500px; margin-left:30px; }
-div.content { /*border:1px solid #7a0b0b;*/ background:#120c0c; color:#F9B33B; float:left; padding:3px; }
-div.content ul, h2, h1 { margin:0 }
-
-[class^="span"] { float:left; margin:3px; padding:3px;   }
-/*[class^="span"] div { background:#47a335 }*/
-/*[class^="span"] { background:#47a335 }*/
-
-
-.span12 { width:1500px; }
-.span6 { width:744px; }
-.span8 {width:883px }
-.span7 {width:876px }
-.span2 {width:298px; }
-.span4 { width:605px }
-
-
-.height2 { height:50px; }
-.height12 { height:600px; }
-.height14 { height:625px; }
-
-.pink {  background:#982e9c; }
-.maroon { background:#7a0b0b }
-
-div.content-gradient {
-background: rgb(20,11,117); /* Old browsers */
-background: -moz-linear-gradient(top, rgba(20,11,117,1) 0%, rgba(10,7,86,1) 11%, rgba(0,0,0,1) 22%); /* FF3.6+ */
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(20,11,117,1)), color-stop(11%,rgba(10,7,86,1)), color-stop(22%,rgba(0,0,0,1))); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(top, rgba(20,11,117,1) 0%,rgba(10,7,86,1) 11%,rgba(0,0,0,1) 22%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(top, rgba(20,11,117,1) 0%,rgba(10,7,86,1) 11%,rgba(0,0,0,1) 22%); /* Opera 11.10+ */
-background: -ms-linear-gradient(top, rgba(20,11,117,1) 0%,rgba(10,7,86,1) 11%,rgba(0,0,0,1) 22%); /* IE10+ */
-background: linear-gradient(to bottom, rgba(20,11,117,1) 0%,rgba(10,7,86,1) 11%,rgba(0,0,0,1) 22%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#140b75', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
-}
-
-.hide { display:none }
+      @media (max-width: 980px) {
+        /* Enable use of floated navbar text */
+        .navbar-text.pull-right {
+          float: none;
+          padding-left: 5px;
+          padding-right: 5px;
+        }
+      }

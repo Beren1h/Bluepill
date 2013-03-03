@@ -13,8 +13,8 @@ namespace Bluepill.Web.Framework
         {
             //var identity = (BluePillIdentity)ControllerContext.HttpContext.User.Identity;
 
-            if (Identity.IsMobile)
-                return View(mobileView, model);
+            //if (Identity.IsMobile)
+            //    return View(mobileView, model);
 
             return View(model);
         }
