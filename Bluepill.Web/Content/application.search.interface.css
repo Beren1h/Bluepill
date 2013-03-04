@@ -1,5 +1,5 @@
-﻿.facets-area li { display:inline-block; }
-.facets-area ul { display:none; padding:5px;  border-bottom:1px solid #06216d; }
+﻿/*.facets-area li { display:inline-block; }*/
+/*.facets-area ul { display:none; padding:5px;  border-bottom:1px solid #06216d; }
 
 .facet-action { cursor:pointer; display:block; border-radius:3px 3px 0px 0px; padding:0px 0px 0px 5px; margin:0px; }
 
@@ -9,4 +9,15 @@ label.on { background:url(/content/images/checkbox_full.png) no-repeat left cent
 
 .selections { color:#4cff00 }
 
-.button { margin-top:10px; }
+.button { margin-top:10px; }*/
+
+
+.facet-action { cursor:pointer; line-height:20px; /*display:block; border-radius:3px 3px 0px 0px; padding:0px 0px 0px 5px; margin:0px;*/ }
+
+
+label { padding-left:2.3em; cursor:pointer; line-height:32px; margin:0; }
+label.on { background:url(/content/images/checkbox_full.png) no-repeat left center; }
+label.off { background:url(/content/images/checkbox_empty.png) no-repeat left center; }
+
+
+.accordion-body li { display:inline-block; }

@@ -2,9 +2,20 @@
 
 @{ Layout = null; }
 
-@Html.HiddenFor(x => x.Value)
+@*@Html.HiddenFor(x => x.Value)
 
 <li>
     @Html.LabelFor(x => x.IsChecked, @Model.Text, new { @class="off" })
     @Html.CheckBoxFor(x => x.IsChecked, new { data_value=@Model.Value, data_facet=@Model.Facet, @class="hide" })
-</li>
+</li>*@
+
+@Html.HiddenFor(x => x.Value)
+
+<div class="pull-left">
+    @Html.LabelFor(x => x.IsChecked, @Model.Text, new { @class="off" })
+    @Html.CheckBoxFor(x => x.IsChecked, new { data_value=@Model.Value, data_facet=@Model.Facet, @class="hide" })
+</div>
+
+
+
+
