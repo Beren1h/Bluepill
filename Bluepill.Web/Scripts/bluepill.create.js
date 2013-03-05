@@ -40,6 +40,8 @@ $("document").ready(function () {
     //    });
     //});
 
+    //$("body").addClass("content-gradient");
+
 });
 
 function InitializeImageLoad() {

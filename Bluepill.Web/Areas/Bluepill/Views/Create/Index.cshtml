@@ -85,13 +85,16 @@
                         </div>
                     </div>*@
 
-                    <form>
-                        @Html.HiddenFor(x => x.Url)
-                        @Html.HiddenFor(x => x.File)
-                        <div class="accordion facet-area">
-                            @Html.EditorFor(x => x.Facets)
-                        </div>
-                    </form>
+                    <div class="container-fluid">
+                        <form>
+                            @Html.HiddenFor(x => x.Url)
+                            @Html.HiddenFor(x => x.File)
+                            <div class="accordion facet-area">
+                                @Html.EditorFor(x => x.Facets)
+                            </div>
+                        </form>
+                    </div>
+
 
 @*                    <form>
                         @Html.HiddenFor(x => x.Url)

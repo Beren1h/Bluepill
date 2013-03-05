@@ -21,3 +21,11 @@ label.off { background:url(/content/images/checkbox_empty.png) no-repeat left ce
 
 
 .accordion-body li { display:inline-block; }
+
+
+.accordion-heading a { text-decoration:none; }
+.accordion-heading h3 { line-height:0; }
+.accordion-group { border:none; }
+.accordion-inner { border:none; }
+
+.buffer { height:2em; background-color:#0094ff }

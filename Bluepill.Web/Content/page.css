@@ -5,7 +5,12 @@
 .hide { display:none; }
 
 
- body { padding-top: 60px; padding-bottom: 40px; }
+ body { padding-top: 60px; padding-bottom: 40px;
+
+background:#000
+
+
+ }
 
 .sidebar-nav { padding: 9px 0; }
 
@@ -13,4 +18,16 @@
                             
     .navbar-text.pull-right { float: none; padding-left: 5px; padding-right: 5px; }
     body { padding-top: 0px; padding-bottom: 0px; }
+}
+
+
+.content-gradient {
+background: rgb(20,11,117); /* Old browsers */
+background: -moz-linear-gradient(top, rgba(20,11,117,1) 0%, rgba(10,7,86,1) 11%, rgba(0,0,0,1) 22%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(20,11,117,1)), color-stop(11%,rgba(10,7,86,1)), color-stop(22%,rgba(0,0,0,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, rgba(20,11,117,1) 0%,rgba(10,7,86,1) 11%,rgba(0,0,0,1) 22%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, rgba(20,11,117,1) 0%,rgba(10,7,86,1) 11%,rgba(0,0,0,1) 22%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top, rgba(20,11,117,1) 0%,rgba(10,7,86,1) 11%,rgba(0,0,0,1) 22%); /* IE10+ */
+background: linear-gradient(to bottom, rgba(20,11,117,1) 0%,rgba(10,7,86,1) 11%,rgba(0,0,0,1) 22%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#140b75', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
 }
