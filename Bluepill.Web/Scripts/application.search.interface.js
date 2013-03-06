@@ -1,26 +1,32 @@
 ﻿
 $("document").ready(function () {
-   
+
     $(".facet-container").each(function () {
         if ($(this).data("top") == "True") {
-            $(this).show("slow");
+            $(this).show();
         }
     });
+
+    //$(".facet-container").each(function () {
+    //    if ($(this).data("top") == "True") {
+    //        $(this).show("slow");
+    //    }
+    //});
 
     //$(".facets-area").on("click", ".facet-action", function () {
     //    $(this).siblings("ul").slideToggle(300);
     //    return false;
     //});
 
-    $(".facet-area label").click(function (e) {
+    $(".facet-container label").click(function (e) {
         $(e.target).toggleClass("on").toggleClass("off");
     });
 
-    $(".accordion-body").on("shown", function () {
-        console.log("shown");
-    })
+    //$(".accordion-body").on("shown", function () {
+    //    console.log("shown");
+    //})
 
-    $(".facet-area input[type=checkbox]").change(function (e) {
+    $(".facet-container input[type=checkbox]").change(function (e) {
 
         var area = $(".facet-area");
         var target = $(e.target);
