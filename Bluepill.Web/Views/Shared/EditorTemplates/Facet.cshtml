@@ -1,32 +1,23 @@
 ﻿@model Bluepill.Search.Facet
 
-@using Bluepill.Web.Framework.HtmlHelpers;
-
 @{ Layout = null; }
 
-@Html.HiddenFor(x => x.Name)
-@Html.HiddenFor(x => x.Id)
-
-@*<div class="facet-container hide" id="facet-@Model.Id" data-top="@Model.Top">
-    <h3 class="facet-action">@Model.Name<span></span></h3>
-    <ul class="hide">
-        @Html.EditorFor(x => x.Aspects)
-    </ul>
-</div>*@
-
 <div class="accordion-group facet-container hide" data-top="@Model.Top">
-<div class="accordion-heading">
-    <a class="accordion-toggle" data-toggle="collapse" href="#facet-@Model.Id">
-    @Model.Name
-    </a>
-</div>
-<div id="facet-@Model.Id" class="accordion-body collapse">
-
-    <div class="accordion-inner">
-        @Html.EditorFor(x => x.Aspects, "AspectMobile")
-        <ul class="hidden-desktop">
-        @Html.EditorFor(x => x.Aspects)
-        </ul>
+    <div class="accordion-heading">
+        <a class="accordion-toggle" data-toggle="collapse" href="#facet-@Model.Id">@Model.Name</a>
     </div>
-</div>
+    <div id="facet-@Model.Id" class="accordion-body collapse">
+        <div class="accordion-inner">
+            @Html.HiddenFor(x => x.Name)
+            @Html.HiddenFor(x => x.Id)
+            @{ int perColumn = (int)Math.Ceiling((double)Model.Aspects.Count() / 3); }
+            <div class="container-fluid">
+                <div class="row-fluid">
+                     <ul class="aspect-list" data-per-column="@perColumn">
+                        @Html.EditorFor(x => x.Aspects)
+                     </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

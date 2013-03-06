@@ -25,9 +25,6 @@
             <a class="brand" href="#">Bluepill</a>
             
             <div class="nav-collapse collapse">
-        @*      <p class="navbar-text pull-right">
-                    Logged in as <a href="#" class="navbar-link">Username</a>
-                </p>*@
                 <ul class="nav pull-right">
                     <li class="active"><a href="#about">Add</a></li>
                     <li><a href="#contact">Search</a></li>
@@ -46,73 +43,23 @@
 </div>
 
 <div class="container-fluid">
-
     <div class="row-fluid">
 
-                  <div class="add span5">
-                <a class="pull-right" id="input" href="@Model.Url" target="_blank">
-                    <img src="/application/picture/GetResizePicture?file=@Model.Url&height=@Model.ResizedHeight&width=@Model.ResizedWidth" alt="" />
-                </a>
+        <div class="add span5">
+            <a class="pull-right" id="input" href="@Model.Url" target="_blank">
+                <img src="/application/picture/GetResizePicture?file=@Model.Url&height=@Model.ResizedHeight&width=@Model.ResizedWidth" alt="" />
+            </a>
+        </div>
+
+        <div class="span7">
+            <div class="accordion facet-area">
+                <form>
+                    @Html.HiddenFor(x => x.Url)
+                    @Html.HiddenFor(x => x.File)
+                    @Html.EditorFor(x => x.Facets)
+                </form>
             </div>
-                    <div class="span7">
-
-
-                        <div class="accordion facet-area">
-
-                            @Html.EditorFor(x => x.Facets)
-
-@*  <div class="accordion-group">
-    <div class="accordion-heading">
-      <a class="accordion-toggle" data-toggle="collapse" href="#collapseOne">
-        Collapsible Group Item #1
-      </a>
-    </div>
-    <div id="collapseOne" class="accordion-body collapse">
-      <div class="accordion-inner">
-        content
-      </div>
-    </div>
-  </div>
-
-
-  <div class="accordion-group">
-    <div class="accordion-heading">
-      <a class="accordion-toggle" data-toggle="collapse" href="#collapseTwo">
-        Collapsible Group Item #2
-      </a>
-    </div>
-    <div id="collapseTwo" class="accordion-body collapse">
-      <div class="accordion-inner">
-        Anim pariatur cliche...
-      </div>
-    </div>
-  </div>*@
-
-
-</div>
-
-
-@*                    <div class="container-fluid">
-
-                        <div class="row-fluid">
-
-                        <form>
-                            @Html.HiddenFor(x => x.Url)
-                            @Html.HiddenFor(x => x.File)
-                            <div class="accordion facet-area">
-                                @Html.EditorFor(x => x.Facets)
-                            </div>
-                        </form>
-
-                            </div>
-                    </div>*@
-
-            </div>
-
-
-  
-
-            
+        </div>
         
     </div>
 </div>
