@@ -1,5 +1,9 @@
 ﻿.add { text-align:center; }   
-.add img { border:1px solid #ffd800; opacity:0 }
+/*.add img { border:1px solid #ffd800; opacity:0 }*/
+.add img { border:1px solid #83B0E1; opacity:0 }
 
-.submit { float:right; display:none; }
+/*.submit { float:right; display:none; }*/
 
+.inner { margin: 1em 0 1em 0; }
+.disabled { opacity:0.4 }
+form { margin:0 }

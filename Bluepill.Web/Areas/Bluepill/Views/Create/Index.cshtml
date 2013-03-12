@@ -23,7 +23,7 @@
             </button>
 
             <a class="brand" href="#">Bluepill</a>
-            
+
             <div class="nav-collapse collapse">
                 <ul class="nav pull-right">
                     <li class="active"><a href="#about">Add</a></li>
@@ -36,9 +36,25 @@
     </div>
 </div>
 
-<div class="container-fluid hidden-desktop">
+
+
+
+@*<div class="container-fluid hidden-desktop">
     <div class="row-fluid">
         <div class="span12 blue">Instructions</div>
+    </div>
+</div>*@
+
+<div class="container-fluid loading">
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="progress progress-striped active">
+                <div class="bar" style="width:100%">Loading</div>
+            </div>
+            <div>
+                <span class="badge badge-info">@Model.TotalFileCount files</span>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -46,20 +62,62 @@
     <div class="row-fluid">
 
         <div class="add span5">
-            <a class="pull-right" id="input" href="@Model.Url" target="_blank">
-                <img src="/application/picture/GetResizePicture?file=@Model.Url&height=@Model.ResizedHeight&width=@Model.ResizedWidth" alt="" />
-            </a>
+            
+            <div class="row-fluid">
+                <a class="pull-right" id="input" href="@Model.Url" target="_blank">
+                    <img src="/application/picture/GetResizePicture?file=@Model.Url&height=@Model.ResizedHeight&width=@Model.ResizedWidth" alt="" />
+                </a>
+            </div>
+
+@*            <div class="row-fluid submit hide">
+                <input type="submit" class="btn btn-primary btn-large" />
+            </div>*@
+
         </div>
 
         <div class="span7">
-            <div class="accordion facet-area">
-                <form>
-                    @Html.HiddenFor(x => x.Url)
-                    @Html.HiddenFor(x => x.File)
-                    @Html.EditorFor(x => x.Facets)
-                </form>
+
+@*                <div class="row-fluid hidden-desktop submit">
+                    <div class="span12">
+                    <input type="submit" class="disabled btn btn-block btn-primary btn-large" />
+                        </div>
+                    </div>*@
+
+                                    <div class="row-fluid hidden-desktop">
+                             <div class="inner pull-right submit disabled">
+                                 <input type="submit" class="btn btn-primary btn-large" disabled="disabled" />
+                             </div>
+                        </div>
+
+
+            <div class="row-fluid">
+                <div class="span12 accordion facet-area hide">
+                     <form>
+                        @Html.HiddenFor(x => x.Url)
+                        @Html.HiddenFor(x => x.File)
+                        @Html.EditorFor(x => x.Facets)
+                    </form>
+                </div>
             </div>
+
+                        <div class="row-fluid hidden-phone">
+                             <div class="pull-right submit disabled">
+                                 <input type="submit" class="btn btn-primary btn-large" disabled="disabled" />
+                             </div>
+                        </div>
+
+
         </div>
         
     </div>
+
+
+
 </div>
+
+@*<div class="container-fluid blue fixed">
+    <div class="row-fluid">
+        <div class="span5">A</div>
+        <div class="span7">B</div>
+    </div>
+</div>*@

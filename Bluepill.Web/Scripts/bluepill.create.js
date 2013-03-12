@@ -46,6 +46,8 @@ $("document").ready(function () {
 
 function InitializeImageLoad() {
     $(".add img").load(function () {
+        $(".progress").hide();
+        $(".facet-area").fadeIn();
         $(this).animate({ opacity: 1 }, 300, function () {
             //SetHeadingCount();
         });

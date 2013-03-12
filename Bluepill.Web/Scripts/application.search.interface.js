@@ -11,21 +11,92 @@ $("document").ready(function () {
     });
 
     $(".facet-container label").click(function (e) {
-        $(e.target).toggleClass("on").toggleClass("off");
+        $(e.target).toggleClass("on").toggleClass("off").toggleClass("selections");
+
+    ////    var toggle = $(this).closest(".facet-container").find(".accordion-heading .accordion-toggle");
+        
+
+    //    var checkboxes = $(this).closest(".facet-container").find("input[type=checkbox]");
+    //    var selections = false;
+
+    //    checkboxes.each(function (i) {
+    //        if ($(this).is(":checked")) {
+    //            //toggle.addClass("selections");
+    //            selections = true;
+    //            return false;
+    //        }
+    //        //toggle.removeClass("selections");
+    //    });
+
+    //    console.log(selections);
+    ////    console.log(on);
+    ////    if (on)
+    ////        toggle.addClass("selections");
+    ////    else
+    ////        toggle.removeClass("selections");
+
+
     });
+
+
+    $("input[type=submit]").click(function (e) {
+        console.log("post");
+
+        //var active = $(e.target).parent().data("active");
+        
+        //if (active == undefined || !active) {
+        //    return false;
+        //}
+        //else {
+        //    console.log("post");
+        //}
+
+        //var target = $(e.target);
+        //target.find("input[type=submit]");
+
+        //console.log(target.data("active"));
+
+    });
+
+
+
 
 });
 
 function InitializeCheckBox() {
 
     $(".facet-container input[type=checkbox]").change(function (e) {
-
         var area = $(".facet-area");
         var target = $(e.target);
         var isChecked = target.is(":checked");
         var facetId = target.data("facet");
         var container = area.find("#facet-" + facetId);
 
+        var anyChecked = target.closest(".facet-area").find("input[type=checkbox]").is(":checked");
+        var checkboxes = target.closest(".facet-container").find("input[type=checkbox]");
+        var toggle = target.closest(".facet-container").find(".accordion-heading .accordion-toggle");
+
+        toggle.removeClass("selections");
+
+        //if a facet has any checkbox boxes checked highlight its name
+        checkboxes.each(function () {
+            if ($(this).is(":checked")) {
+                toggle.addClass("selections");
+                return false;
+            }
+        });
+
+        //if any checkboxes are checked enable the submit button
+        if (anyChecked) {
+            $(".submit").find("input[type=submit]").removeAttr("disabled");
+            $(".submit").animate({ "opacity": "1" }, 150);
+        }
+        else {
+            $(".submit").find("input[type=submit]").attr("disabled", "disabled");
+            $(".submit").animate({ "opacity": "0.4" }, 150);
+        }
+
+        //if checked facet has child facet move it under parent and show else hide.  recursive
         if (container.length > 0) {
 
             if (isChecked) {
@@ -44,6 +115,10 @@ function InitializeCheckBox() {
                     }
                 });
             }
+
+
+
+
         }
     });
 
@@ -68,12 +143,12 @@ function InitializeColumns() {
 
 //function SetSelection(target) {
 //    var on = target.closest("ul").find("input[type=checkbox]").is(":checked")
-
+//    console.log("here");
 //    if (on) {
-//        target.closest(".facet-container").find("h3").addClass("selections");
+//        target.closest(".facet-container").find("a").addClass("selections");
 //    }
 //    else {
-//        target.closest(".facet-container").find("h3").removeClass("selections");
+//        target.closest(".facet-container").find("a").removeClass("selections");
 //    }
 //}
 
@@ -108,4 +183,5 @@ function InitializeColumns() {
 //    $(".facets-area ul").hide();
 //    $(".submit").hide();
 //}
+
 
