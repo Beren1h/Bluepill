@@ -5,5 +5,5 @@
 /*.submit { float:right; display:none; }*/
 
 .inner { margin: 1em 0 1em 0; }
-.disabled { opacity:0.4 }
+.actions { opacity:0; }
 form { margin:0 }

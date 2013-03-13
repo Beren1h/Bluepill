@@ -48,8 +48,15 @@ function InitializeImageLoad() {
     $(".add img").load(function () {
         $(".progress").hide();
         $(".facet-area").fadeIn();
+        $(".badge").fadeIn();
+        $(".actions").fadeIn();
+        //$(".actions").each(function () {
+        //    $(this).fadeIn();
+        //    alert("wtf");
+        //});
         $(this).animate({ opacity: 1 }, 300, function () {
             //SetHeadingCount();
+            $(".actions").css({ "opacity": "0.4" });
         });
     });
 }

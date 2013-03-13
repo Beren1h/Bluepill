@@ -12,56 +12,45 @@ $("document").ready(function () {
 
     $(".facet-container label").click(function (e) {
         $(e.target).toggleClass("on").toggleClass("off").toggleClass("selections");
-
-    ////    var toggle = $(this).closest(".facet-container").find(".accordion-heading .accordion-toggle");
-        
-
-    //    var checkboxes = $(this).closest(".facet-container").find("input[type=checkbox]");
-    //    var selections = false;
-
-    //    checkboxes.each(function (i) {
-    //        if ($(this).is(":checked")) {
-    //            //toggle.addClass("selections");
-    //            selections = true;
-    //            return false;
-    //        }
-    //        //toggle.removeClass("selections");
-    //    });
-
-    //    console.log(selections);
-    ////    console.log(on);
-    ////    if (on)
-    ////        toggle.addClass("selections");
-    ////    else
-    ////        toggle.removeClass("selections");
-
-
     });
 
-
-    $("input[type=submit]").click(function (e) {
-        console.log("post");
-
-        //var active = $(e.target).parent().data("active");
-        
-        //if (active == undefined || !active) {
-        //    return false;
-        //}
-        //else {
-        //    console.log("post");
-        //}
-
-        //var target = $(e.target);
-        //target.find("input[type=submit]");
-
-        //console.log(target.data("active"));
-
+    $(".actions .btn-clear").click(function () {
+        console.log("clear");
     });
+
+    $(".actions .btn-submit").click(function () {
+        console.log("submit");
+    });
+
+    //$(".actions button").click(function (e) {
+
+    //    var target = $(e.target);
+        
+    //    console.log(target.text());
+
+    //    console.log("post");
+
+    //    //var active = $(e.target).parent().data("active");
+        
+    //    //if (active == undefined || !active) {
+    //    //    return false;
+    //    //}
+    //    //else {
+    //    //    console.log("post");
+    //    //}
+
+    //    //var target = $(e.target);
+    //    //target.find("input[type=submit]");
+
+    //    //console.log(target.data("active"));
+
+    //});
 
 
 
 
 });
+
 
 function InitializeCheckBox() {
 
@@ -85,15 +74,15 @@ function InitializeCheckBox() {
                 return false;
             }
         });
-
+        
         //if any checkboxes are checked enable the submit button
         if (anyChecked) {
-            $(".submit").find("input[type=submit]").removeAttr("disabled");
-            $(".submit").animate({ "opacity": "1" }, 150);
+            $(".actions").find("button").removeAttr("disabled");
+            $(".actions").animate({ "opacity": "1" }, 150);
         }
         else {
-            $(".submit").find("input[type=submit]").attr("disabled", "disabled");
-            $(".submit").animate({ "opacity": "0.4" }, 150);
+            $(".actions").find("button").attr("disabled", "disabled");
+            $(".actions").animate({ "opacity": "0.4" }, 150);
         }
 
         //if checked facet has child facet move it under parent and show else hide.  recursive
