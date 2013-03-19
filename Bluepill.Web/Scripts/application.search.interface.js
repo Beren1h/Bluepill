@@ -15,46 +15,27 @@ $("document").ready(function () {
     });
 
     $(".actions .btn-clear").click(function () {
-        console.log("clear");
+        Clear();
     });
-
-    $(".actions .btn-submit").click(function () {
-        console.log("submit");
-    });
-
-    //$(".actions button").click(function (e) {
-
-    //    var target = $(e.target);
-        
-    //    console.log(target.text());
-
-    //    console.log("post");
-
-    //    //var active = $(e.target).parent().data("active");
-        
-    //    //if (active == undefined || !active) {
-    //    //    return false;
-    //    //}
-    //    //else {
-    //    //    console.log("post");
-    //    //}
-
-    //    //var target = $(e.target);
-    //    //target.find("input[type=submit]");
-
-    //    //console.log(target.data("active"));
-
-    //});
-
-
 
 
 });
 
 
+function Clear() {
+    $(".facet-area input[type=checkbox]").each(function () {
+        if ($(this).is(":checked")) {
+            $("label[for=" + $(this).attr("id") + "]").trigger("click");
+        }
+    });
+
+    $(".accordion-body.in").collapse("hide");
+}
+
 function InitializeCheckBox() {
 
     $(".facet-container input[type=checkbox]").change(function (e) {
+        
         var area = $(".facet-area");
         var target = $(e.target);
         var isChecked = target.is(":checked");
@@ -98,16 +79,11 @@ function InitializeCheckBox() {
                 var checks = container.parent().find("input[type=checkbox]");
                 checks.each(function (i) {
                     if ($(this).is(":checked")) {
-                        $(this).attr("checked", false);
                         $("label[for=" + $(this).attr("id") + "]").trigger("click");
                         $(this).trigger("change");
                     }
                 });
             }
-
-
-
-
         }
     });
 
@@ -129,48 +105,3 @@ function InitializeColumns() {
         }
     });
 }
-
-//function SetSelection(target) {
-//    var on = target.closest("ul").find("input[type=checkbox]").is(":checked")
-//    console.log("here");
-//    if (on) {
-//        target.closest(".facet-container").find("a").addClass("selections");
-//    }
-//    else {
-//        target.closest(".facet-container").find("a").removeClass("selections");
-//    }
-//}
-
-//function ShowSubmit() {
-//    var show = $("input[type=checkbox]").is(":checked");
-
-//    if (show) {
-//        $(".submit").show();
-//    }
-//    else {
-//        $(".submit").hide();
-//    }
-//};
-
-//function ResetForm() {
-//    $("input[type=checkbox]").each(function () {
-//        $(this).attr("checked", false);
-//        $("label[for=" + $(this).attr("id") + "]").removeClass("on").addClass("off");
-//    });
-
-//    $(".facet-container").each(function () {
-//        if ($(this).data("top") == "True") {
-//            $(this).show();
-//        }
-//        else {
-//            $(this).hide();
-//        }
-//        $("label", $(this)).removeClass("on").addClass("off");
-//        $("h3", $(this)).removeClass("selections");
-//    });
-
-//    $(".facets-area ul").hide();
-//    $(".submit").hide();
-//}
-
-

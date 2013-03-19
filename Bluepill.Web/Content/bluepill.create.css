@@ -5,5 +5,7 @@
 /*.submit { float:right; display:none; }*/
 
 .inner { margin: 1em 0 1em 0; }
-.actions { opacity:0; }
+.actions { opacity:0.4; }
 form { margin:0 }
+.progress { height:40px; }
+.bar span{ font-size:2em; color:#040b3b; display:inline-block; line-height:40px; }

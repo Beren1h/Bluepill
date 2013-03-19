@@ -77,9 +77,9 @@ namespace Bluepill.Web.Areas.Bluepill.Controllers
 
             var bytes = await _client.GetByteArrayAsync(model.Url);
 
-            var box = _packer.PackBox(bytes, Identity.Name, model.Facets);
+            //var box = _packer.PackBox(bytes, Identity.Name, model.Facets);
 
-            _attic.AddBox(box);
+            //_attic.AddBox(box);
 
             await _dropbox.Delete(Identity.AccessToken, model.File);
 
@@ -98,7 +98,7 @@ namespace Bluepill.Web.Areas.Bluepill.Controllers
 
                 json.Add("width", Constants.IMG_WIDTH);
                 json.Add("height", Constants.IMG_HEIGHT);
-                json.Add("file", list[0]);
+                //json.Add("file", list[0]);
                 json.Add("url", url);
                 json.Add("src", string.Format(Constants.GET_PICTURE_URL_FORMAT, url));
                 json.Add("resizedSrc", string.Format(Constants.GET_RESIZE_PICTURE_URL_FORMAT, url, Constants.IMG_WIDTH, Constants.IMG_HEIGHT));
