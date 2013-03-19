@@ -16,10 +16,10 @@ namespace Bluepill.Storage
         private MongoServer _server;
         private MongoDatabase _database;
 
-        private const string CONNECTION = "mongodb://localhost";
-        //private const string CONNECTION = "mongodb://appharbor_b0d57020-973d-4040-869e-acae8dc80def:6cpf1ku6483hkg5cb0sjjdo77q@ds043447.mongolab.com:43447/appharbor_b0d57020-973d-4040-869e-acae8dc80def";
-        private const string DATABASE = "bluepill";
-        //private const string DATABASE = "appharbor_b0d57020-973d-4040-869e-acae8dc80def";
+        //private const string CONNECTION = "mongodb://localhost";
+        private const string CONNECTION = "mongodb://appharbor_b0d57020-973d-4040-869e-acae8dc80def:6cpf1ku6483hkg5cb0sjjdo77q@ds043447.mongolab.com:43447/appharbor_b0d57020-973d-4040-869e-acae8dc80def";
+        //private const string DATABASE = "bluepill";
+        private const string DATABASE = "appharbor_b0d57020-973d-4040-869e-acae8dc80def";
 
         public StorageContext()
         {
