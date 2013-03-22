@@ -34,3 +34,5 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#140b75', end
 
 
 .fixed { position:fixed; width:100%; margin:20px 0 20px 0; background-color:#ff6a00}
+
+.content { margin-right:20px; }

@@ -11,7 +11,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Bluepill.Web.Areas.Bluepill.Controllers
 {
-    public class SearchController : Controller
+    public class SearchController : BluepillController
     {
         private IBoxPacker _packer;
         private IBoxStorage _attic;
@@ -24,8 +24,8 @@ namespace Bluepill.Web.Areas.Bluepill.Controllers
 
         public ActionResult Index()
         {
-            var identity = (BluePillIdentity)ControllerContext.HttpContext.User.Identity;
-            var facets = identity.Facets;
+            //var identity = (BluePillIdentity)ControllerContext.HttpContext.User.Identity;
+            var facets = Identity.Facets;
             var model = new SearchModel { Facets = facets, Page = 1, PageDelta = 0 };
 
             ViewBag.NavigationIndex = 1;
