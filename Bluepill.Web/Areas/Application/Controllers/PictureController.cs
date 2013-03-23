@@ -32,6 +32,8 @@ namespace Bluepill.Web.Areas.Application.Controllers
 
         public async Task<FileContentResult> GetResizePicture(string file, int width, int height)
         {
+            if (file == "")
+                return new FileContentResult(new byte[0], "image/png");
 
             var client = new HttpClient();
             var response = await client.GetByteArrayAsync(file);

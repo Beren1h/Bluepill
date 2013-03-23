@@ -11,7 +11,6 @@ $("document").ready(function () {
     });
 
     $(".facet-container label").click(function (e) {
-        //$(e.target).toggleClass("on").toggleClass("off").toggleClass("selections");
         ToggleLabel($(e.target));
     });
 
@@ -19,30 +18,19 @@ $("document").ready(function () {
         Clear();
     });
 
-
 });
 
 
 function Clear() {
 
     var tops = $(".facet-container[data-top=True]");
-
-    //console.log(tops.length);
-
     var checks = tops.find("input:checked");
 
     checks.each(function () {
         $(this).attr("checked", false);
         $(this).trigger("change");
-        //$("label[for=" + $(this).attr("id") + "]").toggleClass("on").toggleClass("off").toggleClass("selections");
         ToggleLabel($("label[for=" + $(this).attr("id") + "]"));
     });
-
-    //$(".facet-area input[type=checkbox]").each(function () {
-    //    if ($(this).is(":checked")) {
-    //        $("label[for=" + $(this).attr("id") + "]").trigger("click");
-    //    }
-    //});
 
     tops.find(".accordion-body.in").collapse("hide");
 }
@@ -72,8 +60,6 @@ function InitializeCheckBox() {
             $(".actions").animate({ "opacity": "0.4" }, 150);
         }
 
-
-
         if (dependentId != "") {
 
             var dependent = $("#facet-" + dependentId);
@@ -100,20 +86,10 @@ function InitializeCheckBox() {
                     console.log($(this).attr("id"));
                     $(this).attr("checked", false);
                     $(this).trigger("change");
-                    //$("label[for=" + $(this).attr("id") + "]").trigger("click");
-                    //$("label[for=" + $(this).attr("id") + "]").toggleClass("on").toggleClass("off").toggleClass("selections");
                     ToggleLabel($("label[for=" + $(this).attr("id") + "]"));
-
                 });
-
-
             }
-
-
-
-
         }
-
 
     });
         
@@ -123,21 +99,10 @@ $(".accordion-body").on("hidden", function (e) {
     var target = $(e.target);
 
     if (target.data("automatic-hide")) {
-        target.parent().hide();
+        target.parent().hide("fold", 50);
         target.data("automatic-hide", false);
     }
 });
-
-//$(".accordion-body").on("hidden", function (e) {
-//    var target = $(e.target);
-//    var top = target.parent().data("top");
-
-//    if (top != "True" && target.data("automatic-show")) {
-//        target.parent().();
-//        target.data("automatic-hide", false);
-//    }
-//});
-
 
 function InitializeColumns() {
     var aspectLists = $(".aspect-list");

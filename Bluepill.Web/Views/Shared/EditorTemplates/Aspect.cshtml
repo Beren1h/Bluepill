@@ -5,5 +5,5 @@
 <li>
     @Html.HiddenFor(x => x.Value)
     @Html.LabelFor(x => x.IsChecked, @Model.Text, new { @class="off" })
-    @Html.CheckBoxFor(x => x.IsChecked, new { data_value=@Model.Value, data_facet=@Model.Facet, @class="xhide" })
+    @Html.CheckBoxFor(x => x.IsChecked, new { data_value=@Model.Value, data_facet=@Model.Facet, @class="hide" })
 </li>
