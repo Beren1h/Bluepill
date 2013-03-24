@@ -1,1 +1,30 @@
-﻿
+﻿.swipe {
+  overflow: hidden;
+  visibility: hidden;
+  position: relative;
+}
+.swipe-wrap {
+  overflow: hidden;
+  position: relative;
+}
+.swipe-wrap > div {
+  float:left;
+  width:100%;
+  position: relative;
+}
+
+.wrap { border:1px solid #ff6a00; height:200px; width:200px; line-height:200px; text-align:center; }
+
+.x div {
+    float: left;
+}
+
+
+
+@media only screen and (max-device-width:480px) {
+    .wtf {  background-color:#f00; width:40px; opacity:0 }
+}
+
+@media screen and (min-width: 321px) {
+    .wtf {  background-color:#f00; width:130px; opacity:0 }
+}
