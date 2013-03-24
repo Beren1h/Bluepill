@@ -15,11 +15,7 @@
 
 .wrap { border:1px solid #ff6a00; height:200px; width:200px; line-height:200px; text-align:center; }
 
-.x div {
-    float: left;
-}
-
-
+.help { text-align:center; }
 
 @media only screen and (max-device-width:480px) {
     .wtf {  background-color:#f00; width:40px; opacity:0 }
