@@ -11,5 +11,6 @@ namespace Bluepill.Web.Areas.Administration.Models
         public double TotalPages { get; set; }
         public long TotalBoxes { get; set; }
         public int PageDelta { get; set; }
+        public bool IsMobile { get; set; }
     }
 }

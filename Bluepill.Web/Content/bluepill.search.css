@@ -13,14 +13,16 @@
   position: relative;
 }
 
-.wrap { border:1px solid #ff6a00; height:200px; width:200px; line-height:200px; text-align:center; }
+/*.wrap { border:1px solid #83B0E1; height:200px; width:200px; line-height:200px; text-align:center; }*/
 
-.help { text-align:center; }
+.frame { text-align:center; }
 
-@media only screen and (max-device-width:480px) {
-    .wtf {  background-color:#f00; width:40px; opacity:0 }
-}
+.actions { opacity:0.4; }
 
-@media screen and (min-width: 321px) {
-    .wtf {  background-color:#f00; width:130px; opacity:0 }
-}
+
+
+
+.bluepill-border {  }
+.match { height:200px; width:200px; line-height:200px; text-align:center; }
+.match img { opacity:0; vertical-align:middle; border:1px solid  #83B0E1 /*#FEDC69*/ }
+.matches div { float:left; margin:3px 8px 3px 0;  /*width:200px; height:200px; float:left; margin:3px 8px 3px 0; text-align:center; line-height:200px;*/ }

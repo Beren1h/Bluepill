@@ -9,8 +9,10 @@
 
 @section script
 { 
-    <script src="/scripts/bluepill.search.js" type="text/javascript"></script>
-    <script src="/scripts/swipe.js" type="text/javascript"></script>
+    <script src="/scripts/bluepill.search.mobile.js"></script>
+    <script src="/scripts/bluepill.search.js"></script>
+    <script src="/scripts/jquery.mousewheel.js"></script>
+    <script src="/scripts/swipe.js"></script>
 }
 
 <div class="navbar navbar-inverse navbar-fixed-top">
@@ -38,37 +40,58 @@
 </div>
 
 <div class="container-fluid">
-    <div class="row-fluid">
+
+   <div class="row-fluid">
         <div class="span12">
-
-
-                        <div id="slider" class="swipe">
-                            <div class="swipe-wrap">
-                                <div class="help">
-                                        <div class="wrap">
-                                            <img src="\content\images\0.png" alt="" />
-                                        </div>
-                                </div>
-                                <div class="help">
-                                        <div class="wrap">
-                                            <img src="\content\images\1.png" alt="" />
-                                        </div>
-                                </div>
-                                <div class="help">
-                                        <div class="wrap">
-                                            <img src="\content\images\2.png" alt="" />
-                                        </div>
-                                </div>
-                            </div>
-                        </div>  
-
-
-
-                           
+            <div class="progress progress-striped active hide">
+                <div class="bar" style="width:100%;"><span>Searching ...</span></div>
+            </div>
+            <div class="infos hide">
+                <div class="span6">
+                    <span id="page-info" class="badge badge-info"></span>
+                    <span id="match-info" class="badge badge-info"></span>
+                    <button class="btn btn-primary edit">edit search</button>
                 </div>
-        
-            
-
+                <div class="offset6"></div>
+            </div>
+        </div>
     </div>
+
+
+
+    <div class="row-fluid criteria-area">
+        <div class="offset3"></div>
+        <div class="span6">
+            <div class="accordion facet-area">
+                <form>
+                    @Html.HiddenFor(x => x.Page)
+                    @Html.HiddenFor(x => x.PageDelta)
+                    @Html.HiddenFor(x => x.TotalPages)
+                    @Html.EditorFor(x => x.Facets)
+                </form>
+            </div>
+            <div class="row-fluid actions">
+                <div class="pull-left">
+                    <button class="btn btn-primary btn-large btn-clear" disabled="disabled">Clear</button>
+                </div>
+                <div class="pull-right">
+                    <button class="btn btn-primary btn-large btn-submit">Submit</button>
+                </div>
+            </div>
+        </div>
+        <div class="offset3"></div>
+    </div>
+
+
+    <div class="row-fluid match-area" data-is-mobile="@Model.IsMobile">
+        <div class="matches" data-page="2" data-max="0" data-boxes="0"></div>
+    </div>
+
+
 </div>
+
+
+
+
+
 

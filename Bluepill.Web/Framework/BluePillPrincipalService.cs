@@ -48,6 +48,7 @@ namespace Bluepill.Web.Framework
                 identity.Facets = _user.GetUser(identity.Name).Facets;
 
                 identity.IsMobile = new HttpContextWrapper(HttpContext.Current).Request.Browser.IsMobileDevice;
+                //identity.IsMobile = true;
                    
 
             }
