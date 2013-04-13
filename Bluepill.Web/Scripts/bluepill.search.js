@@ -48,13 +48,12 @@ function IncrememntPage(page, max, delta) {
 function LoadMore() {
 
     var data = $("form").serializeArray();
-
     $(".match-area").load("search\\find", data, function (response) {
 
         var page = $(".matches").data("page");
         var total = $(".matches").data("max");
         var matches = $(".matches").data("boxes");
-
+        console.log(response);
         $("#page-info").text("page " + page + " of " + total);
         $("#match-info").text(matches + " matches");
 

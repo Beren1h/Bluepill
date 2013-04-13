@@ -19,7 +19,8 @@ function InitializeSlider(index) {
         startSlide: index,
         disableScroll: false,
         stopPropagation: true,
-        callback: Swiped
+        callback: Swiped,
+        //transitionEnd: Swiped
     });
 
     console.log("initialize");
@@ -31,7 +32,7 @@ function InitializeSlider(index) {
 
 
 function Swiped(i, e) {
-    var slider = window.slider;
+    //var slider = window.slider;
 
     var load = $(e).find(".match").data("load");
     var page = $(".matches").data("page");
@@ -75,6 +76,8 @@ function LoadMoreMobile(delta) {
 
     var data = $("form").serializeArray();
 
+    alert($("#Page").val());
+
     $(".match-area").load("search\\find", data, function (response) {
 
         var page = $(".matches").data("page");
@@ -84,20 +87,22 @@ function LoadMoreMobile(delta) {
         $("#page-info").text("page " + page + " of " + total);
         $("#match-info").text(matches + " matches");
 
+        $(".match-area").fadeIn(function () {
+            InitializeSlider(slideIndex);
+        });
+
         var frames = $(".frame").length;
         var slideIndex = (delta < 0) ? frames - 2 : 1;
 
         //if this is the initial page 1 load set the index to 0
         slideIndex = (delta == 0) ? 0 : slideIndex;
 
+        alert("frames = " + frames + " delta = " + delta + " slide index = " + slideIndex);
+
+
         $(".match-area img").load(function () {
-            $(this).animate({ "opacity": 1 }, 200);
-
+            $(this).animate({ "opacity": 1 }, 10);
             //swipe.js doesn't initialize properly if the area is hidden (width calc's maybe)
-            $(".match-area").fadeIn(function () {
-                InitializeSlider(slideIndex);
-            });
-
         });
 
 

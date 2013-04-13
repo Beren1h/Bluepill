@@ -18,12 +18,14 @@ namespace Bluepill.Web.Areas.Application.Controllers
         private IApiRequest _dropbox;
         private ITokenStorage _storage;
 
-        public DropboxController(IApiRequest dropbox, ITokenStorage storage)
+        //public DropboxController(IApiRequest dropbox, ITokenStorage storage)
+        public DropboxController(ITokenStorage storage, IApiRequest dropbox)
         {
             _dropbox = dropbox;
             _storage = storage;
         }
 
+        [AllowAnonymous]
         public async Task<ActionResult> Index()
         {
             var token = await _dropbox.RequestAuthorizationToken();
@@ -40,6 +42,7 @@ namespace Bluepill.Web.Areas.Application.Controllers
             return View(model);
         }
 
+        [AllowAnonymous]
         public async Task<ActionResult> GetAccessToken(DropboxModel model)
         {
             var token = await _dropbox.RequestAccessToken(model.AuthorizationToken, model.AuthorizationSecret);
@@ -49,10 +52,11 @@ namespace Bluepill.Web.Areas.Application.Controllers
 
             var identity = (BluePillIdentity)ControllerContext.HttpContext.User.Identity;
             _storage.AddToken(new Token { UserId = identity.Name, Value = token[Keys.TOKEN], Secret = token[Keys.SECRET] });
-            
+
             return View("Index", model);
         }
 
+        [AllowAnonymous]
         public async Task<JObject> GetMetaData(DropboxModel model)
         {
             var identity = (BluePillIdentity)ControllerContext.HttpContext.User.Identity;
