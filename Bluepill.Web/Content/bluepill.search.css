@@ -17,8 +17,8 @@
 
 .frame { text-align:center; }
 
-.actions { opacity:0.4; }
-
+.actions .btn { opacity:0.4; }
+.actions .always-on { opacity:1 }
 
 
 

@@ -29,5 +29,7 @@ label.off { background:url(/content/images/checkbox_empty.png) no-repeat left ce
 
 ul { list-style:none; }
 
+.show-all { margin: 20px 3px 0px 0px; }
+
 /*.facet-container { opacity:0; height:0; }*/
 

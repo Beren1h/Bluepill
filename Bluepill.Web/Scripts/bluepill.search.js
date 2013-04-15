@@ -1,10 +1,28 @@
 ﻿$(document).ready(function () {
  
+    //$(".btn-show-all").click(function () {
+
+    //    $(".criteria-area").hide();
+    //    $(".progress").show();
+    //    $(".matches").data("page", "2");
+
+    //    var isMobile = $(".match-area").data("is-mobile");
+
+    //    if (isMobile == "False") {
+    //        MouseWheelHandler(null, -1, 0, 0);
+    //    }
+    //    else {
+    //        LoadMoreMobile(0)
+    //    }
+
+    //});
+
     $(".actions .btn-submit").click(function () {
         //var data = $("form").serializeArray();
         $(".criteria-area").hide();
         $(".progress").show();
         $(".matches").data("page", "2");
+        $(".edit").parent().show();
         //$(".matches").data("max", 0);
         //$(".matches").data("boxes", 0);
 
@@ -25,6 +43,8 @@
         $(".match-area").hide();
         $(".criteria-area").show();
         $(".infos").hide();
+        $(this).parent().hide();
+        $(".btn-navbar").addClass("collapsed");
     });
 
 });
@@ -45,15 +65,25 @@ function IncrememntPage(page, max, delta) {
     return 0;
 }
 
-function LoadMore() {
+function LoadMore(showAll) {
 
     var data = $("form").serializeArray();
+
+    //if (showAll) {
+    //    //Clear();
+    //    data = { "Page": "1", "PageDelta": "0", "TotalPages": "0" }
+    //}
+    //else {
+    //    data = $("form").serializeArray();
+    //}
+    
+    //console.log(data);
     $(".match-area").load("search\\find", data, function (response) {
 
         var page = $(".matches").data("page");
         var total = $(".matches").data("max");
         var matches = $(".matches").data("boxes");
-        console.log(response);
+        //console.log(response);
         $("#page-info").text("page " + page + " of " + total);
         $("#match-info").text(matches + " matches");
 

@@ -26,9 +26,9 @@
 
             <div class="nav-collapse collapse">
                 <ul class="nav pull-right">
-                    <li class="active"><a href="#about">Add</a></li>
-                    <li><a href="#contact">Search</a></li>
-                    <li><a href="#contact">Sign Out</a></li>
+                    <li class="active"><a href="#">Add</a></li>
+                    <li><a href="@Url.Action("Index","Search", new { Area = "Bluepill" })">Search</a></li>
+                    <li><a href="@Url.Action("Index","Authentication", new { Area = "Framework" })">Sign Out</a></li>
                 </ul>
             </div>
 

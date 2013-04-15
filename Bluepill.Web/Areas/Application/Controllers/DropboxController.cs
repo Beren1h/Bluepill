@@ -18,7 +18,6 @@ namespace Bluepill.Web.Areas.Application.Controllers
         private IApiRequest _dropbox;
         private ITokenStorage _storage;
 
-        //public DropboxController(IApiRequest dropbox, ITokenStorage storage)
         public DropboxController(ITokenStorage storage, IApiRequest dropbox)
         {
             _dropbox = dropbox;

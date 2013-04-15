@@ -76,7 +76,7 @@ function LoadMoreMobile(delta) {
 
     var data = $("form").serializeArray();
 
-    alert($("#Page").val());
+    //alert($("#Page").val());
 
     $(".match-area").load("search\\find", data, function (response) {
 
@@ -87,18 +87,25 @@ function LoadMoreMobile(delta) {
         $("#page-info").text("page " + page + " of " + total);
         $("#match-info").text(matches + " matches");
 
-        $(".match-area").fadeIn(function () {
-            InitializeSlider(slideIndex);
-        });
-
         var frames = $(".frame").length;
         var slideIndex = (delta < 0) ? frames - 2 : 1;
 
         //if this is the initial page 1 load set the index to 0
         slideIndex = (delta == 0) ? 0 : slideIndex;
 
-        alert("frames = " + frames + " delta = " + delta + " slide index = " + slideIndex);
+        //alert("frames = " + frames + " delta = " + delta + " slide index = " + slideIndex);
 
+        $(".match-area").fadeIn(function () {
+            InitializeSlider(slideIndex);
+        });
+
+        //var match = (page - 1) * 22 + window.slider.getPos() + 1;
+        //$("#item-" + page + "-" + window.slider.getPos()).text(match);
+
+        $(".z").each(function (i) {
+            //console.log((page - 1) * 21 + (i + 1));
+            $(this).text((page - 1) * 21 + (i+1));
+        });
 
         $(".match-area img").load(function () {
             $(this).animate({ "opacity": 1 }, 10);

@@ -29,9 +29,10 @@
 
             <div class="nav-collapse collapse">
                 <ul class="nav pull-right">
-                    <li><a href="#about">Add</a></li>
-                    <li class="active"><a href="#contact">Search</a></li>
-                    <li><a href="#contact">Sign Out</a></li>
+                    <li><a href="@Url.Action("Index","Create", new { Area = "Bluepill" })">Add</a></li>
+                    <li class="hide"><a href="#" class="edit">Edit</a></li>
+                    <li class="active"><a href="#">Search</a></li>
+                    <li><a href="@Url.Action("Index","Authentication", new { Area = "Framework" })">Sign Out</a></li>
                 </ul>
             </div>
 
@@ -50,13 +51,16 @@
                 <div class="span6">
                     <span id="page-info" class="badge badge-info"></span>
                     <span id="match-info" class="badge badge-info"></span>
-                    <button class="btn btn-primary edit">edit search</button>
                 </div>
                 <div class="offset6"></div>
             </div>
         </div>
-    </div>
 
+
+
+
+
+    </div>
 
 
     <div class="row-fluid criteria-area">
@@ -75,7 +79,7 @@
                     <button class="btn btn-primary btn-large btn-clear" disabled="disabled">Clear</button>
                 </div>
                 <div class="pull-right">
-                    <button class="btn btn-primary btn-large btn-submit">Submit</button>
+                    <button class="btn btn-primary btn-large btn-submit always-on">Submit</button>
                 </div>
             </div>
         </div>

@@ -70,9 +70,9 @@ namespace Bluepill.Web.Areas.Bluepill.Controllers
         {
             var bytes = await _client.GetByteArrayAsync(model.Url);
 
-            //var box = _packer.PackBox(bytes, Identity.Name, model.Facets);
+            var box = _packer.PackBox(bytes, Identity.Name, model.Facets);
 
-            //_attic.AddBox(box);
+            _attic.AddBox(box);
 
             await _dropbox.Delete(Identity.AccessToken, model.File);
 

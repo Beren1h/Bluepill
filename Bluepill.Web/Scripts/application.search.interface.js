@@ -18,6 +18,11 @@ $("document").ready(function () {
         Clear();
     });
 
+    //$(".actions,.on").animate({ "opacity": "1" }, 150, function () {
+    //    console.log("done");
+    //});
+
+
 });
 
 
@@ -51,13 +56,13 @@ function InitializeCheckBox() {
 
         if (checks.length > 0) {
             toggle.addClass("selections");
-            $(".actions").find("button").removeAttr("disabled");
-            $(".actions").animate({ "opacity": "1" }, 150);
+            $(".actions").find("button").removeAttr("disabled").animate({ "opacity": "1" }, 150);
+            //$(".actions").animate({ "opacity": "1" }, 150);
         }
         else {
             toggle.removeClass("selections");
-            $(".actions").find("button").attr("disabled", "disabled");
-            $(".actions").animate({ "opacity": "0.4" }, 150);
+            $(".actions").find("button:not(.always-on)").attr("disabled", "disabled").animate({ "opacity": "0.4" }, 150);
+            //$(".actions").animate({ "opacity": "0.4" }, 150);
         }
 
         if (dependentId != "") {
