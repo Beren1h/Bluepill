@@ -1,5 +1,8 @@
 ﻿$(document).ready(function () {
  
+    //$(".edit").parent().hide();
+    //$(".edit").parent().siblings("li").text("Criteria");
+
     //$(".btn-show-all").click(function () {
 
     //    $(".criteria-area").hide();
@@ -20,11 +23,16 @@
     $(".actions .btn-submit").click(function () {
         //var data = $("form").serializeArray();
         $(".criteria-area").hide();
-        $(".progress").show();
+        $(".progress-row").show();
         $(".matches").data("page", "2");
-        $(".edit").parent().show();
+        //$(".breadcrumb").show();
+        //$(".edit").parent().removeClass("active");
+        //$(".edit").parent().show();
+        //$(".edit").parent().siblings("li").text("Results");
         //$(".matches").data("max", 0);
         //$(".matches").data("boxes", 0);
+        $(".criteria-row").hide();
+        //$(".results-row").show();
 
         var isMobile = $(".match-area").data("is-mobile");
 
@@ -42,8 +50,17 @@
     $(".edit").click(function () {
         $(".match-area").hide();
         $(".criteria-area").show();
-        $(".infos").hide();
-        $(this).parent().hide();
+        $(".results-row").hide();
+        $(".criteria-row").show();
+        //$(".infos").hide();
+        //$(".infos").show();
+        //$(".inner-nav").addClass("offset10");
+        //$(".remove").show();
+        //$(this).parent().hide();
+        //$(this).parent().siblings("li").text("Criteria");
+        //console.log($(".edit").parent().siblings().length);
+        //$(".breadcrumb").hide();
+        //$(".edit").parent().addClass("active");
         $(".btn-navbar").addClass("collapsed");
     });
 
@@ -99,8 +116,12 @@ function LoadMore(showAll) {
             $(this).animate({ "opacity": 1 }, 200);
         });
 
-        $(".progress").hide();
-        $(".infos").show();
+        $(".progress-row").hide();
+        $(".results-row").show();
+        //$(".infos").show();
+        //$(".inner-nav").removeClass("offset10");
+        //$(".remove").show();
+
 
     });
 

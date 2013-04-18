@@ -30,7 +30,6 @@
             <div class="nav-collapse collapse">
                 <ul class="nav pull-right">
                     <li><a href="@Url.Action("Index","Create", new { Area = "Bluepill" })">Add</a></li>
-                    <li class="hide"><a href="#" class="edit">Edit</a></li>
                     <li class="active"><a href="#">Search</a></li>
                     <li><a href="@Url.Action("Index","Authentication", new { Area = "Framework" })">Sign Out</a></li>
                 </ul>
@@ -42,20 +41,44 @@
 
 <div class="container-fluid">
 
-   <div class="row-fluid">
-        <div class="span12">
-            <div class="progress progress-striped active hide">
+  <div class="row-fluid progress-row hide">
+
+       <div class="span12">
+            <div class="progress progress-striped active">
                 <div class="bar" style="width:100%;"><span>Searching ...</span></div>
             </div>
-            <div class="infos hide">
-                <div class="span6">
-                    <span id="page-info" class="badge badge-info"></span>
-                    <span id="match-info" class="badge badge-info"></span>
-                </div>
-                <div class="offset6"></div>
-            </div>
-        </div>
+       </div>
 
+
+   </div>
+
+    
+    <div class="row-fluid criteria-row">
+
+       <div class="span2 offset10">
+           <ul class="breadcrumb">
+               <li class="active">Criteria</li>
+           </ul>
+       </div>
+
+
+    </div>
+
+        <div class="row-fluid results-row hide">
+            <div class="span2 hidden-phone">
+                   <span id="page-info" class="badge badge-info"></span>
+                   <span id="match-info" class="badge badge-info"></span>
+               </div>
+               <div class="span8 drag-drop hidden-phone">
+                   <span>Drag to remove</span>
+               </div>
+               <div class="span2">
+                   <ul class="breadcrumb">
+                       <li><a href="#" class="edit">Criteria</a><span class="divider"> / </span></li>
+                       <li class="active">Results</li>
+                   </ul>
+               </div>
+        </div>
 
 
 
@@ -63,8 +86,9 @@
     </div>
 
 
+
+
     <div class="row-fluid criteria-area">
-        <div class="offset3"></div>
         <div class="span6">
             <div class="accordion facet-area">
                 <form>
@@ -83,7 +107,6 @@
                 </div>
             </div>
         </div>
-        <div class="offset3"></div>
     </div>
 
 
@@ -92,7 +115,12 @@
     </div>
 
 
-</div>
+
+    </div>
+
+
+
+
 
 
 

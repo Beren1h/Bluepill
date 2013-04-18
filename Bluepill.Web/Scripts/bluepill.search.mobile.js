@@ -4,9 +4,9 @@
 
     //window.slider.transitionEnd = Swiped;
 
-    //$(window).bind("orientationchange", function (e) {
-    //    CenterInSwipe();
-    //});
+    $(window).bind("orientationchange", function (e) {
+        CenterInSwipe();
+    });
 
 });
 
@@ -20,19 +20,29 @@ function InitializeSlider(index) {
         disableScroll: false,
         stopPropagation: true,
         callback: Swiped,
-        //transitionEnd: Swiped
+        transitionEnd: Item
     });
 
-    console.log("initialize");
+    //console.log("initialize");
 
     CenterInSwipe();
 }
 
 
+function Item(i, e) {
+
+    var page = $(".matches").data("page");
+    var current = (page - 1) * 21 + (i + 1);
+    var matches = $(".matches").data("boxes");
+
+    alert(current + " of " + matches);
+
+}
 
 
 function Swiped(i, e) {
     //var slider = window.slider;
+
 
     var load = $(e).find(".match").data("load");
     var page = $(".matches").data("page");
@@ -103,8 +113,11 @@ function LoadMoreMobile(delta) {
         //$("#item-" + page + "-" + window.slider.getPos()).text(match);
 
         $(".z").each(function (i) {
+
             //console.log((page - 1) * 21 + (i + 1));
-            $(this).text((page - 1) * 21 + (i+1));
+            var current = (page - 1) * 21 + (i + 1);
+            $(this).text(current + " of " + matches);
+
         });
 
         $(".match-area img").load(function () {
@@ -112,9 +125,9 @@ function LoadMoreMobile(delta) {
             //swipe.js doesn't initialize properly if the area is hidden (width calc's maybe)
         });
 
-
-        $(".progress").hide();
-        $(".infos").show();
+        $(".progress-row").hide();
+        $(".results-row").show();
+        //$(".infos").show();
 
      });
 
