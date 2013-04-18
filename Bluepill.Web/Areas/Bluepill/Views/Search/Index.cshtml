@@ -67,23 +67,46 @@
         <div class="row-fluid results-row hide">
             <div class="span2 hidden-phone">
                    <span id="page-info" class="badge badge-info"></span>
-                   <span id="match-info" class="badge badge-info"></span>
+                   @*<span id="match-info" class="badge badge-info"></span>*@
                </div>
                <div class="span8 drag-drop hidden-phone">
                    <span>Drag to remove</span>
                </div>
                <div class="span2">
-                   <ul class="breadcrumb">
+@*               <ul class="breadcrumb">
                        <li><a href="#" class="edit">Criteria</a><span class="divider"> / </span></li>
-                       <li class="active">Results</li>
-                   </ul>
+                       <li class="active">Results<span class="divider"></span></li>
+                   </ul>*@
+            <ul class="breadcrumb">
+              <li><a href="#" class="edit">Criteria</a><span class="divider"> / </span></li>
+              <li class="active">Results<span class="divider"></span></li>
+
+              <li class="dropdown pull-right hidden-desktop">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span id="match">1</span> of <span id="matches">38</span><b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">remove</a></li>
+                  @*<li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">Separated link</a></li>*@
+                </ul>
+              </li>
+            </ul>
+
+
+
+@*                   <ul class="breadcrumb">
+                       <li><a href="#" class="edit">Criteria</a><span class="divider"> / </span></li>
+                       <li class="active">Results<span class="divider"></span></li>
+                       <li class="pull-right">
+                       </li>
+                   </ul>*@
                </div>
         </div>
 
 
 
 
-    </div>
 
 
 
@@ -116,7 +139,7 @@
 
 
 
-    </div>
+        </div>
 
 
 

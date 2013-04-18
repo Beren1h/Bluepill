@@ -31,14 +31,30 @@ function InitializeSlider(index) {
 
 function Item(i, e) {
 
+    //UpdateMatchPosition();
+
     var page = $(".matches").data("page");
     var current = (page - 1) * 21 + (i + 1);
     var matches = $(".matches").data("boxes");
+    ////var total = $(".matches").data("max");
 
-    alert(current + " of " + matches);
+    $("#match").text(current);
+    $("#matches").text(matches);
+
+
+    //alert(current + " of " + matches);
 
 }
 
+function UpdateMatchPosition() {
+    var page = $(".matches").data("page");
+    var current = (page - 1) * 21 + (i + 1);
+    var matches = $(".matches").data("boxes");
+    //var total = $(".matches").data("max");
+
+    $("#match").text(current);
+    $("#matches").text(matches);
+}
 
 function Swiped(i, e) {
     //var slider = window.slider;
@@ -94,8 +110,10 @@ function LoadMoreMobile(delta) {
         var total = $(".matches").data("max");
         var matches = $(".matches").data("boxes");
 
-        $("#page-info").text("page " + page + " of " + total);
-        $("#match-info").text(matches + " matches");
+        //$("#page-info").text("page " + page + " of " + total);
+        //$("#match-info").text(matches + " matches");
+        $("#match").text("1");
+        $("#matches").text(matches);
 
         var frames = $(".frame").length;
         var slideIndex = (delta < 0) ? frames - 2 : 1;
@@ -112,13 +130,13 @@ function LoadMoreMobile(delta) {
         //var match = (page - 1) * 22 + window.slider.getPos() + 1;
         //$("#item-" + page + "-" + window.slider.getPos()).text(match);
 
-        $(".z").each(function (i) {
+        //$(".z").each(function (i) {
 
-            //console.log((page - 1) * 21 + (i + 1));
-            var current = (page - 1) * 21 + (i + 1);
-            $(this).text(current + " of " + matches);
+        //    //console.log((page - 1) * 21 + (i + 1));
+        //    var current = (page - 1) * 21 + (i + 1);
+        //    $(this).text(current + " of " + matches);
 
-        });
+        //});
 
         $(".match-area img").load(function () {
             $(this).animate({ "opacity": 1 }, 10);

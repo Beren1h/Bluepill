@@ -20,7 +20,7 @@
 .actions .btn { opacity:0.4; }
 .actions .always-on { opacity:1 }
 
-.breadcrumb { background-color:#00000F; border:1px solid #1a3e4f; text-align:center; }
+.breadcrumb { background-color:#00000F; border:1px solid #1a3e4f; /*text-align:center;*/ }
 .breadcrumb li { text-shadow: 0 1px 0 #000000; }
 
 .drag-drop { text-align:center; }
@@ -30,6 +30,6 @@
 .infos { margin:0px 0px 10px 0px }
 
 .bluepill-border {  }
-.match { height:200px; width:200px; line-height:200px; text-align:center; }
+.match { height:205px; width:200px; line-height:200px; text-align:center; }
 .match img { opacity:0; vertical-align:middle; border:1px solid #83B0E1 /*#FEDC69*/ }
 .matches div { float:left; margin:3px 8px 3px 0;  /*width:200px; height:200px; float:left; margin:3px 8px 3px 0; text-align:center; line-height:200px;*/ }
