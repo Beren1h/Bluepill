@@ -69,10 +69,10 @@
                    <span id="page-info" class="badge badge-info"></span>
                    @*<span id="match-info" class="badge badge-info"></span>*@
                </div>
-               <div class="span8 drag-drop hidden-phone">
+@*               <div class="span8 drag-drop hidden-phone">
                    <span>Drag to remove</span>
-               </div>
-               <div class="span2">
+               </div>*@
+               <div class="offset8 span2">
 @*               <ul class="breadcrumb">
                        <li><a href="#" class="edit">Criteria</a><span class="divider"> / </span></li>
                        <li class="active">Results<span class="divider"></span></li>
@@ -82,9 +82,9 @@
               <li class="active">Results<span class="divider"></span></li>
 
               <li class="dropdown pull-right hidden-desktop">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span id="match">1</span> of <span id="matches">38</span><b class="caret"></b></a>
+                <a class="dropdown-toggle mobile-match-count" data-toggle="dropdown" href="#"><span id="match">1</span><span id="match-conjuction"> of </span><span id="matches">38</span><b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">remove</a></li>
+                  <li><a href="#" id="mobile-remover" data-index="0">remove</a></li>
                   @*<li><a href="#">Another action</a></li>
                   <li><a href="#">Something else here</a></li>
                   <li class="divider"></li>

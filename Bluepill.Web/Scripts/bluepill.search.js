@@ -82,6 +82,12 @@ function IncrememntPage(page, max, delta) {
     return 0;
 }
 
+function wtf($item) {
+    console.log($item.attr("data"));
+
+}
+
+
 function LoadMore(showAll) {
 
     var data = $("form").serializeArray();
@@ -104,9 +110,61 @@ function LoadMore(showAll) {
         $("#page-info").text("page " + page + " of " + total);
         $("#match-info").text(matches + " matches");
 
-        $(".match").draggable({
-            revert: true
+        $(".match").on("dragstop", function (e, ui) {
+            $(this).removeClass("kill");
         });
+
+        $(".match").draggable({
+            revert: true,
+            start: function (e, ui) {
+                console.log("start");
+                //$(ui.draggable.context).animate({"height": 10});
+                $(".drag-drop").animate({ backgroundColor: "#000020", color: "#83B0E1" }, "fast");
+                $(".drag-drop span").animate({ color: "#83B0E1", opacity: 0.5 }, "fast");
+            },
+            stop: function (e, ui) {
+                console.log("stop");
+                $(".drag-drop").animate({ backgroundColor: "#000000", color: "#ffffff" }, "fast");
+                $(".drag-drop span").animate({ color: "#1a3e4f", opacity: 0.5 }, "fast");
+                //$(ui.draggable.context).removeClass("kill");
+            }
+        });
+
+        $(".drag-drop").droppable({
+            drop: function (e, ui) {
+                //console.log(ui.draggable.find("div"));
+                //var x = $("ui.draggable");
+                //var index = $("ui.draggable").data("index");
+                var index = $(ui.draggable.context).data("index").toString();
+                console.log(index);
+                //console.log(index);
+                //alert(index);
+                //remove from database
+
+                var img = new Image();
+
+                img.id = "removeImage" + index;
+                img.src = "/application/picture/removepicture?index=" + index;
+                img.width = 1;
+                img.height = 1;
+
+                $(ui.draggable).remove();
+                //wtf(ui.draggable);
+                $(".drag-drop").animate({ backgroundColor: "#000000", color: "#ffffff" }, "fast");
+                $(".drag-drop span").animate({ color: "#1a3e4f", opacity: 0.5 }, "fast");
+            },
+            over: function (e, ui) {
+                //console.log("over");
+                $(ui.draggable.context).addClass("drop-ready");
+                //console.log($(ui.draggable.context).attr("class"));
+            },
+            out: function (e, ui) {
+                //console.log("out");
+                $(ui.draggable.context).removeClass("drop-ready");
+            },
+        });
+
+
 
         $(".match-area").mousewheel(MouseWheelHandler);
 

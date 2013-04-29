@@ -4,6 +4,10 @@
 
 
 <div class="matches" data-page="@Model.Page" data-max="@Model.TotalPages" data-boxes="@Model.TotalBoxes">
+        <div class="drag-drop">
+            <span>drag to remove</span>
+        </div>
+
     @for (int i = 0; i <= Model.MaxIndex; i++)
     {
         <div class="match" data-index="@i">
