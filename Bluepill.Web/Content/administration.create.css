@@ -1,8 +1,0 @@
-﻿#heading { margin-left:2%; }
-.aspectContainer { float:left; }
-.aspectLabel { margin:2px; }
-
-.left { width:50%; margin:2px; position:absolute; margin-left:2% }
-.left #formSubmit { float:right; width:20%; margin-top:10px; }
-.right { margin:2px; width:700px; height:600px; float:right; text-align:center; }
-.right img { border:1px solid #fedc69; opacity:0 }
