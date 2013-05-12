@@ -173,33 +173,21 @@
     <Compile Include="Framework\BluePillPrincipalService.cs" />
     <Compile Include="Framework\BluePillWebApplication.cs" />
     <Compile Include="Framework\Constants.cs" />
-    <Compile Include="Framework\CookieGateway.cs" />
-    <Compile Include="Framework\Extensions.cs" />
-    <Compile Include="Framework\HtmlHelpers\AspectColumns.cs" />
     <Compile Include="Framework\HttpContextLifetimeManager.cs" />
-    <Compile Include="Framework\ICookieGateway.cs" />
     <Compile Include="Framework\IIocRegistry.cs" />
     <Compile Include="Framework\IocDependencyResolver.cs" />
     <Compile Include="Framework\IocRegistry.cs" />
     <Compile Include="Framework\IocInitializer.cs" />
     <Compile Include="Framework\IPrincipalService.cs" />
-    <Compile Include="Framework\MobileFilter.cs" />
     <Compile Include="Framework\RequireHttpsAttribute.cs" />
     <Compile Include="Framework\ValidatorFactory.cs" />
     <Compile Include="Gateways\AuthenticationGateway.cs" />
-    <Compile Include="Gateways\CookieGateway.cs" />
-    <Compile Include="Gateways\DropboxGateway.cs" />
     <Compile Include="Gateways\IAuthenticationGateway.cs" />
-    <Compile Include="Gateways\ICookieGateway.cs" />
-    <Compile Include="Gateways\IDropboxGateway.cs" />
-    <Compile Include="Gateways\IMongoGateway.cs" />
-    <Compile Include="Gateways\IPictureGateway.cs" />
-    <Compile Include="Gateways\MongoGateway.cs" />
-    <Compile Include="Gateways\PictureGateway.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="favicon.png" />
     <Content Include="Scripts\bluepill.search.mobile.js" />
   </ItemGroup>
   <ItemGroup>
@@ -209,8 +197,6 @@
     <Content Include="401.html" />
     <Content Include="404.html" />
     <Content Include="Content\application.search.interface.css" />
-    <Content Include="Content\application.settings.css" />
-    <Content Include="Content\authentication.css" />
     <Content Include="Content\bootstrap-responsive.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\images\checkbox_empty.png" />
@@ -225,7 +211,6 @@
     <Content Include="Content\bluepill.search.css" />
     <Content Include="LICENSE.txt" />
     <Content Include="Scripts\application.search.interface.js" />
-    <Content Include="Scripts\application.settings.js" />
     <Content Include="Scripts\bluepill.search.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Areas\Bluepill\Views\Search\RetreivalMobile.cshtml" />
@@ -244,7 +229,6 @@
     <Content Include="Areas\Application\Views\Info\Index.cshtml" />
     <Content Include="Areas\Application\Views\Dropbox\Index.cshtml" />
     <Content Include="Areas\Bluepill\Views\Create\Mobile.cshtml" />
-    <Content Include="Scripts\authentication.js" />
     <Content Include="Scripts\bluepill.create.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

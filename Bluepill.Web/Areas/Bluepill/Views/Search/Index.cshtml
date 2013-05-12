@@ -1,19 +1,10 @@
 ﻿@model Bluepill.Web.Areas.Administration.Models.SearchModel
 
-@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
-
-@*@section css
-{ 
-    <link href="/content/bluepill.search.css" rel="stylesheet" type="text/css" /> 
-}*@
-
-@section script
-{ 
-    <script src="/scripts/bluepill.search.mobile.js"></script>
-    <script src="/scripts/bluepill.search.js"></script>
-    <script src="/scripts/jquery.mousewheel.js"></script>
-    <script src="/scripts/swipe.js"></script>
-}
+@{ 
+   Layout = "~/Views/Shared/_Layout.cshtml";
+   Bundles.Reference("js");
+   Bundles.Reference("searchJs");
+ }
 
 <div class="container-fluid">
 

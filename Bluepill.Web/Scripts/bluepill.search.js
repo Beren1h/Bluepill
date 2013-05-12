@@ -20,6 +20,9 @@
 
     //});
 
+    Activate("nav-search");
+
+
     $(".actions .btn-submit").click(function () {
         //var data = $("form").serializeArray();
         $(".criteria-area").hide();
@@ -141,12 +144,12 @@ function LoadMore(showAll) {
                 //alert(index);
                 //remove from database
 
-                var img = new Image();
+                //var img = new Image();
 
-                img.id = "removeImage" + index;
-                img.src = "/application/picture/removepicture?index=" + index;
-                img.width = 1;
-                img.height = 1;
+                //img.id = "removeImage" + index;
+                //img.src = "/application/picture/removepicture?index=" + index;
+                //img.width = 1;
+                //img.height = 1;
 
                 $(ui.draggable).remove();
                 //wtf(ui.draggable);

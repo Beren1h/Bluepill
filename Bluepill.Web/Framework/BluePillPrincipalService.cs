@@ -12,14 +12,14 @@ namespace Bluepill.Web.Framework
     public class BluePillPrincipalService : IPrincipalService
     {
         //private IBluePillUserStore _userStore;
-        private ICookieGateway _cookieGateway;
+        //private ICookieGateway _cookieGateway;
         private ITokenStorage _storage;
         private IBluepillUserStorage _user;
 
-        public BluePillPrincipalService(/*IBluePillUserStore userStore,*/ ICookieGateway cookieGateway, ITokenStorage storage, IBluepillUserStorage user)
+        public BluePillPrincipalService(/*IBluePillUserStore userStore,*/ /*ICookieGateway cookieGateway,*/ ITokenStorage storage, IBluepillUserStorage user)
         {
             //_userStore = userStore;
-            _cookieGateway = cookieGateway;
+            //_cookieGateway = cookieGateway;
             _storage = storage;
             _user = user;
         }
@@ -28,7 +28,8 @@ namespace Bluepill.Web.Framework
         {
             var identity = new BluePillIdentity();
             var roles = new List<string>();
-            var authenticationValue = _cookieGateway.GetVale(new HttpContextWrapper(HttpContext.Current), FormsAuthentication.FormsCookieName, 0);
+            //var authenticationValue = _cookieGateway.GetVale(new HttpContextWrapper(HttpContext.Current), FormsAuthentication.FormsCookieName, 0);
+            var authenticationValue = new HttpContextWrapper(HttpContext.Current).Request.Cookies[FormsAuthentication.FormsCookieName].Value;
 
             if (authenticationValue != null)
             {

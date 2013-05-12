@@ -22,29 +22,29 @@ namespace Bluepill.Web.Areas.Bluepill.Controllers
             _attic = attic;
         }
 
-        public ActionResult Test(int index)
-        {
-            var max = 14;
-            ViewBag.upIndex = -1;
-            ViewBag.downIndex = -1;
+        //public ActionResult Test(int index)
+        //{
+        //    var max = 14;
+        //    ViewBag.upIndex = -1;
+        //    ViewBag.downIndex = -1;
 
-            ViewBag.start = string.Format("{0}.jpg", index);
-            ViewBag.middle = string.Format("{0}.jpg", index + 1);
-            ViewBag.end = string.Format("{0}.jpg", index + 2);
+        //    ViewBag.start = string.Format("{0}.jpg", index);
+        //    ViewBag.middle = string.Format("{0}.jpg", index + 1);
+        //    ViewBag.end = string.Format("{0}.jpg", index + 2);
 
 
-            if (index + 2 < max)
-            {
-                ViewBag.upIndex = index + 3;
-            }
+        //    if (index + 2 < max)
+        //    {
+        //        ViewBag.upIndex = index + 3;
+        //    }
 
-            if (index > 0)
-            {
-                ViewBag.downIndex = index - 3;
-            }
+        //    if (index > 0)
+        //    {
+        //        ViewBag.downIndex = index - 3;
+        //    }
 
-            return View("Retreival");
-        }
+        //    return View("Retreival");
+        //}
 
         public ActionResult Index()
         {

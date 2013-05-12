@@ -1,12 +1,9 @@
 ﻿@model Bluepill.Web.Areas.Administration.Models.SearchModel
 
-@{ Layout = null; }
-
-
 <div class="matches" data-page="@Model.Page" data-max="@Model.TotalPages" data-boxes="@Model.TotalBoxes">
-        <div class="drag-drop">
-            <span>drag to remove</span>
-        </div>
+    <div class="drag-drop">
+        <span>drag to remove</span>
+    </div>
 
     @for (int i = 0; i <= Model.MaxIndex; i++)
     {

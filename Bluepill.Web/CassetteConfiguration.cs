@@ -29,7 +29,7 @@ namespace Bluepill.Web
             //bundles.Add<StylesheetBundle>("/content/page.css");
             //bundles.Add<StylesheetBundle>("/content/application.search.interface.css");
 
-            var layoutFiles = new[]{
+            var cssFiles = new[]{
                 "content/bootstrap.css",
                 "content/bootstrap-responsive.css",
                 "content/page.css",
@@ -38,7 +38,37 @@ namespace Bluepill.Web
                 "content/bluepill.search.css"
             };
 
-            bundles.Add<StylesheetBundle>("layout_css", layoutFiles);
+            var jsFiles = new[]{
+                //"scripts/jquery-1.9.1.intellisense.js",
+                "scripts/jquery-1.9.1.js",
+                "scripts/jquery-ui-1.10.2.js",
+                "scripts/bootstrap.js",
+                "scripts/navbar.js",
+                "scripts/application.search.interface.js",
+                //"scripts/bluepill.create.js",
+                //"scripts/bluepill.search.js",
+                //"scripts/bluepill.search.mobile.js",
+                //"scripts/jquery.mousewheel.js",
+                //"scripts/swipe.js"
+            };
+
+            var createJsFiles = new[]{
+                "scripts/bluepill.create.js"
+            };
+
+
+            var searchJsFiles = new[]{
+                "scripts/bluepill.search.js",
+                "scripts/bluepill.search.mobile.js",
+                "scripts/jquery.mousewheel.js",
+                "scripts/swipe.js"
+            };
+
+
+            bundles.Add<StylesheetBundle>("css", cssFiles);
+            bundles.Add<ScriptBundle>("js", jsFiles);
+            bundles.Add<ScriptBundle>("createJs", createJsFiles);
+            bundles.Add<ScriptBundle>("searchJs", searchJsFiles);
 
 
             //bundles.AddPerSubDirectory<StylesheetBundle>("content");

@@ -57,6 +57,7 @@ function SavePicutre() {
 }
 
 function SetWorkingState(message, callback) {
+    console.log("wtf");
     $(".content").hide();
     $(".badge").hide();
     $(".bar span").text(message);

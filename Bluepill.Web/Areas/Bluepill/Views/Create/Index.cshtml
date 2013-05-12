@@ -1,16 +1,10 @@
 ﻿@model Bluepill.Web.Areas.Administration.Models.CreateModel
 
-@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
-
-@*@section css
-{ 
-    <link href="/content/bluepill.create.css" rel="stylesheet" type="text/css" />
-}*@
-
-@section script
-{ 
-    <script src="/scripts/bluepill.create.js"></script>
-}
+@{ 
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Bundles.Reference("js"); 
+    Bundles.Reference("createJs");
+ }
 
 <div class="container-fluid loading" data-file-total="@Model.TotalFileCount">
     <div class="row-fluid">
@@ -73,3 +67,5 @@
     </div>
 
 </div>
+
+@*@Cassette.Views.Bundles.RenderScripts()*@
