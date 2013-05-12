@@ -1,7 +1,0 @@
-﻿.bar ul { float:right; }
-.bar li { display:inline-block; font-size:11px; }
-
-.collection-menu { position:absolute; z-index:1; float:right; display:none; }
-.collection-menu li { font-size:12px; float:right; }
-
-.ui-icon { display:inline-block; }
