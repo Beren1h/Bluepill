@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@{ Bundles.Reference("layout_css"); }
+
+<!DOCTYPE html>
 <html>
 <head>
     <title>Blue Pill</title>
@@ -6,10 +8,12 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" type="image/png" href="https://bluepill.org/favicon.png">
-    <link href="/content/bootstrap.css" rel="stylesheet" type="text/css" />
+@*    <link href="/content/bootstrap.css" rel="stylesheet" type="text/css" />
     <link href="/content/bootstrap-responsive.css" rel="stylesheet" type="text/css" />
     <link href="/content/page.css" rel="stylesheet" type="text/css" />
-    <link href="/content/application.search.interface.css" rel="stylesheet" type="text/css" />
+    <link href="/content/application.search.interface.css" rel="stylesheet" type="text/css" />*@
+
+    @Bundles.RenderStylesheets()
 
     @if (IsSectionDefined("css"))
     {

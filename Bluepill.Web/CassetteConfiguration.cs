@@ -33,7 +33,9 @@ namespace Bluepill.Web
                 "content/bootstrap.css",
                 "content/bootstrap-responsive.css",
                 "content/page.css",
-                "content/application.search.interface.css"
+                "content/application.search.interface.css",
+                "content/bluepill.create.css",
+                "content/bluepill.search.css"
             };
 
             bundles.Add<StylesheetBundle>("layout_css", layoutFiles);
