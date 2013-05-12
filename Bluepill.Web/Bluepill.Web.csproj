@@ -220,7 +220,6 @@
     <Content Include="Global.asax" />
     <Content Include="Areas\Application\Views\Web.config" />
     <Content Include="Areas\Framework\Views\Authentication\Index.cshtml" />
-    <Content Include="Areas\Application\Views\Settings\Index.cshtml" />
     <Content Include="Content\bluepill.create.css" />
     <Content Include="Areas\Bluepill\Views\Search\Index.cshtml" />
     <Content Include="Content\bluepill.search.css" />
