@@ -1,7 +1,6 @@
 ﻿$("document").ready(function () {
 
     $(".nav li").removeClass("active");
-    //$(".nav li a").click(function () { return false; });
     $(".nav li a").unbind("click");
 
 });

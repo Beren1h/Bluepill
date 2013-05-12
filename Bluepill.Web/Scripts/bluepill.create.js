@@ -1,6 +1,8 @@
 ﻿
 $("document").ready(function () {
 
+    Activate("nav-add");
+
     var total = $(".loading").data("file-total");
 
     SetBadgeCount(total);
