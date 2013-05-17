@@ -240,8 +240,6 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Web.config" />
-    <Content Include="Views\Shared\_LayoutMobile.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\AspectMobile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
