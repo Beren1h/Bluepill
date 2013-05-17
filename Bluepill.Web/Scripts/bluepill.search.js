@@ -8,7 +8,7 @@
         $(".matches").data("page", "2");
         $(".criteria-row").hide();
 
-        var isMobile = $(".match-area").data("is-mobile");
+        var isMobile = $("body").data("is-mobile");
 
         if (isMobile == "False") {
             MouseWheelHandler(null, -1, 0, 0);
