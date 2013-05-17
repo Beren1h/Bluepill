@@ -20,13 +20,13 @@
 .actions .btn { opacity:0.4; }
 .actions .always-on { opacity:1 }
 
-.breadcrumb { background-color:#00000F; border:1px solid #1a3e4f; /*text-align:center;*/ }
+.breadcrumb { background-color:#00000F; border:1px solid #1a3e4f; margin:-6px 0px 7px 0px /*text-align:center;*/ }
 .breadcrumb li { text-shadow: 0 1px 0 #000000; }
 
 .drag-drop { text-align:center; height:200px; width:200px; line-height:200px; border:1px solid #1a3e4f; border-radius: 4px; }
 .drag-drop span { opacity:0.6; font-size:1.3em; color:#1a3e4f; line-height:36px; }
 /*.on { border:1px solid #83B0E1; border-radius:4px; opacity:1; color: #83B0E1 }*/
-.drop-ready a img { border:2px solid #000020; }
+.drop-ready a img { border:2px solid #f00 /*#000020*/; }
 
 /*.mobile-remove { border:1px solid #f00; background-color:#582929; color:#f00 }*/
 
@@ -36,6 +36,9 @@
 .infos { margin:0px 0px 10px 0px }
 
 .bluepill-border {  }
-.match { height:205px; width:200px; line-height:200px; text-align:center; }
+.match { height:204px; width:202px; line-height:202px; text-align:center; /*background-color:#f00*/ }
 .match img { opacity:0; vertical-align:middle; border:1px solid #83B0E1; /*#FEDC69*/ }
-.matches div { float:left; margin:3px 8px 3px 0;  /*width:200px; height:200px; float:left; margin:3px 8px 3px 0; text-align:center; line-height:200px;*/ }
+.matches div { float:left; padding:4px; /*margin:3px 8px 3px 0;*/  /*width:200px; height:200px; float:left; margin:3px 8px 3px 0; text-align:center; line-height:200px;*/ }
+.matches { position:relative; float:left; }
+
+

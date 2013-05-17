@@ -20,19 +20,18 @@ namespace Bluepill.Web.Areas.Bluepill.Controllers
     {
         private IBoxPacker _packer;
         private IBoxStorage _attic;
-        //private ICookieGateway _cookieGateway;
         private IApiRequest _dropbox;
         private List<string> _mimeTypes;
         private HttpClient _client;
 
-        public CreateController(IBoxPacker packer, IBoxStorage attic, /*ICookieGateway cookieGateway,*/ IApiRequest dropbox)
+        public CreateController(IBoxPacker packer, IBoxStorage attic, IApiRequest dropbox)
         {
             _packer = packer;
             _attic = attic;
-            //_cookieGateway = cookieGateway;
             _dropbox = dropbox;
             _mimeTypes = new List<string> { "image/jpeg", "image/png" };
             _client = new HttpClient();
+            //ViewBag.IsMobile = Identity.IsMobile;
         }
 
 
@@ -62,7 +61,7 @@ namespace Bluepill.Web.Areas.Bluepill.Controllers
                 model.File = list[0];
             }
 
-            return GetView(model, "Mobile");
+            return View(model);
         }
 
         [HttpPost]

@@ -4,30 +4,37 @@
         CenterInSwipe();
     });
 
-
-    $("#mobile-remover").click(function () {
-
-        var index = $(this).data("index").toString();
-        
-        //var matches = $(".matches").data("boxes");
-        var removedFrame = $("#mobile-frame-" + index);
-        var removedMatch = removedFrame.find(".match");
-        var removedImage = removedMatch.find("img");
-        var boxes = $(".matches").data("boxes");
-        //var matchNumber = parseInt($("#match").text());
-
-        ////$("#matches").text(matches - 1);
-        ////$("#match").text(matchNumber - 1);
-        $(".matches").data("boxes", boxes - 1);
-
-        removedMatch.data("removed", 1);
-
-        removedImage.animate({ "opacity": 0.2 }, 500, RemovedMatchHanlder(removedMatch));
-
-    });
+    SetRemoveHanlder();
 
 });
 
+function SetRemoveHanlder() {
+
+    $("#mobile-remover").click(function () {
+        var match = $(".match[data-list-position=" + $(this).data("target") + "]");
+        var img = match.find("img");
+        var matches = $(".match");
+        var slice = matches.slice(match.data("index") + 1);
+
+        var del = new Image();
+        del.id = "removeImage" + match.data("index");
+        del.src = "/application/picture/removepicture?index=" + match.data("index");
+        del.width = 1;
+        del.height = 1;
+
+        match.data("removed", 1);
+        img.animate({ "opacity": 0.2 }, 500, UpdateMatchCountDisplay(match.data("removed")));
+
+        slice.each(function () {
+            var position = $(this).data("list-position");
+            $(this).data("list-position", position - 1);
+        });
+
+        var adjustedBoxCount = $(".matches").data("boxes") - 1;
+        $(".matches").data("boxes", adjustedBoxCount);
+        $("#matches").text(adjustedBoxCount);
+    });
+}
 
 function InitializeSlider(index) {
 
@@ -37,54 +44,19 @@ function InitializeSlider(index) {
         startSlide: index,
         disableScroll: false,
         stopPropagation: true,
-        callback: Swiped,
-        transitionEnd: UpdateMatchCounts
+        //callback: Swiped,
+        //transitionEnd: UpdateMatchCounts
+        //callback: Start,
+        transitionEnd: SwipeEnd 
     });
 
     CenterInSwipe();
 }
 
-
-function RemovedMatchHanlder(match) {
-
-    if (match.data("removed") == 1) {
-        $(".mobile-match-count span").hide();
-        $("#match-conjuction").text("removed").show();
-    }
-    else {
-
-        $("#match-conjuction").text(" of ");
-        $(".mobile-match-count span").show();
-    }
-
-}
-
-
-function UpdateMatchCounts(i, e) {
-
-    var index = $(e).find(".match").data("index");
-    var page = $(".matches").data("page");
-    var current = (page - 1) * 21 + (i + 1);
-    var matches = $(".matches").data("boxes");
-    
-    var slice = $(".match").slice(0, i);
-
-    var removesBefore = 0;
-    slice.each(function () {
-        if ($(this).data("removed") == 1)
-            removesBefore++;
-    });
-
-    $("#match").text(current - removesBefore);
-    $("#matches").text(matches);
-    $("#mobile-remover").data("index", index);
-    $(".mobile-match-count span").show();
-
-    RemovedMatchHanlder($("#mobile-frame-" + index).find(".match"));
-}
-
-function Swiped(i, e) {
-    var load = $(e).find(".match").data("load");
+function SwipeEnd(i, e) {
+    var load = $(e).find(".loader").data("load");
+    var match = $(e).find(".match");
+    var position = match.data("list-position");
 
     if (load == "up") {
         LoadMoreMobile(1);
@@ -93,9 +65,29 @@ function Swiped(i, e) {
     if (load == "down") {
         LoadMoreMobile(-1);
     }
+
+    if (position != null) {
+        $("#match").text(position);
+        $("#mobile-remover").data("target", position);
+        UpdateMatchCountDisplay(match.data("removed"));
+    }
+}
+
+function UpdateMatchCountDisplay(removed) {
+
+    if (removed == 1) {
+        $(".mobile-match-count span").hide();
+        $("#match-conjuction").text("removed").show();
+    }
+    else {
+
+        $("#match-conjuction").text(" of ");
+        $(".mobile-match-count span").show();
+    }
 }
 
 function LoadMoreMobile(delta) {
+
     var currentPage = parseInt($("#Page").val());
     $("#Page").val(currentPage + delta)
 
@@ -103,20 +95,29 @@ function LoadMoreMobile(delta) {
 
     $(".match-area").load("search\\find", data, function (response) {
 
-        var matches = $(".matches").data("boxes");
+        var current = $(".match:first").data("list-position");
+        var startIndex = 0;
 
-        $("#match").text("1");
-        $("#match-conjuction").text(" of ");
-        $("#matches").text(matches);
+        if (delta < 0) {
+            startIndex = $(".frame").length - 2;
+            current = $(".match:last").data("list-position");
+        }
 
-        var frames = $(".frame").length;
-        var slideIndex = (delta < 0) ? frames - 2 : 1;
-
-        slideIndex = (delta == 0) ? 0 : slideIndex;
+        if (delta > 0) {
+            startIndex = 1;
+        }
 
         $(".match-area").fadeIn(function () {
-            InitializeSlider(slideIndex);
+            InitializeSlider(startIndex);
         });
+
+        UpdateMatchCountDisplay(0);
+
+        $("#match").text(current);
+        $("#match-conjuction").text(" of ");
+        $("#matches").text($(".matches").data("boxes"));
+
+        $("#mobile-remover").data("target", current);
 
         $(".match-area img").load(function () {
             $(this).animate({ "opacity": 1 }, 10);

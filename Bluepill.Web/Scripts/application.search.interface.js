@@ -1,7 +1,11 @@
 ﻿
 $("document").ready(function () {
 
-    InitializeColumns();
+    var isMobile = $("body").data("is-mobile");
+
+    if (isMobile == "False")
+        InitializeColumns();
+
     InitializeCheckBox();
 
     $(".facet-container").each(function () {
@@ -17,11 +21,6 @@ $("document").ready(function () {
     $(".actions .btn-clear").click(function () {
         Clear();
     });
-
-    //$(".actions,.on").animate({ "opacity": "1" }, 150, function () {
-    //    console.log("done");
-    //});
-
 
 });
 

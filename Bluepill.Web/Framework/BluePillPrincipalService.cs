@@ -11,15 +11,11 @@ namespace Bluepill.Web.Framework
 {
     public class BluePillPrincipalService : IPrincipalService
     {
-        //private IBluePillUserStore _userStore;
-        //private ICookieGateway _cookieGateway;
         private ITokenStorage _storage;
         private IBluepillUserStorage _user;
 
-        public BluePillPrincipalService(/*IBluePillUserStore userStore,*/ /*ICookieGateway cookieGateway,*/ ITokenStorage storage, IBluepillUserStorage user)
+        public BluePillPrincipalService(ITokenStorage storage, IBluepillUserStorage user)
         {
-            //_userStore = userStore;
-            //_cookieGateway = cookieGateway;
             _storage = storage;
             _user = user;
         }
@@ -28,35 +24,23 @@ namespace Bluepill.Web.Framework
         {
             var identity = new BluePillIdentity();
             var roles = new List<string>();
-            //var authenticationValue = _cookieGateway.GetVale(new HttpContextWrapper(HttpContext.Current), FormsAuthentication.FormsCookieName, 0);
-            var authenticationValue = new HttpContextWrapper(HttpContext.Current).Request.Cookies[FormsAuthentication.FormsCookieName].Value;
+            var authenticationCookie = new HttpContextWrapper(HttpContext.Current).Request.Cookies[FormsAuthentication.FormsCookieName];
 
-            if (authenticationValue != null)
+            if (authenticationCookie != null)
             {
-                var ticket = FormsAuthentication.Decrypt(authenticationValue);
+                var ticket = FormsAuthentication.Decrypt(authenticationCookie.Value);
 
                 identity.IsAuthenticated = !(ticket.Expiration < DateTime.Now);
                 identity.Name = ticket.Name;
                 identity.AuthenticationType = "FormsAuthentication";
-                                
-                //var user = _userStore.GetUser(identity.Name);
-
-                //if(user != null)
-                //    identity.Collections = user.Collections;
-
                 identity.AccessToken = _storage.GetToken(identity.Name);
-
                 identity.Facets = _user.GetUser(identity.Name).Facets;
-
                 identity.IsMobile = new HttpContextWrapper(HttpContext.Current).Request.Browser.IsMobileDevice;
                 //identity.IsMobile = true;
-                   
-
             }
 
             return new GenericPrincipal(identity, roles.ToArray());
         }
-
 
     }
 }

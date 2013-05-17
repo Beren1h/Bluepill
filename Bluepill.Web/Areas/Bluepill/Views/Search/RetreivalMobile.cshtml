@@ -1,6 +1,6 @@
 ﻿@model Bluepill.Web.Areas.Administration.Models.SearchModel
 
-<div class="matches" data-page="@Model.Page" data-max="@Model.TotalPages" data-boxes="@Model.TotalBoxes"></div>
+<div class="matches" data-page="@Model.Page" data-max="@Model.TotalPages" data-page-modifier="@Model.PageModifier" data-boxes="@Model.TotalBoxes"></div>
 
     <div id="slider" class="swipe">
         <div class="swipe-wrap">
@@ -8,7 +8,7 @@
             @if (Model.Page != 1)
             {
                 <div class="frame">
-                    <div class="match" data-load="down">
+                    <div class="loader" data-load="down">
                         <h3>loading down</h3>
                     </div>
                 </div>
@@ -16,8 +16,10 @@
 
             @for (int i = 0; i <= Model.MaxIndex; i++)
             {
+                var position = @Model.PageModifier + (i + 1);
+                
                 <div class="frame" id="mobile-frame-@i">
-                    <div class="match" data-index="@i">
+                    <div class="match" data-index="@i" data-list-position="@position">
                         <a  href="~/application/picture/getpicturebytes?index=@i" target="_blank">
                             <img src="~/application/picture/getpicturereducedbytes?index=@i" />
                         </a>
@@ -28,7 +30,7 @@
             @if (Model.Page < Model.TotalPages)
             {
                 <div class="frame">
-                    <div class="match" data-load="up">
+                    <div class="loader" data-load="up">
                         <h3>loading up</h3>
                     </div>
                 </div>

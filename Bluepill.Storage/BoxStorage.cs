@@ -134,7 +134,8 @@ namespace Bluepill.Storage
 
             var cursor = (query == null) ? collection.FindAllAs<Box>().SetFields(fields) : collection.FindAs<Box>(query).SetFields(fields); 
 
-            cursor.Limit = perPage - 1;
+            //cursor.Limit = perPage - 1;
+            cursor.Limit = perPage;
             cursor.Skip = (page - 1) * perPage;
 
             return new Retrieval { Boxes = cursor.ToList(), Total = cursor.Count() };

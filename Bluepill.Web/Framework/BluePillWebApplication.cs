@@ -18,15 +18,12 @@ namespace Bluepill.Web.Framework
             PostAuthenticateRequest += OnAuthenticateRequest;
         }
 
-
         protected void Application_Start()
         {
             DependencyResolver.SetResolver(new IocDependencyResolver(IocInitializer.CreateContainer()));
-            //DependencyResolver.SetResolver(new Bluepill.Injector.IocDependencyResolver(Bluepill.Injector.IocInitializer.CreateContainer()));
 
             AreaRegistration.RegisterAllAreas();
 
-            //WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             ModelValidatorProviders.Providers.Add(new FluentValidationModelValidatorProvider(new ValidatorFactory()));

@@ -9,14 +9,19 @@ namespace Bluepill.Web.Framework
 {
     public abstract class BluepillController : Controller
     {
-        public ActionResult /*Task<ActionResult>*/ GetView(dynamic model, string mobileView)
+        //public ActionResult  GetView(dynamic model, string mobileView)
+        //{
+        //    //var identity = (BluePillIdentity)ControllerContext.HttpContext.User.Identity;
+
+        //    //if (Identity.IsMobile)
+        //    //    return View(mobileView, model);
+
+        //    return View(model);
+        //}
+
+        public BluepillController()
         {
-            //var identity = (BluePillIdentity)ControllerContext.HttpContext.User.Identity;
-
-            //if (Identity.IsMobile)
-            //    return View(mobileView, model);
-
-            return View(model);
+            ViewBag.IsMobile = "Fred";
         }
 
         public BluePillIdentity Identity { get { return (BluePillIdentity)ControllerContext.HttpContext.User.Identity;  } }
