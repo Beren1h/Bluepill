@@ -4,6 +4,7 @@ using MongoDB.Driver;
 using MongoDB.Driver.GridFS;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -15,8 +16,8 @@ namespace Bluepill.Storage
     {
         private MongoServer _server;
         private MongoDatabase _database;
-        
-        private const string CONNECTION = "mongodb://localhost";
+
+        private string CONNECTION = ConfigurationManager.ConnectionStrings["bluepill"].ConnectionString;
         private const string DATABASE = "bluepill";
 
         public StorageContext()
