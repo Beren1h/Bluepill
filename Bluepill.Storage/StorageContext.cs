@@ -17,7 +17,8 @@ namespace Bluepill.Storage
         private MongoServer _server;
         private MongoDatabase _database;
 
-        private string CONNECTION = ConfigurationManager.ConnectionStrings["bluepill"].ConnectionString;
+        //private string CONNECTION = ConfigurationManager.ConnectionStrings["bluepill"].ConnectionString;
+        private string CONNECTION = System.Environment.GetEnvironmentVariable("CUSTOMCONNSTR_bluepill");
         private const string DATABASE = "bluepill";
 
         public StorageContext()
