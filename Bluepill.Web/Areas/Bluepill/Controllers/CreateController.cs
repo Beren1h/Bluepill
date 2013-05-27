@@ -61,6 +61,8 @@ namespace Bluepill.Web.Areas.Bluepill.Controllers
                 model.File = list[0];
             }
 
+            ViewBag.IsMobile = Identity.IsMobile;
+
             return View(model);
         }
 

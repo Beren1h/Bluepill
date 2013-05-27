@@ -19,10 +19,10 @@ namespace Bluepill.Web.Framework
         //    return View(model);
         //}
 
-        public BluepillController()
-        {
-            ViewBag.IsMobile = "Fred";
-        }
+        //public BluepillController()
+        //{
+        //    //ViewBag.IsMobile = "Fred";
+        //}
 
         public BluePillIdentity Identity { get { return (BluePillIdentity)ControllerContext.HttpContext.User.Identity;  } }
     }
